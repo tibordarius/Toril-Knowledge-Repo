@@ -14,6 +14,15 @@ from openai import OpenAI
 
 from .benchmark import evaluate_benchmarks, load_benchmarks
 from .structure import classify_chunk, routing_limits
+from .source_inventory import (
+    build_source_inventory,
+    file_sha256,
+    infer_edition,
+    infer_publication_year,
+    infer_source_type,
+    normalize_source_title,
+    write_inventory,
+)
 from .world_model import (
     install_schema as install_world_model_schema,
     plan_chunk_routes,
@@ -316,6 +325,76 @@ def ingest(conn: sqlite3.Connection, chunks: list[Chunk]) -> int:
     return len(chunks)
 
 
+def ingest_source_file(
+    conn: sqlite3.Connection,
+    path: str | Path,
+    *,
+    book_id: str | None = None,
+    title: str | None = None,
+    edition: str | None = None,
+    publication_year: int | None = None,
+    setting_date: str | None = None,
+    source_type: str = "auto",
+    canon_tier: str = "official",
+    pdf_path: str | Path | None = None,
+    source_key: str | None = None,
+    duplicate_status: str | None = None,
+    duplicate_of: str | None = None,
+    max_chars: int = 14000,
+    min_chars: int = 2500,
+    overlap: int = 700,
+) -> dict[str, Any]:
+    path = Path(path)
+    inferred_key = source_key or normalize_source_title(path.name)
+    inferred_type = infer_source_type(path.name) if source_type == "auto" else source_type
+    inferred_edition = edition or infer_edition(path.name)
+    inferred_year = publication_year or infer_publication_year(path.name)
+    resolved_book_id = book_id or inferred_key.replace(" ", "-")
+
+    sections = parse_markdown(path)
+    chunks = semantic_chunks(
+        sections,
+        resolved_book_id,
+        str(path),
+        max_chars=max_chars,
+        min_chars=min_chars,
+        overlap=overlap,
+    )
+    chunk_count = ingest(conn, chunks)
+
+    resolved_pdf = Path(pdf_path) if pdf_path else None
+    pdf_hash = file_sha256(resolved_pdf) if resolved_pdf and resolved_pdf.exists() else None
+
+    register_source(
+        conn,
+        book_id=resolved_book_id,
+        title=title or path.stem,
+        edition=inferred_edition,
+        publication_year=inferred_year,
+        setting_date=setting_date,
+        source_type=inferred_type,
+        canon_tier=canon_tier,
+        source_path=str(path),
+        sha256=file_sha256(path),
+        source_key=inferred_key,
+        pdf_path=str(resolved_pdf) if resolved_pdf else None,
+        pdf_sha256=pdf_hash,
+        duplicate_status=duplicate_status,
+        duplicate_of=duplicate_of,
+    )
+    return {
+        "book_id": resolved_book_id,
+        "sections": len(sections),
+        "chunks": chunk_count,
+        "edition": inferred_edition,
+        "publication_year": inferred_year,
+        "source_type": inferred_type,
+        "source_key": inferred_key,
+        "pdf_path": str(resolved_pdf) if resolved_pdf else None,
+        "duplicate_status": duplicate_status,
+    }
+
+
 def clean_json(text: str) -> dict[str, Any]:
     fence = chr(96) * 3
     text = text.strip()
@@ -614,8 +693,25 @@ def main() -> None:
     ingest_parser.add_argument("--edition")
     ingest_parser.add_argument("--publication-year", type=int)
     ingest_parser.add_argument("--setting-date")
-    ingest_parser.add_argument("--source-type", default="sourcebook")
+    ingest_parser.add_argument("--source-type", default="auto")
     ingest_parser.add_argument("--canon-tier", default="official")
+    ingest_parser.add_argument("--pdf-path")
+    ingest_parser.add_argument("--source-key")
+    ingest_parser.add_argument("--duplicate-status")
+    ingest_parser.add_argument("--duplicate-of")
+
+    inventory_parser = sub.add_parser("inventory-sources")
+    inventory_parser.add_argument("root")
+    inventory_parser.add_argument("--out", default="data/source_inventory.json")
+    inventory_parser.add_argument("--csv")
+
+    manifest_parser = sub.add_parser("ingest-manifest")
+    manifest_parser.add_argument("manifest")
+    manifest_parser.add_argument("--limit", type=int)
+    manifest_parser.add_argument("--canon-tier", default="official")
+    manifest_parser.add_argument("--max-chars", type=int, default=14000)
+    manifest_parser.add_argument("--min-chars", type=int, default=2500)
+    manifest_parser.add_argument("--overlap", type=int, default=700)
 
     extract_parser = sub.add_parser("extract")
     extract_parser.add_argument("--book-id")
@@ -662,40 +758,71 @@ def main() -> None:
     conn = connect(args.db)
 
     if args.command == "ingest":
-        path = Path(args.markdown)
-        book_id = args.book_id or path.stem.lower().replace(" ", "-")
-        sections = parse_markdown(path)
-        chunks = semantic_chunks(
-            sections,
-            book_id,
-            str(path),
-            max_chars=args.max_chars,
-            min_chars=args.min_chars,
-            overlap=args.overlap,
-        )
-        chunk_count = ingest(conn, chunks)
-        register_source(
+        result = ingest_source_file(
             conn,
-            book_id=book_id,
-            title=args.title or path.stem,
+            args.markdown,
+            book_id=args.book_id,
+            title=args.title,
             edition=args.edition,
             publication_year=args.publication_year,
             setting_date=args.setting_date,
             source_type=args.source_type,
             canon_tier=args.canon_tier,
-            source_path=str(path),
-            sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+            pdf_path=args.pdf_path,
+            source_key=args.source_key,
+            duplicate_status=args.duplicate_status,
+            duplicate_of=args.duplicate_of,
+            max_chars=args.max_chars,
+            min_chars=args.min_chars,
+            overlap=args.overlap,
         )
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "inventory-sources":
+        inventory = build_source_inventory(args.root)
+        write_inventory(inventory, args.out, args.csv)
+        print(json.dumps(inventory["summary"], indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "ingest-manifest":
+        manifest_path = Path(args.manifest)
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        records = [
+            record for record in manifest.get("records", [])
+            if record.get("role") == "markdown" and record.get("canonical") is True
+        ]
+        if args.limit is not None:
+            records = records[: args.limit]
+
+        results = []
+        for record in records:
+            results.append(
+                ingest_source_file(
+                    conn,
+                    record["path"],
+                    edition=record.get("edition"),
+                    publication_year=record.get("publication_year"),
+                    source_type=record.get("source_type") or "auto",
+                    canon_tier=args.canon_tier,
+                    pdf_path=record.get("paired_path"),
+                    source_key=record.get("source_key"),
+                    duplicate_status=record.get("duplicate_status"),
+                    duplicate_of=record.get("duplicate_of"),
+                    max_chars=args.max_chars,
+                    min_chars=args.min_chars,
+                    overlap=args.overlap,
+                )
+            )
         print(
             json.dumps(
                 {
-                    "book_id": book_id,
-                    "sections": len(sections),
-                    "chunks": chunk_count,
-                    "edition": args.edition,
-                    "setting_date": args.setting_date,
+                    "manifest": str(manifest_path),
+                    "ingested_sources": len(results),
+                    "sources": results,
                 },
                 indent=2,
+                ensure_ascii=False,
             )
         )
         return
