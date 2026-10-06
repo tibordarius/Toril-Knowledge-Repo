@@ -80,3 +80,30 @@ def test_embedded_stat_block_does_not_suppress_gazetteer_lore():
         "Fort +10 Ref +7 Will +5.",
     )
     assert classification.kind == "lore"
+
+
+def test_numeric_index_fragments_are_skipped_even_after_ocr_heading_loss():
+    text = " ".join(
+        f"Entry{i} {i % 300}, {(i + 7) % 300}, {(i + 13) % 300}," for i in range(120)
+    )
+    classification = classify_chunk("'", text)
+    assert classification.kind == "contents_index"
+
+
+def test_embedded_errata_is_separate_from_lore():
+    classification = classify_chunk(
+        "Forgotten Realms Campaign Setting Errata",
+        "These official rules corrections replace wording in the first printing.",
+    )
+    assert classification.kind == "errata"
+    limits = routing_limits(
+        classification,
+        domain_top_k=12,
+        system_top_k=8,
+        inference_top_k=6,
+    )
+    assert limits["domain_top_k"] == 4
+    assert limits["system_top_k"] == 0
+    assert limits["inference_top_k"] == 0
+    assert limits["skip_entity"] is False
+    assert limits["skip_relationship"] is True
