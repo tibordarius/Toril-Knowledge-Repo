@@ -44,10 +44,11 @@ DOMAIN_RULES: dict[str, dict[str, object]] = {
             "imports", "exports", "mercantilism", "merchant", "merchants", "coinage",
             "currency", "tariff", "tariffs", "tax", "taxes", "wages", "prices",
             "credit", "banking", "guild", "guilds", "commodities", "commerce",
+            "rent", "rents",
         },
         "phrases": (
             "imports ", "exports ", "trade route", "merchant house", "market price",
-            "coin and commerce", "tax revenue", "commercial activity",
+            "coin and commerce", "tax revenue", "commercial activity", "weekly market",
         ),
     },
     "governmental_and_political_domains": {
@@ -55,10 +56,12 @@ DOMAIN_RULES: dict[str, dict[str, object]] = {
             "autocracy", "council", "councils", "ruler", "rulers", "governance",
             "administration", "officials", "lord", "king", "queen", "regent",
             "succession", "sovereignty", "policies", "edict", "edicts",
+            "city-state", "city-states", "consolidation",
         },
         "phrases": (
             "ruled by", "governed by", "lord protector", "ruling class",
             "public opinion", "city administrators", "law and state",
+            "political consolidation",
         ),
     },
     "sociological_and_anthropological_domains": {
@@ -97,11 +100,11 @@ DOMAIN_RULES: dict[str, dict[str, object]] = {
         "strong": {
             "transport", "road", "roads", "bridge", "bridges", "canal", "aqueduct",
             "infrastructure", "waterworks", "waste", "sanitation", "energy", "land-use",
-            "mobility", "caravan", "caravans",
+            "mobility", "caravan", "caravans", "cart", "carts",
         },
         "phrases": (
             "road network", "transport network", "water system", "waste system",
-            "land use", "food system", "travel time",
+            "land use", "food system", "travel time", "by cart",
         ),
     },
     "arcane_magical_and_occult_domains": {
@@ -141,7 +144,8 @@ DOMAIN_RULES: dict[str, dict[str, object]] = {
         "strong": {
             "spy", "spies", "espionage", "agents", "operative", "operatives",
             "surveillance", "intelligence", "informants", "counterintelligence",
-            "secrets", "security",
+            "secrets", "security", "conceal", "conceals", "concealed", "concealing",
+            "covert",
         },
         "phrases": (
             "secret agents", "intelligence network", "trade information",
@@ -163,11 +167,79 @@ DOMAIN_RULES: dict[str, dict[str, object]] = {
         "strong": {
             "records", "archive", "archives", "literacy", "scholar", "scholars",
             "library", "libraries", "rumor", "rumors", "message", "messages",
-            "knowledge", "censorship", "printing",
+            "knowledge", "censorship", "printing", "study", "studies", "research",
         },
         "phrases": (
             "spread information", "trade secrets", "written records",
-            "public knowledge", "information network",
+            "public knowledge", "information network", "study spells",
+        ),
+    },
+    "legal_and_juridical_domains": {
+        "strong": {
+            "law", "laws", "legal", "justice", "court", "courts", "judge", "judges",
+            "jurisdiction", "license", "licenses", "prohibited", "permitted",
+            "enforcement", "enforcers", "rights",
+        },
+        "phrases": (
+            "inconsistent justice", "rule of law", "legal jurisdiction",
+            "court ruling", "law and state",
+        ),
+    },
+    "cosmological_and_metaphysical_domains": {
+        "strong": {
+            "cosmos", "cosmology", "plane", "planes", "planar", "astral", "shadowfell",
+            "feywild", "afterlife", "primordial", "primordials", "multiverse",
+        },
+        "phrases": (
+            "astral sea", "elemental chaos", "outer plane", "other plane",
+            "planar realm",
+        ),
+    },
+    "psychological_and_behavioral_domains": {
+        "strong": {
+            "fear", "fears", "motivation", "motivations", "trauma", "behavior",
+            "behaviour", "personality", "obsession", "desire", "desires",
+        },
+        "phrases": (
+            "roleplaying tips", "personal motivation", "psychological",
+        ),
+    },
+    "geological_hydrological_and_climatological_domains": {
+        "strong": {
+            "geology", "geological", "climate", "rainfall", "drought", "flood",
+            "watershed", "aquifer", "volcano", "volcanic", "erosion", "river",
+            "groundwater",
+        },
+        "phrases": (
+            "water table", "river basin", "climate pattern", "geological formation",
+        ),
+    },
+    "technological_and_scientific_domains": {
+        "strong": {
+            "technology", "technological", "engineering", "engineer", "engineers",
+            "machine", "machines", "mechanism", "invention", "innovation",
+            "manufacturing",
+        },
+        "phrases": (
+            "craft and engineering", "production method", "mechanical device",
+        ),
+    },
+    "scientific_and_historical_specialty_domains": {
+        "strong": {
+            "pathology", "pharmacology", "toxicology", "paleography", "epigraphy",
+            "numismatic", "archaeobotany", "archaeozoology", "paleoclimate",
+        },
+        "phrases": (
+            "medical pathology", "coin study", "inscription analysis",
+        ),
+    },
+    "wilderness_and_survival_domains": {
+        "strong": {
+            "wilderness", "forage", "foraging", "survival", "camp", "camping",
+            "trail", "trails", "wilds", "hazard", "hazards",
+        },
+        "phrases": (
+            "wild lands", "survival check", "overland travel", "wilderness route",
         ),
     },
     "historical_domains": {
@@ -221,6 +293,8 @@ DOMAIN_RULES: dict[str, dict[str, object]] = {
         ),
     },
 }
+
+SIGNAL_GATED_DOMAIN_IDS = set(DOMAIN_RULES)
 
 
 @lru_cache(maxsize=8)
@@ -305,6 +379,11 @@ def _route_score(pack, heading: str, text: str, layer: str) -> tuple[float, list
             score += 4.5
             high_signal += 2
             matches.append(""" + phrase + """)
+
+    if layer == "domain" and pack.id in SIGNAL_GATED_DOMAIN_IDS and high_signal == 0:
+        # Ambiguous packs must see a genuine discriminator. Generic ontology overlap is
+        # retained as a weak fallback but cannot dominate the route table.
+        score *= 0.18
 
     return score, matches[:24], high_signal
 
