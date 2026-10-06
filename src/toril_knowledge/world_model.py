@@ -480,6 +480,8 @@ def _call_and_store(
                 "heading": chunk["heading"],
                 "page_start": chunk["page_start"],
                 "page_end": chunk["page_end"],
+                "line_start": chunk["line_start"] if "line_start" in chunk.keys() else None,
+                "line_end": chunk["line_end"] if "line_end" in chunk.keys() else None,
             },
             ensure_ascii=False,
         )
