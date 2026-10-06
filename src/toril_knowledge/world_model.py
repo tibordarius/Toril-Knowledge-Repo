@@ -511,7 +511,8 @@ def _call_and_store(
     ).fetchone()
     meta = dict(source_meta) if source_meta else {"book_id": chunk["book_id"]}
     source_instructions = ""
-    if meta.get("source_type") == "errata":
+    classification = classify_chunk(chunk["heading"], chunk["content"])
+    if meta.get("source_type") == "errata" or classification.kind == "errata":
         source_instructions = (
             "\n\nERRATA MODE\n"
             "Treat this text as a correction overlay. Use record_type=correction where appropriate. "
