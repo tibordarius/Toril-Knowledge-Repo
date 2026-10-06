@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Toril Knowledge Record",
+  "type": "object",
+  "required": [
+    "record_type", "subject", "predicate", "object", "attributes",
+    "evidence", "confidence_type", "scale", "salience",
+    "simulation_readiness", "valid_from", "valid_until",
+    "perspective", "source_status"
+  ],
+  "properties": {
+    "record_type": {
+      "enum": [
+        "entity", "attribute", "claim", "relation", "event", "quantity",
+        "state", "flow", "dependency", "constraint", "capacity", "pressure",
+        "incentive", "power", "vulnerability", "resilience", "risk",
+        "opportunity", "trend", "inference", "gap", "perspective",
+        "conflict", "correction"
+      ]
+    },
+    "subject": {"type": ["string", "null"]},
+    "predicate": {"type": ["string", "null"]},
+    "object": {},
+    "attributes": {"type": "object"},
+    "evidence": {"type": ["string", "null"]},
+    "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "confidence_type": {
+      "type": ["string", "null"],
+      "enum": [
+        "explicit", "strong_implication", "weak_implication", "inferred",
+        "estimated", "speculative", "unknown", "contradicted", null
+      ]
+    },
+    "scale": {
+      "type": ["string", "null"],
+      "enum": [
+        "individual", "household", "neighborhood", "settlement", "regional",
+        "national", "continental", "global", "planar", "cosmic", null
+      ]
+    },
+    "salience": {
+      "type": ["string", "null"],
+      "enum": ["background", "minor", "important", "major", "defining", "world_changing", null]
+    },
+    "simulation_readiness": {
+      "type": ["string", "null"],
+      "enum": ["descriptive", "relational", "quantifiable", "time_sensitive", "causal", "simulatable", null]
+    },
+    "valid_from": {"type": ["string", "null"]},
+    "valid_until": {"type": ["string", "null"]},
+    "perspective": {"type": ["string", "null"]},
+    "source_status": {
+      "enum": ["explicit", "strong_implication", "inferred"]
+    }
+  }
+}

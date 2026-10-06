@@ -52,6 +52,8 @@ class Section:
     text: str
     page_start: int | None = None
     page_end: int | None = None
+    line_start: int | None = None
+    line_end: int | None = None
 
 
 @dataclass(slots=True)
@@ -63,6 +65,8 @@ class Chunk:
     text: str
     page_start: int | None = None
     page_end: int | None = None
+    line_start: int | None = None
+    line_end: int | None = None
 
 
 def parse_markdown(path: str | Path) -> list[Section]:
@@ -72,24 +76,42 @@ def parse_markdown(path: str | Path) -> list[Section]:
     sections: list[Section] = []
     page_start: int | None = None
     page_end: int | None = None
+    heading_line: int | None = None
+    body_start_line: int | None = None
+    last_line: int | None = None
 
     def flush() -> None:
-        nonlocal body, page_start, page_end
-        text = "\\n".join(body).strip()
+        nonlocal body, page_start, page_end, body_start_line, last_line
+        text = "\n".join(body).strip()
         if text:
             heading = " > ".join(stack) if stack else "(preamble)"
-            sections.append(Section(heading, text, page_start, page_end))
+            start_line = heading_line if stack and heading_line is not None else body_start_line
+            sections.append(
+                Section(
+                    heading,
+                    text,
+                    page_start,
+                    page_end,
+                    start_line,
+                    last_line,
+                )
+            )
         body = []
         page_start = None
         page_end = None
+        body_start_line = None
+        last_line = None
 
-    for line in lines:
+    for line_number, line in enumerate(lines, start=1):
         page_match = PAGE_RE.search(line)
         if page_match:
             page = int(page_match.group(1))
             if page_start is None:
                 page_start = page
             page_end = page
+            if body_start_line is None:
+                body_start_line = line_number
+            last_line = line_number
             body.append(line)
             continue
 
@@ -102,8 +124,13 @@ def parse_markdown(path: str | Path) -> list[Section]:
             while len(stack) < level - 1:
                 stack.append("(untitled)")
             stack.append(title)
+            heading_line = line_number
             continue
 
+        if body_start_line is None and line.strip():
+            body_start_line = line_number
+        if line.strip():
+            last_line = line_number
         body.append(line)
 
     flush()
@@ -122,9 +149,21 @@ def semantic_chunks(
     pending: list[Section] = []
     pending_size = 0
 
-    def make_chunk(heading: str, text: str, start: int | None, end: int | None) -> None:
+    def make_chunk(
+        heading: str,
+        text: str,
+        start: int | None,
+        end: int | None,
+        line_start: int | None,
+        line_end: int | None,
+    ) -> None:
         digest = hashlib.sha256((book_id + "\\x00" + heading + "\\x00" + text).encode("utf-8")).hexdigest()[:20]
-        chunks.append(Chunk(digest, book_id, source_path, heading, text, start, end))
+        chunks.append(
+            Chunk(
+                digest, book_id, source_path, heading, text,
+                start, end, line_start, line_end
+            )
+        )
 
     def emit(group: list[Section]) -> None:
         if not group:
@@ -133,7 +172,16 @@ def semantic_chunks(
         text = "\\n\\n".join("## " + s.heading + "\\n" + s.text for s in group)
         starts = [s.page_start for s in group if s.page_start is not None]
         ends = [s.page_end for s in group if s.page_end is not None]
-        make_chunk(heading, text, min(starts) if starts else None, max(ends) if ends else None)
+        line_starts = [s.line_start for s in group if s.line_start is not None]
+        line_ends = [s.line_end for s in group if s.line_end is not None]
+        make_chunk(
+            heading,
+            text,
+            min(starts) if starts else None,
+            max(ends) if ends else None,
+            min(line_starts) if line_starts else None,
+            max(line_ends) if line_ends else None,
+        )
 
     for section in sections:
         if len(section.text) > max_chars:
@@ -143,7 +191,14 @@ def semantic_chunks(
             step = max(1, max_chars - overlap)
             for index, start in enumerate(range(0, len(section.text), step), 1):
                 piece = section.text[start : start + max_chars]
-                make_chunk(section.heading + " [part " + str(index) + "]", piece, section.page_start, section.page_end)
+                make_chunk(
+                    section.heading + " [part " + str(index) + "]",
+                    piece,
+                    section.page_start,
+                    section.page_end,
+                    section.line_start,
+                    section.line_end,
+                )
             continue
 
         if pending and pending_size + len(section.text) > max_chars:
@@ -207,17 +262,30 @@ def connect(path: str | Path) -> sqlite3.Connection:
         );
         """
     )
+    chunk_columns = {row[1] for row in conn.execute("PRAGMA table_info(chunks)")}
+    if "line_start" not in chunk_columns:
+        conn.execute("ALTER TABLE chunks ADD COLUMN line_start INTEGER")
+    if "line_end" not in chunk_columns:
+        conn.execute("ALTER TABLE chunks ADD COLUMN line_end INTEGER")
     conn.commit()
+    install_world_model_schema(conn)
     return conn
 
 
 def ingest(conn: sqlite3.Connection, chunks: list[Chunk]) -> int:
     for chunk in chunks:
         conn.execute(
-            """INSERT INTO chunks VALUES (?, ?, ?, ?, ?, ?, ?, NULL)
+            """INSERT INTO chunks
+               (chunk_id, book_id, source_path, heading, page_start, page_end,
+                content, extracted_at, line_start, line_end)
+               VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, ?)
                ON CONFLICT(chunk_id) DO UPDATE SET
-               heading=excluded.heading, page_start=excluded.page_start,
-               page_end=excluded.page_end, content=excluded.content""",
+               heading=excluded.heading,
+               page_start=excluded.page_start,
+               page_end=excluded.page_end,
+               line_start=excluded.line_start,
+               line_end=excluded.line_end,
+               content=excluded.content""",
             (
                 chunk.chunk_id,
                 chunk.book_id,
@@ -226,6 +294,8 @@ def ingest(conn: sqlite3.Connection, chunks: list[Chunk]) -> int:
                 chunk.page_start,
                 chunk.page_end,
                 chunk.text,
+                chunk.line_start,
+                chunk.line_end,
             ),
         )
         conn.execute("DELETE FROM chunks_fts WHERE chunk_id = ?", (chunk.chunk_id,))
@@ -374,6 +444,7 @@ def extract_pending(
 def search_chunks(conn: sqlite3.Connection, query: str, limit: int = 10) -> list[dict[str, Any]]:
     rows = conn.execute(
         """SELECT c.chunk_id, c.book_id, c.heading, c.page_start, c.page_end,
+                  c.line_start, c.line_end,
                   snippet(chunks_fts, 3, '[', ']', ' ... ', 18) AS snippet
            FROM chunks_fts JOIN chunks c USING(chunk_id)
            WHERE chunks_fts MATCH ?
@@ -440,6 +511,12 @@ def main() -> None:
     ingest_parser.add_argument("--max-chars", type=int, default=14000)
     ingest_parser.add_argument("--min-chars", type=int, default=2500)
     ingest_parser.add_argument("--overlap", type=int, default=700)
+    ingest_parser.add_argument("--title")
+    ingest_parser.add_argument("--edition")
+    ingest_parser.add_argument("--publication-year", type=int)
+    ingest_parser.add_argument("--setting-date")
+    ingest_parser.add_argument("--source-type", default="sourcebook")
+    ingest_parser.add_argument("--canon-tier", default="official")
 
     extract_parser = sub.add_parser("extract")
     extract_parser.add_argument("--book-id")
@@ -453,6 +530,19 @@ def main() -> None:
     dossier_parser = sub.add_parser("dossier")
     dossier_parser.add_argument("entity")
     dossier_parser.add_argument("--out")
+
+    route_parser = sub.add_parser("route")
+    route_parser.add_argument("--book-id", required=True)
+    route_parser.add_argument("--limit", type=int)
+    route_parser.add_argument("--domain-top-k", type=int, default=8)
+    route_parser.add_argument("--system-top-k", type=int, default=6)
+    route_parser.add_argument("--inference-top-k", type=int, default=6)
+
+    world_parser = sub.add_parser("extract-world")
+    world_parser.add_argument("--book-id", required=True)
+    world_parser.add_argument("--model")
+    world_parser.add_argument("--mode", choices=["lean", "standard", "deep", "exhaustive"], default="deep")
+    world_parser.add_argument("--limit", type=int)
 
     args = parser.parse_args()
     conn = connect(args.db)
@@ -469,7 +559,31 @@ def main() -> None:
             min_chars=args.min_chars,
             overlap=args.overlap,
         )
-        print(json.dumps({"book_id": book_id, "sections": len(sections), "chunks": ingest(conn, chunks)}, indent=2))
+        chunk_count = ingest(conn, chunks)
+        register_source(
+            conn,
+            book_id=book_id,
+            title=args.title or path.stem,
+            edition=args.edition,
+            publication_year=args.publication_year,
+            setting_date=args.setting_date,
+            source_type=args.source_type,
+            canon_tier=args.canon_tier,
+            source_path=str(path),
+            sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+        )
+        print(
+            json.dumps(
+                {
+                    "book_id": book_id,
+                    "sections": len(sections),
+                    "chunks": chunk_count,
+                    "edition": args.edition,
+                    "setting_date": args.setting_date,
+                },
+                indent=2,
+            )
+        )
         return
 
     if args.command == "extract":
@@ -486,6 +600,46 @@ def main() -> None:
             print(write_dossier(data, args.out))
         else:
             print(json.dumps(data, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "route":
+        sql = "SELECT * FROM chunks WHERE book_id=? ORDER BY rowid"
+        params: list[Any] = [args.book_id]
+        if args.limit:
+            sql += " LIMIT ?"
+            params.append(args.limit)
+        rows = conn.execute(sql, params).fetchall()
+        planned = []
+        for row in rows:
+            routes = plan_chunk_routes(
+                conn,
+                row,
+                domain_top_k=args.domain_top_k,
+                system_top_k=args.system_top_k,
+                inference_top_k=args.inference_top_k,
+            )
+            planned.append(
+                {
+                    "chunk_id": row["chunk_id"],
+                    "heading": row["heading"],
+                    "domain": [route.pack_id for route in routes["domain"]],
+                    "system": [route.pack_id for route in routes["system"]],
+                    "inference": [route.pack_id for route in routes["inference"]],
+                }
+            )
+        print(json.dumps(planned, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "extract-world":
+        result = run_world_model(
+            conn,
+            book_id=args.book_id,
+            model=args.model,
+            mode=args.mode,
+            limit=args.limit,
+        )
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+        return
 
 
 if __name__ == "__main__":
