@@ -69,6 +69,21 @@ def route_relationship_families(
         "religious": ("religious", "theolog", "divine", "clerical", "cultic", "sacred"),
         "magical": ("arcane", "magical", "occult", "wizard", "sorcer", "thaumaturg", "planar"),
         "information": ("information", "knowledge", "communication", "intelligence", "espionage"),
+        "causal": ("cause", "causal", "trigger", "result", "consequence", "feedback", "cascade"),
+        "dependency": ("depend", "reliance", "requires", "critical", "scarcity", "substitut"),
+        "legal": ("legal", "law", "jurid", "court", "regulat", "license", "jurisdiction"),
+        "power": ("power", "authority", "legitim", "influence", "coerc", "veto", "mobiliz"),
+        "capability": ("capability", "capacity", "reach", "readiness", "mobiliz", "project"),
+        "flow": ("flow", "trade", "route", "migration", "shipping", "supply", "distribution"),
+        "logistical": ("logistic", "supply", "warehouse", "transport", "provision", "resupply", "route"),
+        "infrastructure": ("infrastructure", "road", "bridge", "port", "canal", "sewer", "aqueduct", "grid"),
+        "ecological": ("ecolog", "habitat", "predat", "species", "migration", "pollinat", "biodivers"),
+        "technological": ("technolog", "engineer", "manufactur", "mechanical", "innovation", "diffusion"),
+        "epistemic": ("evidence", "claim", "belief", "uncertain", "corrobor", "contradict", "source"),
+        "provenance": ("source", "record", "archive", "author", "edition", "errata", "citation"),
+        "cultural": ("culture", "language", "custom", "festival", "ritual", "symbol", "identity"),
+        "biological": ("disease", "health", "medicine", "poison", "immune", "infection", "patholog"),
+        "interaction": ("coupling", "spillover", "externality", "interact", "cross-domain", "mediates"),
     }
 
     haystack = combined + " " + selected
@@ -157,12 +172,102 @@ SYSTEM_BY_DOMAIN = {
     ),
 }
 
+SYSTEM_ENRICHMENTS_BY_DOMAIN = {
+    "economic_and_commercial_domains": (
+        "cross_domain_coupling_layer", "externality_layer", "distributional_effect_layer",
+        "shock_propagation_layer", "lag_delay_layer", "equilibrium_layer", "volatility_layer",
+    ),
+    "governmental_and_political_domains": (
+        "institutional_friction_layer", "path_dependency_layer", "distributional_effect_layer",
+        "cross_domain_coupling_layer", "lag_delay_layer", "leverage_point_layer",
+    ),
+    "legal_and_juridical_domains": (
+        "institutional_friction_layer", "lag_delay_layer", "path_dependency_layer",
+    ),
+    "diplomatic_and_geopolitical_domains": (
+        "shock_propagation_layer", "cross_domain_coupling_layer", "path_dependency_layer",
+        "leverage_point_layer",
+    ),
+    "martial_and_military_domains": (
+        "shock_propagation_layer", "lag_delay_layer", "cross_domain_coupling_layer",
+    ),
+    "security_and_intelligence_domains": (
+        "shock_propagation_layer", "institutional_friction_layer", "lag_delay_layer",
+    ),
+    "illicit_and_criminal_domains": (
+        "cross_domain_coupling_layer", "externality_layer", "shock_propagation_layer",
+    ),
+    "sociological_and_anthropological_domains": (
+        "distributional_effect_layer", "adaptation_layer", "path_dependency_layer",
+        "cross_domain_coupling_layer",
+    ),
+    "religious_theological_and_divine_domains": (
+        "cross_domain_coupling_layer", "path_dependency_layer", "adaptation_layer",
+    ),
+    "arcane_magical_and_occult_domains": (
+        "cross_domain_coupling_layer", "externality_layer", "shock_propagation_layer",
+    ),
+    "geological_hydrological_and_climatological_domains": (
+        "shock_propagation_layer", "adaptation_layer", "cross_domain_coupling_layer",
+    ),
+    "biological_and_ecological_domains": (
+        "adaptation_layer", "externality_layer", "shock_propagation_layer",
+        "cross_domain_coupling_layer",
+    ),
+    "urban_and_settlement_domains": (
+        "institutional_friction_layer", "externality_layer", "distributional_effect_layer",
+        "cross_domain_coupling_layer",
+    ),
+    "maritime_domains": (
+        "shock_propagation_layer", "lag_delay_layer", "cross_domain_coupling_layer",
+    ),
+    "technological_and_scientific_domains": (
+        "path_dependency_layer", "adaptation_layer", "externality_layer",
+        "cross_domain_coupling_layer",
+    ),
+    "information_knowledge_and_communication_domains": (
+        "lag_delay_layer", "path_dependency_layer", "cross_domain_coupling_layer",
+    ),
+    "historical_domains": (
+        "path_dependency_layer", "lag_delay_layer", "shock_propagation_layer",
+    ),
+    "cross_domain_geographic_and_synthetic_domains": (
+        "cross_domain_coupling_layer", "shock_propagation_layer", "path_dependency_layer",
+        "leverage_point_layer", "externality_layer",
+    ),
+    "material_environment_and_mobility_domains": (
+        "cross_domain_coupling_layer", "shock_propagation_layer", "adaptation_layer",
+        "externality_layer", "lag_delay_layer",
+    ),
+    "cognitive_philosophical_and_symbolic_domains": (
+        "path_dependency_layer", "adaptation_layer", "cross_domain_coupling_layer",
+    ),
+    "scientific_and_historical_specialty_domains": (
+        "path_dependency_layer", "lag_delay_layer", "shock_propagation_layer",
+    ),
+    "systems_and_comparative_analytical_domains": (
+        "cross_domain_coupling_layer", "shock_propagation_layer", "lag_delay_layer",
+        "adaptation_layer", "path_dependency_layer", "externality_layer",
+        "tradeoff_layer", "distributional_effect_layer", "institutional_friction_layer",
+        "equilibrium_layer", "volatility_layer", "leverage_point_layer",
+    ),
+}
+
 
 def route_system_from_domains(selected_pack_ids: Iterable[str], top_k: int = 10) -> list[str]:
+    selected = list(selected_pack_ids)
     scores: dict[str, float] = {pack_id: 1.0 for pack_id in SYSTEM_CORE}
-    for domain_id in selected_pack_ids:
+    for domain_id in selected:
         for rank, system_id in enumerate(SYSTEM_BY_DOMAIN.get(domain_id, ())):
             scores[system_id] = scores.get(system_id, 0.0) + max(1.0, 4.0 - rank * 0.35)
+        for rank, system_id in enumerate(SYSTEM_ENRICHMENTS_BY_DOMAIN.get(domain_id, ())):
+            scores[system_id] = scores.get(system_id, 0.0) + max(0.75, 2.75 - rank * 0.25)
+
+    if len(set(selected)) >= 2:
+        scores["cross_domain_coupling_layer"] = scores.get("cross_domain_coupling_layer", 0.0) + 3.0
+        scores["shock_propagation_layer"] = scores.get("shock_propagation_layer", 0.0) + 1.25
+        scores["distributional_effect_layer"] = scores.get("distributional_effect_layer", 0.0) + 0.75
+
     ordered = sorted(scores.items(), key=lambda item: (-item[1], item[0]))
     return [pack_id for pack_id, _ in ordered[:top_k]]
 
@@ -206,18 +311,137 @@ INFERENCE_BY_DOMAIN = {
     ),
 }
 
+INFERENCE_ENRICHMENTS_BY_DOMAIN = {
+    "economic_and_commercial_domains": (
+        "trade_network_inference_layer", "supply_chain_inference_layer",
+        "fiscal_inference_layer", "geoeconomic_inference_layer",
+    ),
+    "governmental_and_political_domains": (
+        "institutional_inference_layer", "succession_inference_layer",
+        "legal_inference_layer", "cross_domain_consequence_inference_layer",
+    ),
+    "legal_and_juridical_domains": (
+        "legal_inference_layer", "institutional_inference_layer",
+    ),
+    "diplomatic_and_geopolitical_domains": (
+        "diplomatic_inference_layer", "geoeconomic_inference_layer",
+        "succession_inference_layer", "cross_domain_consequence_inference_layer",
+    ),
+    "martial_and_military_domains": (
+        "logistics_inference_layer", "security_inference_layer",
+        "cross_domain_consequence_inference_layer",
+    ),
+    "security_and_intelligence_domains": (
+        "security_inference_layer", "criminal_network_inference_layer",
+        "knowledge_diffusion_inference_layer",
+    ),
+    "illicit_and_criminal_domains": (
+        "criminal_network_inference_layer", "trade_network_inference_layer",
+        "security_inference_layer", "cross_domain_consequence_inference_layer",
+    ),
+    "sociological_and_anthropological_domains": (
+        "migration_inference_layer", "cultural_diffusion_inference_layer",
+        "cross_domain_consequence_inference_layer",
+    ),
+    "cultural_and_symbolic_domains": (
+        "cultural_diffusion_inference_layer", "knowledge_diffusion_inference_layer",
+    ),
+    "religious_theological_and_divine_domains": (
+        "religious_influence_inference_layer", "cultural_diffusion_inference_layer",
+        "cross_domain_consequence_inference_layer",
+    ),
+    "arcane_magical_and_occult_domains": (
+        "magical_economy_inference_layer", "technological_diffusion_inference_layer",
+        "cross_domain_consequence_inference_layer",
+    ),
+    "geographic_and_spatial_domains": (
+        "trade_network_inference_layer", "logistics_inference_layer",
+        "infrastructure_inference_layer",
+    ),
+    "geological_hydrological_and_climatological_domains": (
+        "environmental_inference_layer", "resource_depletion_inference_layer",
+        "infrastructure_inference_layer", "cross_domain_consequence_inference_layer",
+    ),
+    "biological_and_ecological_domains": (
+        "environmental_inference_layer", "disease_inference_layer",
+        "resource_depletion_inference_layer", "cross_domain_consequence_inference_layer",
+    ),
+    "wilderness_and_survival_domains": (
+        "environmental_inference_layer", "logistics_inference_layer",
+    ),
+    "urban_and_settlement_domains": (
+        "infrastructure_inference_layer", "migration_inference_layer",
+        "disease_inference_layer", "cross_domain_consequence_inference_layer",
+    ),
+    "maritime_domains": (
+        "maritime_inference_layer", "trade_network_inference_layer",
+        "logistics_inference_layer", "security_inference_layer",
+    ),
+    "technological_and_scientific_domains": (
+        "technological_diffusion_inference_layer", "infrastructure_inference_layer",
+        "disease_inference_layer",
+    ),
+    "information_knowledge_and_communication_domains": (
+        "knowledge_diffusion_inference_layer", "institutional_inference_layer",
+    ),
+    "historical_domains": (
+        "institutional_inference_layer", "succession_inference_layer",
+        "cross_domain_consequence_inference_layer",
+    ),
+    "mundane_everyday_life_domains": (
+        "supply_chain_inference_layer", "migration_inference_layer",
+        "cultural_diffusion_inference_layer",
+    ),
+    "adventure_and_gameable_content_domains": (
+        "cross_domain_consequence_inference_layer", "security_inference_layer",
+        "criminal_network_inference_layer",
+    ),
+    "cross_domain_geographic_and_synthetic_domains": (
+        "geoeconomic_inference_layer", "trade_network_inference_layer",
+        "migration_inference_layer", "diplomatic_inference_layer",
+        "cross_domain_consequence_inference_layer",
+    ),
+    "material_environment_and_mobility_domains": (
+        "logistics_inference_layer", "infrastructure_inference_layer",
+        "environmental_inference_layer", "resource_depletion_inference_layer",
+        "disease_inference_layer", "cross_domain_consequence_inference_layer",
+    ),
+    "cognitive_philosophical_and_symbolic_domains": (
+        "cultural_diffusion_inference_layer", "knowledge_diffusion_inference_layer",
+        "institutional_inference_layer",
+    ),
+    "scientific_and_historical_specialty_domains": (
+        "disease_inference_layer", "knowledge_diffusion_inference_layer",
+        "resource_depletion_inference_layer",
+    ),
+    "systems_and_comparative_analytical_domains": (
+        "cross_domain_consequence_inference_layer", "institutional_inference_layer",
+        "trade_network_inference_layer", "supply_chain_inference_layer",
+        "geoeconomic_inference_layer",
+    ),
+}
+
 
 def route_inference_from_domains(
     selected_pack_ids: Iterable[str],
     lexical_routes: Iterable[Route] = (),
     top_k: int = 8,
 ) -> list[str]:
+    selected = list(selected_pack_ids)
     scores: dict[str, float] = {}
     for route in lexical_routes:
         scores[route.pack_id] = scores.get(route.pack_id, 0.0) + route.score
-    for domain_id in selected_pack_ids:
+    for domain_id in selected:
         for rank, inference_id in enumerate(INFERENCE_BY_DOMAIN.get(domain_id, ())):
             scores[inference_id] = scores.get(inference_id, 0.0) + max(1.0, 4.0 - rank * 0.5)
+        for rank, inference_id in enumerate(INFERENCE_ENRICHMENTS_BY_DOMAIN.get(domain_id, ())):
+            scores[inference_id] = scores.get(inference_id, 0.0) + max(0.75, 2.75 - rank * 0.3)
+
+    if len(set(selected)) >= 2:
+        scores["cross_domain_consequence_inference_layer"] = (
+            scores.get("cross_domain_consequence_inference_layer", 0.0) + 3.0
+        )
+
     for meta in ("certainty_layer", "salience_layer", "simulation_readiness_layer"):
         scores[meta] = scores.get(meta, 0.0) + 0.75
     ordered = sorted(scores.items(), key=lambda item: (-item[1], item[0]))
