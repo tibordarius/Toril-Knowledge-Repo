@@ -56,3 +56,63 @@ def test_mundane_repairs_do_not_route_maritime():
     ids = {route.pack_id for route in routes}
     assert "mundane_everyday_life_domains" in ids
     assert "maritime_domains" not in ids
+
+
+def test_diplomacy_requires_diplomatic_evidence():
+    routes = route_text(
+        "Regional Overview",
+        "The realm has roads, markets, temples, farms, nobles and several neighboring cities.",
+        top_k=12,
+    )
+    ids = {route.pack_id for route in routes}
+    assert "diplomatic_and_geopolitical_domains" not in ids
+
+    routes = route_text(
+        "Foreign Relations",
+        "The kingdom maintains an alliance and treaty with its neighbor and sends an envoy "
+        "to negotiate a disputed border.",
+        top_k=12,
+    )
+    ids = {route.pack_id for route in routes}
+    assert "diplomatic_and_geopolitical_domains" in ids
+
+
+def test_cultural_and_cognitive_packs_need_specific_evidence():
+    generic = route_text(
+        "Regional Overview",
+        "People live in towns, trade goods, serve local rulers and travel through the region.",
+        top_k=12,
+    )
+    generic_ids = {route.pack_id for route in generic}
+    assert "cultural_and_symbolic_domains" not in generic_ids
+    assert "cognitive_philosophical_and_symbolic_domains" not in generic_ids
+
+    cultural = route_text(
+        "Customs and Language",
+        "Local customs, dialects, heraldry, marriage traditions and annual festivals "
+        "distinguish the region.",
+        top_k=12,
+    )
+    assert "cultural_and_symbolic_domains" in {route.pack_id for route in cultural}
+
+    cognitive = route_text(
+        "Myths and Philosophy",
+        "A founding myth, several legends and a philosophical school shape local rhetoric "
+        "and political narratives.",
+        top_k=12,
+    )
+    assert "cognitive_philosophical_and_symbolic_domains" in {
+        route.pack_id for route in cognitive
+    }
+
+
+def test_generic_ontology_overlap_is_not_enough_for_gated_pack():
+    routes = route_text(
+        "Geography",
+        "The land contains goods, names, services, markets, regions and many local effects.",
+        top_k=12,
+    )
+    ids = {route.pack_id for route in routes}
+    assert "arcane_magical_and_occult_domains" not in ids
+    assert "legal_and_juridical_domains" not in ids
+    assert "biological_and_ecological_domains" not in ids
