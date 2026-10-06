@@ -1,14 +1,43 @@
 # Architecture
 
-The pipeline separates deterministic work from probabilistic work.
+The pipeline separates deterministic parsing, source-grounded extraction, system modeling and explicit inference.
 
-1. Parse Markdown headings and page markers without an LLM.
-2. Chunk on semantic boundaries.
-3. Extract atomic entities, claims, relationships and events.
-4. Persist everything with source book, chunk, heading and page provenance.
-5. Retrieve with SQLite FTS before adding embeddings.
-6. Build dossiers from the fact layer instead of rereading whole books.
-7. Review conflicts before promoting claims to canonical knowledge.
+## Processing architecture
+
+1. **Structure** — parse Markdown headings, page markers and source identity without an LLM.
+2. **Entities** — extract atomic people, places, organizations, objects, creatures, events, concepts and aliases.
+3. **Domains** — route each chunk to relevant specialist packs from the 419 named extractors.
+4. **Relationships** — extract constrained predicates from 28 relationship families.
+5. **Systems** — model flows, dependencies, capacity, constraints, power, risk, coupling, shocks, lags, adaptation and other explicit mechanisms.
+6. **Inference** — apply routed specialist lenses for economics, politics, logistics, infrastructure, diffusion, disease, environment, succession and cross-domain consequences.
+7. **Temporal + epistemic** — preserve eras, validity windows, perspective, uncertainty, provenance and conflicts.
+8. **World model** — normalize entities, aliases, relations, systems, states and networks.
+9. **Derived outputs** — build dossiers, Obsidian exports, simulator inputs and adventure derivation.
+
+## Routing rule
+
+The registry is global but activation is local. A chunk does not run 471 operational extractors. Heading and body vocabulary first select domain packs; those domains activate system layers and specialist inference layers. Multiple active domains also activate cross-domain coupling and consequence checks.
+
+This avoids two bad extremes: a tiny universal prompt that misses domain detail, and an exhaustive prompt that runs hundreds of irrelevant lenses over every paragraph.
+
+## Record contract
+
+Every knowledge record preserves:
+
+- source book and chunk
+- pass, layer and extractor
+- subject / predicate / object
+- structured attributes
+- evidence
+- confidence type
+- scale
+- salience
+- simulation readiness
+- valid-from / valid-until
+- perspective
+- source status
+
+Source-grounded records and inferred records are never silently merged.
 
 ## Why SQLite first
 
@@ -16,4 +45,4 @@ SQLite gives one inspectable artifact with transactions and FTS5. It is enough f
 
 ## Public/private boundary
 
-The GitHub repository is public. Sourcebook Markdown and generated corpus data stay in the private Drive workspace. Do not commit source books, raw chunks, databases, or generated dossiers.
+The GitHub repository is public. Sourcebook Markdown and generated corpus data stay in the private Drive workspace. Do not commit source books, raw chunks, databases or generated dossiers.
