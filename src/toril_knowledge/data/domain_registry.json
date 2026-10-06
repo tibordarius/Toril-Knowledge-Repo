@@ -1,11 +1,11 @@
 {
-  "version": "2026-10-06.2",
+  "version": "2026-10-06.3",
   "source": "Extensive world-model taxonomy supplied in conversation",
   "named_extractor_count": 419,
   "operational_extractor_count": 471,
   "extractors": [
     {
-      "id": "general",
+      "id": "entity.core_entity_extractors.general",
       "name": "general",
       "category": "1. Core entity extractors",
       "category_id": "core_entity_extractors",
@@ -23,10 +23,11 @@
         "terminology",
         "aliases",
         "relationships"
-      ]
+      ],
+      "legacy_id": "general"
     },
     {
-      "id": "personal",
+      "id": "entity.core_entity_extractors.personal",
       "name": "personal",
       "category": "1. Core entity extractors",
       "category_id": "core_entity_extractors",
@@ -49,10 +50,11 @@
         "history",
         "reputation",
         "capabilities"
-      ]
+      ],
+      "legacy_id": "personal"
     },
     {
-      "id": "organizational",
+      "id": "entity.core_entity_extractors.organizational",
       "name": "organizational",
       "category": "1. Core entity extractors",
       "category_id": "core_entity_extractors",
@@ -71,10 +73,11 @@
         "alliances",
         "enemies",
         "internal divisions"
-      ]
+      ],
+      "legacy_id": "organizational"
     },
     {
-      "id": "factional",
+      "id": "entity.core_entity_extractors.factional",
       "name": "factional",
       "category": "1. Core entity extractors",
       "category_id": "core_entity_extractors",
@@ -92,10 +95,11 @@
         "enemies",
         "reputation",
         "internal factions"
-      ]
+      ],
+      "legacy_id": "factional"
     },
     {
-      "id": "institutional",
+      "id": "entity.core_entity_extractors.institutional",
       "name": "institutional",
       "category": "1. Core entity extractors",
       "category_id": "core_entity_extractors",
@@ -111,10 +115,11 @@
         "traditions",
         "legitimacy",
         "dependencies"
-      ]
+      ],
+      "legacy_id": "institutional"
     },
     {
-      "id": "object",
+      "id": "entity.core_entity_extractors.object",
       "name": "object",
       "category": "1. Core entity extractors",
       "category_id": "core_entity_extractors",
@@ -132,10 +137,11 @@
         "uses",
         "values",
         "provenance"
-      ]
+      ],
+      "legacy_id": "object"
     },
     {
-      "id": "creature",
+      "id": "entity.core_entity_extractors.creature",
       "name": "creature",
       "category": "1. Core entity extractors",
       "category_id": "core_entity_extractors",
@@ -152,10 +158,11 @@
         "intelligence",
         "abilities",
         "relationships"
-      ]
+      ],
+      "legacy_id": "creature"
     },
     {
-      "id": "conceptual",
+      "id": "entity.core_entity_extractors.conceptual",
       "name": "conceptual",
       "category": "1. Core entity extractors",
       "category_id": "core_entity_extractors",
@@ -169,10 +176,11 @@
         "technical concepts",
         "magical concepts",
         "social concepts"
-      ]
+      ],
+      "legacy_id": "conceptual"
     },
     {
-      "id": "economic",
+      "id": "domain.economic_and_commercial_domains.economic",
       "name": "economic",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -189,10 +197,11 @@
         "labor",
         "capital",
         "economic dependencies"
-      ]
+      ],
+      "legacy_id": "economic"
     },
     {
-      "id": "commercial",
+      "id": "domain.economic_and_commercial_domains.commercial",
       "name": "commercial",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -207,10 +216,11 @@
         "wholesalers",
         "retailers",
         "commercial customs"
-      ]
+      ],
+      "legacy_id": "commercial"
     },
     {
-      "id": "mercantile",
+      "id": "domain.economic_and_commercial_domains.mercantile",
       "name": "mercantile",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -224,10 +234,11 @@
         "merchant networks",
         "monopolies",
         "intermediaries"
-      ]
+      ],
+      "legacy_id": "mercantile"
     },
     {
-      "id": "financial",
+      "id": "domain.economic_and_commercial_domains.financial",
       "name": "financial",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -243,10 +254,11 @@
         "insurance",
         "defaults",
         "financial institutions"
-      ]
+      ],
+      "legacy_id": "financial"
     },
     {
-      "id": "monetary",
+      "id": "domain.economic_and_commercial_domains.monetary",
       "name": "monetary",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -260,10 +272,11 @@
         "money supply",
         "currency zones",
         "counterfeit currency"
-      ]
+      ],
+      "legacy_id": "monetary"
     },
     {
-      "id": "fiscal",
+      "id": "domain.economic_and_commercial_domains.fiscal",
       "name": "fiscal",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -279,10 +292,11 @@
         "tax farming",
         "exemptions",
         "public debt"
-      ]
+      ],
+      "legacy_id": "fiscal"
     },
     {
-      "id": "industrial",
+      "id": "domain.economic_and_commercial_domains.industrial",
       "name": "industrial",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -297,10 +311,11 @@
         "labor",
         "capacity",
         "specialization"
-      ]
+      ],
+      "legacy_id": "industrial"
     },
     {
-      "id": "manufacturing",
+      "id": "domain.economic_and_commercial_domains.manufacturing",
       "name": "manufacturing",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -316,10 +331,11 @@
         "scale",
         "specialization",
         "costs"
-      ]
+      ],
+      "legacy_id": "manufacturing"
     },
     {
-      "id": "craft",
+      "id": "domain.economic_and_commercial_domains.craft",
       "name": "craft",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -333,10 +349,11 @@
         "tools",
         "materials",
         "regional specialities"
-      ]
+      ],
+      "legacy_id": "craft"
     },
     {
-      "id": "agricultural",
+      "id": "domain.economic_and_commercial_domains.agricultural",
       "name": "agricultural",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -352,10 +369,11 @@
         "irrigation",
         "labor",
         "seasonality"
-      ]
+      ],
+      "legacy_id": "agricultural"
     },
     {
-      "id": "pastoral",
+      "id": "domain.economic_and_commercial_domains.pastoral",
       "name": "pastoral",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -368,10 +386,11 @@
         "pasture rights",
         "seasonal movement",
         "animal products"
-      ]
+      ],
+      "legacy_id": "pastoral"
     },
     {
-      "id": "extractive",
+      "id": "domain.economic_and_commercial_domains.extractive",
       "name": "extractive",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -385,10 +404,11 @@
         "resource deposits",
         "concessions",
         "depletion"
-      ]
+      ],
+      "legacy_id": "extractive"
     },
     {
-      "id": "commodity",
+      "id": "domain.economic_and_commercial_domains.commodity",
       "name": "commodity",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -402,10 +422,11 @@
         "substitutes",
         "strategic value",
         "seasonality"
-      ]
+      ],
+      "legacy_id": "commodity"
     },
     {
-      "id": "market",
+      "id": "domain.economic_and_commercial_domains.market",
       "name": "market",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -420,10 +441,11 @@
         "monopolies",
         "market access",
         "regulation"
-      ]
+      ],
+      "legacy_id": "market"
     },
     {
-      "id": "labor",
+      "id": "domain.economic_and_commercial_domains.labor",
       "name": "labor",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -438,10 +460,11 @@
         "apprenticeships",
         "unemployment",
         "specialization"
-      ]
+      ],
+      "legacy_id": "labor"
     },
     {
-      "id": "property",
+      "id": "domain.economic_and_commercial_domains.property",
       "name": "property",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -456,10 +479,11 @@
         "rents",
         "mortgages",
         "confiscation"
-      ]
+      ],
+      "legacy_id": "property"
     },
     {
-      "id": "wealth",
+      "id": "domain.economic_and_commercial_domains.wealth",
       "name": "wealth",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -473,10 +497,11 @@
         "luxury consumption",
         "inequality",
         "economic mobility"
-      ]
+      ],
+      "legacy_id": "wealth"
     },
     {
-      "id": "supply_chain",
+      "id": "domain.economic_and_commercial_domains.supply_chain",
       "name": "supply-chain",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -491,10 +516,11 @@
         "markets",
         "consumers",
         "chokepoints"
-      ]
+      ],
+      "legacy_id": "supply_chain"
     },
     {
-      "id": "logistical",
+      "id": "domain.economic_and_commercial_domains.logistical",
       "name": "logistical",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -508,10 +534,11 @@
         "lead times",
         "bottlenecks",
         "redundancy"
-      ]
+      ],
+      "legacy_id": "logistical"
     },
     {
-      "id": "scarcity",
+      "id": "domain.economic_and_commercial_domains.scarcity",
       "name": "scarcity",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -524,10 +551,11 @@
         "rationing",
         "political consequences",
         "social consequences"
-      ]
+      ],
+      "legacy_id": "scarcity"
     },
     {
-      "id": "consumption",
+      "id": "domain.economic_and_commercial_domains.consumption",
       "name": "consumption",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -540,10 +568,11 @@
         "household goods",
         "consumption patterns",
         "class differences"
-      ]
+      ],
+      "legacy_id": "consumption"
     },
     {
-      "id": "investment",
+      "id": "domain.economic_and_commercial_domains.investment",
       "name": "investment",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -556,10 +585,11 @@
         "risk",
         "ownership",
         "financing structures"
-      ]
+      ],
+      "legacy_id": "investment"
     },
     {
-      "id": "insurance",
+      "id": "domain.economic_and_commercial_domains.insurance",
       "name": "insurance",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -572,10 +602,11 @@
         "maritime insurance",
         "magical insurance",
         "indemnities"
-      ]
+      ],
+      "legacy_id": "insurance"
     },
     {
-      "id": "entrepreneurial",
+      "id": "domain.economic_and_commercial_domains.entrepreneurial",
       "name": "entrepreneurial",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -587,10 +618,11 @@
         "commercial opportunities",
         "barriers",
         "financing"
-      ]
+      ],
+      "legacy_id": "entrepreneurial"
     },
     {
-      "id": "informal_economy",
+      "id": "domain.economic_and_commercial_domains.informal_economy",
       "name": "informal-economy",
       "category": "2. Economic and commercial domains",
       "category_id": "economic_and_commercial_domains",
@@ -602,10 +634,11 @@
         "unregistered trade",
         "favors",
         "reciprocal exchange"
-      ]
+      ],
+      "legacy_id": "informal_economy"
     },
     {
-      "id": "governmental",
+      "id": "domain.governmental_and_political_domains.governmental",
       "name": "governmental",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -619,10 +652,11 @@
         "administration",
         "jurisdiction",
         "public authority"
-      ]
+      ],
+      "legacy_id": "governmental"
     },
     {
-      "id": "political",
+      "id": "domain.governmental_and_political_domains.political",
       "name": "political",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -635,10 +669,11 @@
         "legitimacy",
         "political interests",
         "competition"
-      ]
+      ],
+      "legacy_id": "political"
     },
     {
-      "id": "administrative",
+      "id": "domain.governmental_and_political_domains.administrative",
       "name": "administrative",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -652,10 +687,11 @@
         "permits",
         "taxation",
         "implementation"
-      ]
+      ],
+      "legacy_id": "administrative"
     },
     {
-      "id": "bureaucratic",
+      "id": "domain.governmental_and_political_domains.bureaucratic",
       "name": "bureaucratic",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -668,10 +704,11 @@
         "appointment",
         "institutional inertia",
         "administrative capacity"
-      ]
+      ],
+      "legacy_id": "bureaucratic"
     },
     {
-      "id": "constitutional",
+      "id": "domain.governmental_and_political_domains.constitutional",
       "name": "constitutional",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -683,10 +720,11 @@
         "rights",
         "privileges",
         "institutional limits"
-      ]
+      ],
+      "legacy_id": "constitutional"
     },
     {
-      "id": "monarchical",
+      "id": "domain.governmental_and_political_domains.monarchical",
       "name": "monarchical",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -698,10 +736,11 @@
         "royal households",
         "court politics",
         "royal prerogatives"
-      ]
+      ],
+      "legacy_id": "monarchical"
     },
     {
-      "id": "aristocratic",
+      "id": "domain.governmental_and_political_domains.aristocratic",
       "name": "aristocratic",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -715,10 +754,11 @@
         "inheritance",
         "patronage",
         "feuds"
-      ]
+      ],
+      "legacy_id": "aristocratic"
     },
     {
-      "id": "republican",
+      "id": "domain.governmental_and_political_domains.republican",
       "name": "republican",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -730,10 +770,11 @@
         "citizenship",
         "representation",
         "civic institutions"
-      ]
+      ],
+      "legacy_id": "republican"
     },
     {
-      "id": "municipal",
+      "id": "domain.governmental_and_political_domains.municipal",
       "name": "municipal",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -746,10 +787,11 @@
         "local taxation",
         "public works",
         "policing"
-      ]
+      ],
+      "legacy_id": "municipal"
     },
     {
-      "id": "provincial",
+      "id": "domain.governmental_and_political_domains.provincial",
       "name": "provincial",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -760,10 +802,11 @@
         "provinces",
         "local elites",
         "center-periphery relations"
-      ]
+      ],
+      "legacy_id": "provincial"
     },
     {
-      "id": "imperial",
+      "id": "domain.governmental_and_political_domains.imperial",
       "name": "imperial",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -775,10 +818,11 @@
         "colonial administration",
         "imperial ideology",
         "frontier control"
-      ]
+      ],
+      "legacy_id": "imperial"
     },
     {
-      "id": "feudal",
+      "id": "domain.governmental_and_political_domains.feudal",
       "name": "feudal",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -792,10 +836,11 @@
         "tenure",
         "military service",
         "feudal hierarchy"
-      ]
+      ],
+      "legacy_id": "feudal"
     },
     {
-      "id": "patrimonial",
+      "id": "domain.governmental_and_political_domains.patrimonial",
       "name": "patrimonial",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -806,10 +851,11 @@
         "patronage",
         "office holding",
         "gift exchange"
-      ]
+      ],
+      "legacy_id": "patrimonial"
     },
     {
-      "id": "governance",
+      "id": "domain.governmental_and_political_domains.governance",
       "name": "governance",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -822,10 +868,11 @@
         "corruption",
         "reach",
         "institutional effectiveness"
-      ]
+      ],
+      "legacy_id": "governance"
     },
     {
-      "id": "policy",
+      "id": "domain.governmental_and_political_domains.policy",
       "name": "policy",
       "category": "3. Governmental and political domains",
       "category_id": "governmental_and_political_domains",
@@ -838,10 +885,11 @@
         "implementation",
         "effects",
         "unintended consequences"
-      ]
+      ],
+      "legacy_id": "policy"
     },
     {
-      "id": "legal",
+      "id": "domain.legal_and_juridical_domains.legal",
       "name": "legal",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -854,10 +902,11 @@
         "obligations",
         "legal institutions",
         "jurisdiction"
-      ]
+      ],
+      "legacy_id": "legal"
     },
     {
-      "id": "juridical",
+      "id": "domain.legal_and_juridical_domains.juridical",
       "name": "juridical",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -871,10 +920,11 @@
         "precedent",
         "appeals",
         "enforcement"
-      ]
+      ],
+      "legacy_id": "juridical"
     },
     {
-      "id": "criminal_law",
+      "id": "domain.legal_and_juridical_domains.criminal_law",
       "name": "criminal-law",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -886,10 +936,11 @@
         "detention",
         "evidence",
         "criminal procedure"
-      ]
+      ],
+      "legacy_id": "criminal_law"
     },
     {
-      "id": "civil_law",
+      "id": "domain.legal_and_juridical_domains.civil_law",
       "name": "civil-law",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -901,10 +952,11 @@
         "debts",
         "disputes",
         "compensation"
-      ]
+      ],
+      "legacy_id": "civil_law"
     },
     {
-      "id": "commercial_law",
+      "id": "domain.legal_and_juridical_domains.commercial_law",
       "name": "commercial-law",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -916,10 +968,11 @@
         "bankruptcy",
         "guild regulation",
         "trade disputes"
-      ]
+      ],
+      "legacy_id": "commercial_law"
     },
     {
-      "id": "maritime_law",
+      "id": "domain.legal_and_juridical_domains.maritime_law",
       "name": "maritime-law",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -932,10 +985,11 @@
         "harbor law",
         "privateering",
         "wreck law"
-      ]
+      ],
+      "legacy_id": "maritime_law"
     },
     {
-      "id": "customary_law",
+      "id": "domain.legal_and_juridical_domains.customary_law",
       "name": "customary-law",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -946,10 +1000,11 @@
         "unwritten law",
         "local practice",
         "customary authority"
-      ]
+      ],
+      "legacy_id": "customary_law"
     },
     {
-      "id": "canonical_law",
+      "id": "domain.legal_and_juridical_domains.canonical_law",
       "name": "canonical-law",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -961,10 +1016,11 @@
         "marriage",
         "burial",
         "temple jurisdiction"
-      ]
+      ],
+      "legacy_id": "canonical_law"
     },
     {
-      "id": "magical_law",
+      "id": "domain.legal_and_juridical_domains.magical_law",
       "name": "magical-law",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -975,10 +1031,11 @@
         "forbidden spells",
         "artifact possession",
         "magical crimes"
-      ]
+      ],
+      "legacy_id": "magical_law"
     },
     {
-      "id": "property_law",
+      "id": "domain.legal_and_juridical_domains.property_law",
       "name": "property-law",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -990,10 +1047,11 @@
         "easements",
         "land claims",
         "seizure"
-      ]
+      ],
+      "legacy_id": "property_law"
     },
     {
-      "id": "jurisdictional",
+      "id": "domain.legal_and_juridical_domains.jurisdictional",
       "name": "jurisdictional",
       "category": "4. Legal and juridical domains",
       "category_id": "legal_and_juridical_domains",
@@ -1003,10 +1061,11 @@
         "institutional jurisdiction",
         "overlapping authority",
         "legal conflicts"
-      ]
+      ],
+      "legacy_id": "jurisdictional"
     },
     {
-      "id": "diplomatic",
+      "id": "domain.diplomatic_and_geopolitical_domains.diplomatic",
       "name": "diplomatic",
       "category": "5. Diplomatic and geopolitical domains",
       "category_id": "diplomatic_and_geopolitical_domains",
@@ -1019,10 +1078,11 @@
         "recognition",
         "disputes",
         "diplomatic customs"
-      ]
+      ],
+      "legacy_id": "diplomatic"
     },
     {
-      "id": "geopolitical",
+      "id": "domain.diplomatic_and_geopolitical_domains.geopolitical",
       "name": "geopolitical",
       "category": "5. Diplomatic and geopolitical domains",
       "category_id": "diplomatic_and_geopolitical_domains",
@@ -1034,10 +1094,11 @@
         "chokepoints",
         "buffer states",
         "geopolitical competition"
-      ]
+      ],
+      "legacy_id": "geopolitical"
     },
     {
-      "id": "international_relations",
+      "id": "domain.diplomatic_and_geopolitical_domains.international_relations",
       "name": "international-relations",
       "category": "5. Diplomatic and geopolitical domains",
       "category_id": "diplomatic_and_geopolitical_domains",
@@ -1049,10 +1110,11 @@
         "institutions",
         "interdependence",
         "deterrence"
-      ]
+      ],
+      "legacy_id": "international_relations"
     },
     {
-      "id": "treaty",
+      "id": "domain.diplomatic_and_geopolitical_domains.treaty",
       "name": "treaty",
       "category": "5. Diplomatic and geopolitical domains",
       "category_id": "diplomatic_and_geopolitical_domains",
@@ -1065,10 +1127,11 @@
         "violations",
         "enforcement",
         "consequences"
-      ]
+      ],
+      "legacy_id": "treaty"
     },
     {
-      "id": "envoy",
+      "id": "domain.diplomatic_and_geopolitical_domains.envoy",
       "name": "envoy",
       "category": "5. Diplomatic and geopolitical domains",
       "category_id": "diplomatic_and_geopolitical_domains",
@@ -1079,10 +1142,11 @@
         "missions",
         "diplomatic immunity",
         "negotiating mandates"
-      ]
+      ],
+      "legacy_id": "envoy"
     },
     {
-      "id": "tribute",
+      "id": "domain.diplomatic_and_geopolitical_domains.tribute",
       "name": "tribute",
       "category": "5. Diplomatic and geopolitical domains",
       "category_id": "diplomatic_and_geopolitical_domains",
@@ -1093,10 +1157,11 @@
         "protection payments",
         "symbolic submission",
         "tributary relationships"
-      ]
+      ],
+      "legacy_id": "tribute"
     },
     {
-      "id": "vassalage",
+      "id": "domain.diplomatic_and_geopolitical_domains.vassalage",
       "name": "vassalage",
       "category": "5. Diplomatic and geopolitical domains",
       "category_id": "diplomatic_and_geopolitical_domains",
@@ -1108,10 +1173,11 @@
         "autonomy",
         "military support",
         "taxation"
-      ]
+      ],
+      "legacy_id": "vassalage"
     },
     {
-      "id": "border",
+      "id": "domain.diplomatic_and_geopolitical_domains.border",
       "name": "border",
       "category": "5. Diplomatic and geopolitical domains",
       "category_id": "diplomatic_and_geopolitical_domains",
@@ -1122,10 +1188,11 @@
         "checkpoints",
         "cross-border movement",
         "border communities"
-      ]
+      ],
+      "legacy_id": "border"
     },
     {
-      "id": "colonial",
+      "id": "domain.diplomatic_and_geopolitical_domains.colonial",
       "name": "colonial",
       "category": "5. Diplomatic and geopolitical domains",
       "category_id": "diplomatic_and_geopolitical_domains",
@@ -1137,10 +1204,11 @@
         "resource extraction",
         "administration",
         "resistance"
-      ]
+      ],
+      "legacy_id": "colonial"
     },
     {
-      "id": "hegemonic",
+      "id": "domain.diplomatic_and_geopolitical_domains.hegemonic",
       "name": "hegemonic",
       "category": "5. Diplomatic and geopolitical domains",
       "category_id": "diplomatic_and_geopolitical_domains",
@@ -1151,10 +1219,11 @@
         "coercion",
         "prestige",
         "economic leverage"
-      ]
+      ],
+      "legacy_id": "hegemonic"
     },
     {
-      "id": "martial",
+      "id": "domain.martial_and_military_domains.martial",
       "name": "martial",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1167,10 +1236,11 @@
         "fortifications",
         "command",
         "readiness"
-      ]
+      ],
+      "legacy_id": "martial"
     },
     {
-      "id": "military",
+      "id": "domain.martial_and_military_domains.military",
       "name": "military",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1183,10 +1253,11 @@
         "doctrine",
         "logistics",
         "campaigns"
-      ]
+      ],
+      "legacy_id": "military"
     },
     {
-      "id": "strategic",
+      "id": "domain.martial_and_military_domains.strategic",
       "name": "strategic",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1198,10 +1269,11 @@
         "alliances",
         "chokepoints",
         "grand strategy"
-      ]
+      ],
+      "legacy_id": "strategic"
     },
     {
-      "id": "operational",
+      "id": "domain.martial_and_military_domains.operational",
       "name": "operational",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1212,10 +1284,11 @@
         "supply",
         "concentration",
         "operational objectives"
-      ]
+      ],
+      "legacy_id": "operational"
     },
     {
-      "id": "tactical",
+      "id": "domain.martial_and_military_domains.tactical",
       "name": "tactical",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1226,10 +1299,11 @@
         "weapons",
         "terrain use",
         "unit tactics"
-      ]
+      ],
+      "legacy_id": "tactical"
     },
     {
-      "id": "naval",
+      "id": "domain.martial_and_military_domains.naval",
       "name": "naval",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1242,10 +1316,11 @@
         "doctrine",
         "blockades",
         "convoy protection"
-      ]
+      ],
+      "legacy_id": "naval"
     },
     {
-      "id": "maritime_military",
+      "id": "domain.martial_and_military_domains.maritime_military",
       "name": "maritime-military",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1256,10 +1331,11 @@
         "amphibious warfare",
         "coastal defenses",
         "naval logistics"
-      ]
+      ],
+      "legacy_id": "maritime_military"
     },
     {
-      "id": "siege",
+      "id": "domain.martial_and_military_domains.siege",
       "name": "siege",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1271,10 +1347,11 @@
         "siege tactics",
         "defenses",
         "breaches"
-      ]
+      ],
+      "legacy_id": "siege"
     },
     {
-      "id": "fortification",
+      "id": "domain.martial_and_military_domains.fortification",
       "name": "fortification",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1287,10 +1364,11 @@
         "bastions",
         "garrisons",
         "defensive depth"
-      ]
+      ],
+      "legacy_id": "fortification"
     },
     {
-      "id": "logistics_military",
+      "id": "domain.martial_and_military_domains.logistics_military",
       "name": "logistics-military",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1303,10 +1381,11 @@
         "transport",
         "remounts",
         "replacement troops"
-      ]
+      ],
+      "legacy_id": "logistics_military"
     },
     {
-      "id": "recruitment",
+      "id": "domain.martial_and_military_domains.recruitment",
       "name": "recruitment",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1318,10 +1397,11 @@
         "mercenaries",
         "recruitment regions",
         "incentives"
-      ]
+      ],
+      "legacy_id": "recruitment"
     },
     {
-      "id": "mercenary",
+      "id": "domain.martial_and_military_domains.mercenary",
       "name": "mercenary",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1333,10 +1413,11 @@
         "loyalty",
         "rates",
         "reputation"
-      ]
+      ],
+      "legacy_id": "mercenary"
     },
     {
-      "id": "militia",
+      "id": "domain.martial_and_military_domains.militia",
       "name": "militia",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1347,10 +1428,11 @@
         "equipment",
         "training",
         "obligations"
-      ]
+      ],
+      "legacy_id": "militia"
     },
     {
-      "id": "intelligence_military",
+      "id": "domain.martial_and_military_domains.intelligence_military",
       "name": "intelligence-military",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1361,10 +1443,11 @@
         "spies",
         "signals",
         "military intelligence"
-      ]
+      ],
+      "legacy_id": "intelligence_military"
     },
     {
-      "id": "doctrinal",
+      "id": "domain.martial_and_military_domains.doctrinal",
       "name": "doctrinal",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1374,10 +1457,11 @@
         "preferred tactics",
         "command philosophies",
         "institutional traditions"
-      ]
+      ],
+      "legacy_id": "doctrinal"
     },
     {
-      "id": "readiness",
+      "id": "domain.martial_and_military_domains.readiness",
       "name": "readiness",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1388,10 +1472,11 @@
         "reserves",
         "training",
         "response times"
-      ]
+      ],
+      "legacy_id": "readiness"
     },
     {
-      "id": "veteran",
+      "id": "domain.martial_and_military_domains.veteran",
       "name": "veteran",
       "category": "6. Martial and military domains",
       "category_id": "martial_and_military_domains",
@@ -1402,10 +1487,11 @@
         "mercenary migration",
         "political influence",
         "martial culture"
-      ]
+      ],
+      "legacy_id": "veteran"
     },
     {
-      "id": "security",
+      "id": "domain.security_and_intelligence_domains.security",
       "name": "security",
       "category": "7. Security and intelligence domains",
       "category_id": "security_and_intelligence_domains",
@@ -1417,10 +1503,11 @@
         "protective measures",
         "threats",
         "security institutions"
-      ]
+      ],
+      "legacy_id": "security"
     },
     {
-      "id": "policing",
+      "id": "domain.security_and_intelligence_domains.policing",
       "name": "policing",
       "category": "7. Security and intelligence domains",
       "category_id": "security_and_intelligence_domains",
@@ -1432,10 +1519,11 @@
         "investigations",
         "jurisdiction",
         "response capacity"
-      ]
+      ],
+      "legacy_id": "policing"
     },
     {
-      "id": "intelligence",
+      "id": "domain.security_and_intelligence_domains.intelligence",
       "name": "intelligence",
       "category": "7. Security and intelligence domains",
       "category_id": "security_and_intelligence_domains",
@@ -1448,10 +1536,11 @@
         "collection",
         "analysis",
         "covert operations"
-      ]
+      ],
+      "legacy_id": "intelligence"
     },
     {
-      "id": "counterintelligence",
+      "id": "domain.security_and_intelligence_domains.counterintelligence",
       "name": "counterintelligence",
       "category": "7. Security and intelligence domains",
       "category_id": "security_and_intelligence_domains",
@@ -1462,10 +1551,11 @@
         "infiltration",
         "double agents",
         "security procedures"
-      ]
+      ],
+      "legacy_id": "counterintelligence"
     },
     {
-      "id": "surveillance",
+      "id": "domain.security_and_intelligence_domains.surveillance",
       "name": "surveillance",
       "category": "7. Security and intelligence domains",
       "category_id": "security_and_intelligence_domains",
@@ -1476,10 +1566,11 @@
         "magical surveillance",
         "records",
         "tracking"
-      ]
+      ],
+      "legacy_id": "surveillance"
     },
     {
-      "id": "espionage",
+      "id": "domain.security_and_intelligence_domains.espionage",
       "name": "espionage",
       "category": "7. Security and intelligence domains",
       "category_id": "security_and_intelligence_domains",
@@ -1492,10 +1583,11 @@
         "handlers",
         "secrets",
         "compromised networks"
-      ]
+      ],
+      "legacy_id": "espionage"
     },
     {
-      "id": "covert_action",
+      "id": "domain.security_and_intelligence_domains.covert_action",
       "name": "covert-action",
       "category": "7. Security and intelligence domains",
       "category_id": "security_and_intelligence_domains",
@@ -1506,10 +1598,11 @@
         "subversion",
         "proxy actors",
         "deniable operations"
-      ]
+      ],
+      "legacy_id": "covert_action"
     },
     {
-      "id": "emergency",
+      "id": "domain.security_and_intelligence_domains.emergency",
       "name": "emergency",
       "category": "7. Security and intelligence domains",
       "category_id": "security_and_intelligence_domains",
@@ -1520,10 +1613,11 @@
         "response plans",
         "mobilization",
         "evacuation"
-      ]
+      ],
+      "legacy_id": "emergency"
     },
     {
-      "id": "illicit",
+      "id": "domain.illicit_and_criminal_domains.illicit",
       "name": "illicit",
       "category": "8. Illicit and criminal domains",
       "category_id": "illicit_and_criminal_domains",
@@ -1535,10 +1629,11 @@
         "corruption",
         "illegal services",
         "black markets"
-      ]
+      ],
+      "legacy_id": "illicit"
     },
     {
-      "id": "criminal",
+      "id": "domain.illicit_and_criminal_domains.criminal",
       "name": "criminal",
       "category": "8. Illicit and criminal domains",
       "category_id": "illicit_and_criminal_domains",
@@ -1550,10 +1645,11 @@
         "methods",
         "territories",
         "victims"
-      ]
+      ],
+      "legacy_id": "criminal"
     },
     {
-      "id": "underworld",
+      "id": "domain.illicit_and_criminal_domains.underworld",
       "name": "underworld",
       "category": "8. Illicit and criminal domains",
       "category_id": "illicit_and_criminal_domains",
@@ -1566,10 +1662,11 @@
         "assassins",
         "safehouses",
         "criminal hierarchies"
-      ]
+      ],
+      "legacy_id": "underworld"
     },
     {
-      "id": "smuggling",
+      "id": "domain.illicit_and_criminal_domains.smuggling",
       "name": "smuggling",
       "category": "8. Illicit and criminal domains",
       "category_id": "illicit_and_criminal_domains",
@@ -1581,10 +1678,11 @@
         "corrupt officials",
         "concealment",
         "border crossings"
-      ]
+      ],
+      "legacy_id": "smuggling"
     },
     {
-      "id": "piratical",
+      "id": "domain.illicit_and_criminal_domains.piratical",
       "name": "piratical",
       "category": "8. Illicit and criminal domains",
       "category_id": "illicit_and_criminal_domains",
@@ -1597,10 +1695,11 @@
         "routes",
         "fences",
         "protection arrangements"
-      ]
+      ],
+      "legacy_id": "piratical"
     },
     {
-      "id": "corruption",
+      "id": "domain.illicit_and_criminal_domains.corruption",
       "name": "corruption",
       "category": "8. Illicit and criminal domains",
       "category_id": "illicit_and_criminal_domains",
@@ -1612,10 +1711,11 @@
         "favoritism",
         "captured institutions",
         "corrupt networks"
-      ]
+      ],
+      "legacy_id": "corruption"
     },
     {
-      "id": "black_market",
+      "id": "domain.illicit_and_criminal_domains.black_market",
       "name": "black-market",
       "category": "8. Illicit and criminal domains",
       "category_id": "illicit_and_criminal_domains",
@@ -1627,10 +1727,11 @@
         "buyers",
         "meeting places",
         "enforcement risks"
-      ]
+      ],
+      "legacy_id": "black_market"
     },
     {
-      "id": "organized_crime",
+      "id": "domain.illicit_and_criminal_domains.organized_crime",
       "name": "organized-crime",
       "category": "8. Illicit and criminal domains",
       "category_id": "illicit_and_criminal_domains",
@@ -1642,10 +1743,11 @@
         "rackets",
         "alliances",
         "conflicts"
-      ]
+      ],
+      "legacy_id": "organized_crime"
     },
     {
-      "id": "fraud",
+      "id": "domain.illicit_and_criminal_domains.fraud",
       "name": "fraud",
       "category": "8. Illicit and criminal domains",
       "category_id": "illicit_and_criminal_domains",
@@ -1657,10 +1759,11 @@
         "counterfeit goods",
         "identity fraud",
         "financial fraud"
-      ]
+      ],
+      "legacy_id": "fraud"
     },
     {
-      "id": "assassination",
+      "id": "domain.illicit_and_criminal_domains.assassination",
       "name": "assassination",
       "category": "8. Illicit and criminal domains",
       "category_id": "illicit_and_criminal_domains",
@@ -1672,10 +1775,11 @@
         "methods",
         "intermediaries",
         "political consequences"
-      ]
+      ],
+      "legacy_id": "assassination"
     },
     {
-      "id": "sociological",
+      "id": "domain.sociological_and_anthropological_domains.sociological",
       "name": "sociological",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1688,10 +1792,11 @@
         "social networks",
         "inequality",
         "mobility"
-      ]
+      ],
+      "legacy_id": "sociological"
     },
     {
-      "id": "anthropological",
+      "id": "domain.sociological_and_anthropological_domains.anthropological",
       "name": "anthropological",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1703,10 +1808,11 @@
         "material culture",
         "social organization",
         "worldview"
-      ]
+      ],
+      "legacy_id": "anthropological"
     },
     {
-      "id": "ethnographic",
+      "id": "domain.sociological_and_anthropological_domains.ethnographic",
       "name": "ethnographic",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1719,10 +1825,11 @@
         "clothing",
         "speech",
         "ritual behavior"
-      ]
+      ],
+      "legacy_id": "ethnographic"
     },
     {
-      "id": "demographic",
+      "id": "domain.sociological_and_anthropological_domains.demographic",
       "name": "demographic",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1736,10 +1843,11 @@
         "migration",
         "fertility",
         "mortality"
-      ]
+      ],
+      "legacy_id": "demographic"
     },
     {
-      "id": "kinship",
+      "id": "domain.sociological_and_anthropological_domains.kinship",
       "name": "kinship",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1752,10 +1860,11 @@
         "inheritance",
         "adoption",
         "obligations"
-      ]
+      ],
+      "legacy_id": "kinship"
     },
     {
-      "id": "class",
+      "id": "domain.sociological_and_anthropological_domains.class",
       "name": "class",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1767,10 +1876,11 @@
         "peasants",
         "slaves",
         "status groups"
-      ]
+      ],
+      "legacy_id": "class"
     },
     {
-      "id": "status",
+      "id": "domain.sociological_and_anthropological_domains.status",
       "name": "status",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1782,10 +1892,11 @@
         "honor",
         "reputation",
         "stigma"
-      ]
+      ],
+      "legacy_id": "status"
     },
     {
-      "id": "mobility",
+      "id": "domain.sociological_and_anthropological_domains.mobility",
       "name": "mobility",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1795,10 +1906,11 @@
         "geographic mobility",
         "career mobility",
         "class transitions"
-      ]
+      ],
+      "legacy_id": "mobility"
     },
     {
-      "id": "inequality",
+      "id": "domain.sociological_and_anthropological_domains.inequality",
       "name": "inequality",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1808,10 +1920,11 @@
         "political inequality",
         "legal privilege",
         "access disparities"
-      ]
+      ],
+      "legacy_id": "inequality"
     },
     {
-      "id": "community",
+      "id": "domain.sociological_and_anthropological_domains.community",
       "name": "community",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1822,10 +1935,11 @@
         "associations",
         "mutual aid",
         "local identity"
-      ]
+      ],
+      "legacy_id": "community"
     },
     {
-      "id": "diaspora",
+      "id": "domain.sociological_and_anthropological_domains.diaspora",
       "name": "diaspora",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1837,10 +1951,11 @@
         "trade networks",
         "identity",
         "remittances"
-      ]
+      ],
+      "legacy_id": "diaspora"
     },
     {
-      "id": "migration",
+      "id": "domain.sociological_and_anthropological_domains.migration",
       "name": "migration",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1852,10 +1967,11 @@
         "seasonal migration",
         "causes",
         "destinations"
-      ]
+      ],
+      "legacy_id": "migration"
     },
     {
-      "id": "refugee",
+      "id": "domain.sociological_and_anthropological_domains.refugee",
       "name": "refugee",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1866,10 +1982,11 @@
         "destinations",
         "causes",
         "political pressures"
-      ]
+      ],
+      "legacy_id": "refugee"
     },
     {
-      "id": "minority",
+      "id": "domain.sociological_and_anthropological_domains.minority",
       "name": "minority",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1880,10 +1997,11 @@
         "discrimination",
         "autonomy",
         "cultural preservation"
-      ]
+      ],
+      "legacy_id": "minority"
     },
     {
-      "id": "identity",
+      "id": "domain.sociological_and_anthropological_domains.identity",
       "name": "identity",
       "category": "9. Sociological and anthropological domains",
       "category_id": "sociological_and_anthropological_domains",
@@ -1894,10 +2012,11 @@
         "ethnic identity",
         "occupational identity",
         "civic identity"
-      ]
+      ],
+      "legacy_id": "identity"
     },
     {
-      "id": "cultural",
+      "id": "domain.cultural_and_symbolic_domains.cultural",
       "name": "cultural",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -1910,10 +2029,11 @@
         "symbols",
         "norms",
         "regional identity"
-      ]
+      ],
+      "legacy_id": "cultural"
     },
     {
-      "id": "semiotic",
+      "id": "domain.cultural_and_symbolic_domains.semiotic",
       "name": "semiotic",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -1925,10 +2045,11 @@
         "heraldry",
         "ritual meanings",
         "coded meanings"
-      ]
+      ],
+      "legacy_id": "semiotic"
     },
     {
-      "id": "linguistic",
+      "id": "domain.cultural_and_symbolic_domains.linguistic",
       "name": "linguistic",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -1940,10 +2061,11 @@
         "literacy",
         "loanwords",
         "multilingualism"
-      ]
+      ],
+      "legacy_id": "linguistic"
     },
     {
-      "id": "philological",
+      "id": "domain.cultural_and_symbolic_domains.philological",
       "name": "philological",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -1954,10 +2076,11 @@
         "old texts",
         "translation",
         "textual variants"
-      ]
+      ],
+      "legacy_id": "philological"
     },
     {
-      "id": "literary",
+      "id": "domain.cultural_and_symbolic_domains.literary",
       "name": "literary",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -1969,10 +2092,11 @@
         "genres",
         "authors",
         "narrative traditions"
-      ]
+      ],
+      "legacy_id": "literary"
     },
     {
-      "id": "artistic",
+      "id": "domain.cultural_and_symbolic_domains.artistic",
       "name": "artistic",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -1983,10 +2107,11 @@
         "decoration",
         "patronage",
         "artistic schools"
-      ]
+      ],
+      "legacy_id": "artistic"
     },
     {
-      "id": "musical",
+      "id": "domain.cultural_and_symbolic_domains.musical",
       "name": "musical",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -1997,10 +2122,11 @@
         "performers",
         "songs",
         "musical traditions"
-      ]
+      ],
+      "legacy_id": "musical"
     },
     {
-      "id": "theatrical",
+      "id": "domain.cultural_and_symbolic_domains.theatrical",
       "name": "theatrical",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -2011,10 +2137,11 @@
         "venues",
         "genres",
         "audiences"
-      ]
+      ],
+      "legacy_id": "theatrical"
     },
     {
-      "id": "culinary",
+      "id": "domain.cultural_and_symbolic_domains.culinary",
       "name": "culinary",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -2026,10 +2153,11 @@
         "cuisine",
         "dining customs",
         "regional dishes"
-      ]
+      ],
+      "legacy_id": "culinary"
     },
     {
-      "id": "fashion",
+      "id": "domain.cultural_and_symbolic_domains.fashion",
       "name": "fashion",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -2040,10 +2168,11 @@
         "jewelry",
         "status markers",
         "regional fashion"
-      ]
+      ],
+      "legacy_id": "fashion"
     },
     {
-      "id": "heraldic",
+      "id": "domain.cultural_and_symbolic_domains.heraldic",
       "name": "heraldic",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -2054,10 +2183,11 @@
         "colors",
         "symbols",
         "lineage marks"
-      ]
+      ],
+      "legacy_id": "heraldic"
     },
     {
-      "id": "ceremonial",
+      "id": "domain.cultural_and_symbolic_domains.ceremonial",
       "name": "ceremonial",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -2068,10 +2198,11 @@
         "coronations",
         "public rituals",
         "civic rituals"
-      ]
+      ],
+      "legacy_id": "ceremonial"
     },
     {
-      "id": "festive",
+      "id": "domain.cultural_and_symbolic_domains.festive",
       "name": "festive",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -2082,10 +2213,11 @@
         "fairs",
         "seasonal celebrations",
         "competitions"
-      ]
+      ],
+      "legacy_id": "festive"
     },
     {
-      "id": "funerary",
+      "id": "domain.cultural_and_symbolic_domains.funerary",
       "name": "funerary",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -2096,10 +2228,11 @@
         "tombs",
         "mourning",
         "funerary rites"
-      ]
+      ],
+      "legacy_id": "funerary"
     },
     {
-      "id": "marital",
+      "id": "domain.cultural_and_symbolic_domains.marital",
       "name": "marital",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -2111,10 +2244,11 @@
         "alliances",
         "divorce",
         "inheritance"
-      ]
+      ],
+      "legacy_id": "marital"
     },
     {
-      "id": "hospitality",
+      "id": "domain.cultural_and_symbolic_domains.hospitality",
       "name": "hospitality",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -2125,10 +2259,11 @@
         "food",
         "gift exchange",
         "etiquette"
-      ]
+      ],
+      "legacy_id": "hospitality"
     },
     {
-      "id": "taboo",
+      "id": "domain.cultural_and_symbolic_domains.taboo",
       "name": "taboo",
       "category": "10. Cultural and symbolic domains",
       "category_id": "cultural_and_symbolic_domains",
@@ -2139,10 +2274,11 @@
         "sacred taboos",
         "pollution",
         "forbidden behavior"
-      ]
+      ],
+      "legacy_id": "taboo"
     },
     {
-      "id": "psychological",
+      "id": "domain.psychological_and_behavioral_domains.psychological",
       "name": "psychological",
       "category": "11. Psychological and behavioral domains",
       "category_id": "psychological_and_behavioral_domains",
@@ -2155,10 +2291,11 @@
         "personality",
         "perception",
         "cognition"
-      ]
+      ],
+      "legacy_id": "psychological"
     },
     {
-      "id": "motivational",
+      "id": "domain.psychological_and_behavioral_domains.motivational",
       "name": "motivational",
       "category": "11. Psychological and behavioral domains",
       "category_id": "psychological_and_behavioral_domains",
@@ -2170,10 +2307,11 @@
         "ambitions",
         "loyalties",
         "pressures"
-      ]
+      ],
+      "legacy_id": "motivational"
     },
     {
-      "id": "behavioral",
+      "id": "domain.psychological_and_behavioral_domains.behavioral",
       "name": "behavioral",
       "category": "11. Psychological and behavioral domains",
       "category_id": "psychological_and_behavioral_domains",
@@ -2184,10 +2322,11 @@
         "decision patterns",
         "social behavior",
         "reactions"
-      ]
+      ],
+      "legacy_id": "behavioral"
     },
     {
-      "id": "emotional",
+      "id": "domain.psychological_and_behavioral_domains.emotional",
       "name": "emotional",
       "category": "11. Psychological and behavioral domains",
       "category_id": "psychological_and_behavioral_domains",
@@ -2200,10 +2339,11 @@
         "fear",
         "pride",
         "resentment"
-      ]
+      ],
+      "legacy_id": "emotional"
     },
     {
-      "id": "reputational",
+      "id": "domain.psychological_and_behavioral_domains.reputational",
       "name": "reputational",
       "category": "11. Psychological and behavioral domains",
       "category_id": "psychological_and_behavioral_domains",
@@ -2214,10 +2354,11 @@
         "prestige",
         "infamy",
         "credibility"
-      ]
+      ],
+      "legacy_id": "reputational"
     },
     {
-      "id": "ideological",
+      "id": "domain.psychological_and_behavioral_domains.ideological",
       "name": "ideological",
       "category": "11. Psychological and behavioral domains",
       "category_id": "psychological_and_behavioral_domains",
@@ -2227,10 +2368,11 @@
         "political doctrines",
         "moral frameworks",
         "ideological conflicts"
-      ]
+      ],
+      "legacy_id": "ideological"
     },
     {
-      "id": "ethical",
+      "id": "domain.psychological_and_behavioral_domains.ethical",
       "name": "ethical",
       "category": "11. Psychological and behavioral domains",
       "category_id": "psychological_and_behavioral_domains",
@@ -2240,10 +2382,11 @@
         "ethical dilemmas",
         "accepted behavior",
         "contested ethics"
-      ]
+      ],
+      "legacy_id": "ethical"
     },
     {
-      "id": "religious",
+      "id": "domain.religious_theological_and_divine_domains.religious",
       "name": "religious",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2256,10 +2399,11 @@
         "rituals",
         "doctrine",
         "religious communities"
-      ]
+      ],
+      "legacy_id": "religious"
     },
     {
-      "id": "theological",
+      "id": "domain.religious_theological_and_divine_domains.theological",
       "name": "theological",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2270,10 +2414,11 @@
         "divine nature",
         "heresies",
         "theological disputes"
-      ]
+      ],
+      "legacy_id": "theological"
     },
     {
-      "id": "ecclesiastical",
+      "id": "domain.religious_theological_and_divine_domains.ecclesiastical",
       "name": "ecclesiastical",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2284,10 +2429,11 @@
         "dioceses",
         "temple administration",
         "ecclesiastical offices"
-      ]
+      ],
+      "legacy_id": "ecclesiastical"
     },
     {
-      "id": "divine",
+      "id": "domain.religious_theological_and_divine_domains.divine",
       "name": "divine",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2298,10 +2444,11 @@
         "miracles",
         "chosen agents",
         "divine artifacts"
-      ]
+      ],
+      "legacy_id": "divine"
     },
     {
-      "id": "sacred",
+      "id": "domain.religious_theological_and_divine_domains.sacred",
       "name": "sacred",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2312,10 +2459,11 @@
         "consecrated objects",
         "pilgrimage",
         "sacred geography"
-      ]
+      ],
+      "legacy_id": "sacred"
     },
     {
-      "id": "ritual",
+      "id": "domain.religious_theological_and_divine_domains.ritual",
       "name": "ritual",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2326,10 +2474,11 @@
         "prayers",
         "ceremonial procedures",
         "initiations"
-      ]
+      ],
+      "legacy_id": "ritual"
     },
     {
-      "id": "clerical",
+      "id": "domain.religious_theological_and_divine_domains.clerical",
       "name": "clerical",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2340,10 +2489,11 @@
         "clerical magic",
         "responsibilities",
         "ranks"
-      ]
+      ],
+      "legacy_id": "clerical"
     },
     {
-      "id": "monastic",
+      "id": "domain.religious_theological_and_divine_domains.monastic",
       "name": "monastic",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2355,10 +2505,11 @@
         "discipline",
         "property",
         "education"
-      ]
+      ],
+      "legacy_id": "monastic"
     },
     {
-      "id": "heretical",
+      "id": "domain.religious_theological_and_divine_domains.heretical",
       "name": "heretical",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2368,10 +2519,11 @@
         "schisms",
         "suppressed doctrine",
         "religious dissent"
-      ]
+      ],
+      "legacy_id": "heretical"
     },
     {
-      "id": "cultic",
+      "id": "domain.religious_theological_and_divine_domains.cultic",
       "name": "cultic",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2383,10 +2535,11 @@
         "leaders",
         "cells",
         "rituals"
-      ]
+      ],
+      "legacy_id": "cultic"
     },
     {
-      "id": "prophetic",
+      "id": "domain.religious_theological_and_divine_domains.prophetic",
       "name": "prophetic",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2397,10 +2550,11 @@
         "visions",
         "interpretations",
         "fulfillment conditions"
-      ]
+      ],
+      "legacy_id": "prophetic"
     },
     {
-      "id": "eschatological",
+      "id": "domain.religious_theological_and_divine_domains.eschatological",
       "name": "eschatological",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2411,10 +2565,11 @@
         "final battles",
         "salvation",
         "cosmic cycles"
-      ]
+      ],
+      "legacy_id": "eschatological"
     },
     {
-      "id": "soteriological",
+      "id": "domain.religious_theological_and_divine_domains.soteriological",
       "name": "soteriological",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2424,10 +2579,11 @@
         "damnation",
         "redemption",
         "afterlife conditions"
-      ]
+      ],
+      "legacy_id": "soteriological"
     },
     {
-      "id": "angelological",
+      "id": "domain.religious_theological_and_divine_domains.angelological",
       "name": "angelological",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2438,10 +2594,11 @@
         "divine servants",
         "hierarchies",
         "missions"
-      ]
+      ],
+      "legacy_id": "angelological"
     },
     {
-      "id": "demonological",
+      "id": "domain.religious_theological_and_divine_domains.demonological",
       "name": "demonological",
       "category": "12. Religious, theological and divine domains",
       "category_id": "religious_theological_and_divine_domains",
@@ -2452,10 +2609,11 @@
         "cults",
         "summoning",
         "infernal hierarchies"
-      ]
+      ],
+      "legacy_id": "demonological"
     },
     {
-      "id": "arcane",
+      "id": "domain.arcane_magical_and_occult_domains.arcane",
       "name": "arcane",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2467,10 +2625,11 @@
         "magical institutions",
         "artifacts",
         "magical infrastructure"
-      ]
+      ],
+      "legacy_id": "arcane"
     },
     {
-      "id": "magical",
+      "id": "domain.arcane_magical_and_occult_domains.magical",
       "name": "magical",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2482,10 +2641,11 @@
         "limitations",
         "users",
         "applications"
-      ]
+      ],
+      "legacy_id": "magical"
     },
     {
-      "id": "thaumaturgical",
+      "id": "domain.arcane_magical_and_occult_domains.thaumaturgical",
       "name": "thaumaturgical",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2496,10 +2656,11 @@
         "magical engineering",
         "ritual techniques",
         "magical mechanisms"
-      ]
+      ],
+      "legacy_id": "thaumaturgical"
     },
     {
-      "id": "sorcerous",
+      "id": "domain.arcane_magical_and_occult_domains.sorcerous",
       "name": "sorcerous",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2509,10 +2670,11 @@
         "bloodlines",
         "wild magic",
         "sorcerous traditions"
-      ]
+      ],
+      "legacy_id": "sorcerous"
     },
     {
-      "id": "wizardly",
+      "id": "domain.arcane_magical_and_occult_domains.wizardly",
       "name": "wizardly",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2523,10 +2685,11 @@
         "academies",
         "research",
         "apprenticeships"
-      ]
+      ],
+      "legacy_id": "wizardly"
     },
     {
-      "id": "ritualistic",
+      "id": "domain.arcane_magical_and_occult_domains.ritualistic",
       "name": "ritualistic",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2537,10 +2700,11 @@
         "timing",
         "participants",
         "consequences"
-      ]
+      ],
+      "legacy_id": "ritualistic"
     },
     {
-      "id": "enchantment",
+      "id": "domain.arcane_magical_and_occult_domains.enchantment",
       "name": "enchantment",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2551,10 +2715,11 @@
         "permanence",
         "costs",
         "effects"
-      ]
+      ],
+      "legacy_id": "enchantment"
     },
     {
-      "id": "alchemical",
+      "id": "domain.arcane_magical_and_occult_domains.alchemical",
       "name": "alchemical",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2566,10 +2731,11 @@
         "potions",
         "transformations",
         "recipes"
-      ]
+      ],
+      "legacy_id": "alchemical"
     },
     {
-      "id": "necromantic",
+      "id": "domain.arcane_magical_and_occult_domains.necromantic",
       "name": "necromantic",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2580,10 +2746,11 @@
         "corpses",
         "souls",
         "forbidden practices"
-      ]
+      ],
+      "legacy_id": "necromantic"
     },
     {
-      "id": "conjuration",
+      "id": "domain.arcane_magical_and_occult_domains.conjuration",
       "name": "conjuration",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2593,10 +2760,11 @@
         "binding",
         "teleportation",
         "planar calling"
-      ]
+      ],
+      "legacy_id": "conjuration"
     },
     {
-      "id": "divinatory",
+      "id": "domain.arcane_magical_and_occult_domains.divinatory",
       "name": "divinatory",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2607,10 +2775,11 @@
         "foresight",
         "omens",
         "information magic"
-      ]
+      ],
+      "legacy_id": "divinatory"
     },
     {
-      "id": "illusionistic",
+      "id": "domain.arcane_magical_and_occult_domains.illusionistic",
       "name": "illusionistic",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2620,10 +2789,11 @@
         "deception",
         "concealment",
         "perceptual manipulation"
-      ]
+      ],
+      "legacy_id": "illusionistic"
     },
     {
-      "id": "transmutational",
+      "id": "domain.arcane_magical_and_occult_domains.transmutational",
       "name": "transmutational",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2633,10 +2803,11 @@
         "polymorph",
         "material alteration",
         "magical manufacturing"
-      ]
+      ],
+      "legacy_id": "transmutational"
     },
     {
-      "id": "abjurative",
+      "id": "domain.arcane_magical_and_occult_domains.abjurative",
       "name": "abjurative",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2647,10 +2818,11 @@
         "seals",
         "countermagic",
         "magical security"
-      ]
+      ],
+      "legacy_id": "abjurative"
     },
     {
-      "id": "evocational",
+      "id": "domain.arcane_magical_and_occult_domains.evocational",
       "name": "evocational",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2659,10 +2831,11 @@
         "destructive magic",
         "elemental magic",
         "battle magic"
-      ]
+      ],
+      "legacy_id": "evocational"
     },
     {
-      "id": "magical_economic",
+      "id": "domain.arcane_magical_and_occult_domains.magical_economic",
       "name": "magical-economic",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2672,10 +2845,11 @@
         "magical commodities",
         "enchanted goods",
         "magical labor markets"
-      ]
+      ],
+      "legacy_id": "magical_economic"
     },
     {
-      "id": "magical_industrial",
+      "id": "domain.arcane_magical_and_occult_domains.magical_industrial",
       "name": "magical-industrial",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2684,10 +2858,11 @@
         "magical manufacturing",
         "enchanted infrastructure",
         "large-scale spell use"
-      ]
+      ],
+      "legacy_id": "magical_industrial"
     },
     {
-      "id": "magical_legal",
+      "id": "domain.arcane_magical_and_occult_domains.magical_legal",
       "name": "magical-legal",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2697,10 +2872,11 @@
         "prohibited magic",
         "magical crimes",
         "enforcement"
-      ]
+      ],
+      "legacy_id": "magical_legal"
     },
     {
-      "id": "magical_ecological",
+      "id": "domain.arcane_magical_and_occult_domains.magical_ecological",
       "name": "magical-ecological",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2710,10 +2886,11 @@
         "ley lines",
         "magical species",
         "altered ecosystems"
-      ]
+      ],
+      "legacy_id": "magical_ecological"
     },
     {
-      "id": "magical_geographical",
+      "id": "domain.arcane_magical_and_occult_domains.magical_geographical",
       "name": "magical-geographical",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2724,10 +2901,11 @@
         "wild-magic zones",
         "ley lines",
         "magical boundaries"
-      ]
+      ],
+      "legacy_id": "magical_geographical"
     },
     {
-      "id": "occult",
+      "id": "domain.arcane_magical_and_occult_domains.occult",
       "name": "occult",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2737,10 +2915,11 @@
         "forbidden rites",
         "secret societies",
         "taboo knowledge"
-      ]
+      ],
+      "legacy_id": "occult"
     },
     {
-      "id": "esoteric",
+      "id": "domain.arcane_magical_and_occult_domains.esoteric",
       "name": "esoteric",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2750,10 +2929,11 @@
         "coded traditions",
         "lost teachings",
         "hidden correspondences"
-      ]
+      ],
+      "legacy_id": "esoteric"
     },
     {
-      "id": "hermetic",
+      "id": "domain.arcane_magical_and_occult_domains.hermetic",
       "name": "hermetic",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2762,10 +2942,11 @@
         "secret magical philosophies",
         "symbolic systems",
         "initiatory knowledge"
-      ]
+      ],
+      "legacy_id": "hermetic"
     },
     {
-      "id": "runological",
+      "id": "domain.arcane_magical_and_occult_domains.runological",
       "name": "runological",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2776,10 +2957,11 @@
         "sigils",
         "inscriptions",
         "runic systems"
-      ]
+      ],
+      "legacy_id": "runological"
     },
     {
-      "id": "onomastic",
+      "id": "domain.arcane_magical_and_occult_domains.onomastic",
       "name": "onomastic",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2789,10 +2971,11 @@
         "naming magic",
         "name traditions",
         "magical nomenclature"
-      ]
+      ],
+      "legacy_id": "onomastic"
     },
     {
-      "id": "astrological",
+      "id": "domain.arcane_magical_and_occult_domains.astrological",
       "name": "astrological",
       "category": "13. Arcane, magical and occult domains",
       "category_id": "arcane_magical_and_occult_domains",
@@ -2803,10 +2986,11 @@
         "omens",
         "celestial influence",
         "magical astrology"
-      ]
+      ],
+      "legacy_id": "astrological"
     },
     {
-      "id": "cosmological",
+      "id": "domain.cosmological_and_metaphysical_domains.cosmological",
       "name": "cosmological",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2817,10 +3001,11 @@
         "divine realms",
         "planar relations",
         "cosmic cycles"
-      ]
+      ],
+      "legacy_id": "cosmological"
     },
     {
-      "id": "metaphysical",
+      "id": "domain.cosmological_and_metaphysical_domains.metaphysical",
       "name": "metaphysical",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2832,10 +3017,11 @@
         "magic",
         "identity",
         "metaphysical laws"
-      ]
+      ],
+      "legacy_id": "metaphysical"
     },
     {
-      "id": "ontological",
+      "id": "domain.cosmological_and_metaphysical_domains.ontological",
       "name": "ontological",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2844,10 +3030,11 @@
         "what kinds of beings exist",
         "categories of existence",
         "transformations between categories"
-      ]
+      ],
+      "legacy_id": "ontological"
     },
     {
-      "id": "planar",
+      "id": "domain.cosmological_and_metaphysical_domains.planar",
       "name": "planar",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2858,10 +3045,11 @@
         "planar routes",
         "planar inhabitants",
         "planar hazards"
-      ]
+      ],
+      "legacy_id": "planar"
     },
     {
-      "id": "astral",
+      "id": "domain.cosmological_and_metaphysical_domains.astral",
       "name": "astral",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2871,10 +3059,11 @@
         "astral travel",
         "astral entities",
         "astral geography"
-      ]
+      ],
+      "legacy_id": "astral"
     },
     {
-      "id": "ethereal",
+      "id": "domain.cosmological_and_metaphysical_domains.ethereal",
       "name": "ethereal",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2884,10 +3073,11 @@
         "phase states",
         "ethereal creatures",
         "crossings"
-      ]
+      ],
+      "legacy_id": "ethereal"
     },
     {
-      "id": "elemental",
+      "id": "domain.cosmological_and_metaphysical_domains.elemental",
       "name": "elemental",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2897,10 +3087,11 @@
         "elemental forces",
         "elemental creatures",
         "resources"
-      ]
+      ],
+      "legacy_id": "elemental"
     },
     {
-      "id": "afterlife",
+      "id": "domain.cosmological_and_metaphysical_domains.afterlife",
       "name": "afterlife",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2911,10 +3102,11 @@
         "judgment",
         "afterlife destinations",
         "resurrection"
-      ]
+      ],
+      "legacy_id": "afterlife"
     },
     {
-      "id": "soul",
+      "id": "domain.cosmological_and_metaphysical_domains.soul",
       "name": "soul",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2925,10 +3117,11 @@
         "soul damage",
         "soul transfer",
         "resurrection implications"
-      ]
+      ],
+      "legacy_id": "soul"
     },
     {
-      "id": "fate",
+      "id": "domain.cosmological_and_metaphysical_domains.fate",
       "name": "fate",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2939,10 +3132,11 @@
         "fate manipulation",
         "predestination",
         "cosmic patterns"
-      ]
+      ],
+      "legacy_id": "fate"
     },
     {
-      "id": "temporal",
+      "id": "domain.cosmological_and_metaphysical_domains.temporal",
       "name": "temporal",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2953,10 +3147,11 @@
         "temporal anomalies",
         "chronology",
         "temporal effects"
-      ]
+      ],
+      "legacy_id": "temporal"
     },
     {
-      "id": "dimensional",
+      "id": "domain.cosmological_and_metaphysical_domains.dimensional",
       "name": "dimensional",
       "category": "14. Cosmological and metaphysical domains",
       "category_id": "cosmological_and_metaphysical_domains",
@@ -2966,10 +3161,11 @@
         "pocket realms",
         "extradimensional spaces",
         "dimensional boundaries"
-      ]
+      ],
+      "legacy_id": "dimensional"
     },
     {
-      "id": "geographical",
+      "id": "domain.geographic_and_spatial_domains.geographical",
       "name": "geographical",
       "category": "15. Geographic and spatial domains",
       "category_id": "geographic_and_spatial_domains",
@@ -2981,10 +3177,11 @@
         "settlements",
         "spatial relationships",
         "climate"
-      ]
+      ],
+      "legacy_id": "geographical"
     },
     {
-      "id": "topographical",
+      "id": "domain.geographic_and_spatial_domains.topographical",
       "name": "topographical",
       "category": "15. Geographic and spatial domains",
       "category_id": "geographic_and_spatial_domains",
@@ -2996,10 +3193,11 @@
         "peaks",
         "surface form",
         "terrain difficulty"
-      ]
+      ],
+      "legacy_id": "topographical"
     },
     {
-      "id": "cartographic",
+      "id": "domain.geographic_and_spatial_domains.cartographic",
       "name": "cartographic",
       "category": "15. Geographic and spatial domains",
       "category_id": "geographic_and_spatial_domains",
@@ -3011,10 +3209,11 @@
         "routes",
         "map discrepancies",
         "unexplored regions"
-      ]
+      ],
+      "legacy_id": "cartographic"
     },
     {
-      "id": "territorial",
+      "id": "domain.geographic_and_spatial_domains.territorial",
       "name": "territorial",
       "category": "15. Geographic and spatial domains",
       "category_id": "geographic_and_spatial_domains",
@@ -3024,10 +3223,11 @@
         "claims",
         "frontiers",
         "contested zones"
-      ]
+      ],
+      "legacy_id": "territorial"
     },
     {
-      "id": "regional",
+      "id": "domain.geographic_and_spatial_domains.regional",
       "name": "regional",
       "category": "15. Geographic and spatial domains",
       "category_id": "geographic_and_spatial_domains",
@@ -3037,10 +3237,11 @@
         "subregions",
         "regional identities",
         "regional systems"
-      ]
+      ],
+      "legacy_id": "regional"
     },
     {
-      "id": "locational",
+      "id": "domain.geographic_and_spatial_domains.locational",
       "name": "locational",
       "category": "15. Geographic and spatial domains",
       "category_id": "geographic_and_spatial_domains",
@@ -3050,10 +3251,11 @@
         "relative positions",
         "distance",
         "adjacency"
-      ]
+      ],
+      "legacy_id": "locational"
     },
     {
-      "id": "route",
+      "id": "domain.geographic_and_spatial_domains.route",
       "name": "route",
       "category": "15. Geographic and spatial domains",
       "category_id": "geographic_and_spatial_domains",
@@ -3065,10 +3267,11 @@
         "rivers",
         "passes",
         "shortcuts"
-      ]
+      ],
+      "legacy_id": "route"
     },
     {
-      "id": "distance",
+      "id": "domain.geographic_and_spatial_domains.distance",
       "name": "distance",
       "category": "15. Geographic and spatial domains",
       "category_id": "geographic_and_spatial_domains",
@@ -3078,10 +3281,11 @@
         "travel time",
         "movement speed",
         "route cost"
-      ]
+      ],
+      "legacy_id": "distance"
     },
     {
-      "id": "borderland",
+      "id": "domain.geographic_and_spatial_domains.borderland",
       "name": "borderland",
       "category": "15. Geographic and spatial domains",
       "category_id": "geographic_and_spatial_domains",
@@ -3092,10 +3296,11 @@
         "liminal regions",
         "contested settlements",
         "mixed cultures"
-      ]
+      ],
+      "legacy_id": "borderland"
     },
     {
-      "id": "geological",
+      "id": "domain.geological_hydrological_and_climatological_domains.geological",
       "name": "geological",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3107,10 +3312,11 @@
         "caves",
         "volcanic activity",
         "terrain formation"
-      ]
+      ],
+      "legacy_id": "geological"
     },
     {
-      "id": "geomorphological",
+      "id": "domain.geological_hydrological_and_climatological_domains.geomorphological",
       "name": "geomorphological",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3121,10 +3327,11 @@
         "deposition",
         "coastal formation",
         "river valleys"
-      ]
+      ],
+      "legacy_id": "geomorphological"
     },
     {
-      "id": "mineralogical",
+      "id": "domain.geological_hydrological_and_climatological_domains.mineralogical",
       "name": "mineralogical",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3135,10 +3342,11 @@
         "gemstones",
         "deposits",
         "mining value"
-      ]
+      ],
+      "legacy_id": "mineralogical"
     },
     {
-      "id": "hydrological",
+      "id": "domain.geological_hydrological_and_climatological_domains.hydrological",
       "name": "hydrological",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3150,10 +3358,11 @@
         "drainage",
         "water supply",
         "flooding"
-      ]
+      ],
+      "legacy_id": "hydrological"
     },
     {
-      "id": "oceanographic",
+      "id": "domain.geological_hydrological_and_climatological_domains.oceanographic",
       "name": "oceanographic",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3164,10 +3373,11 @@
         "depths",
         "seas",
         "ocean conditions"
-      ]
+      ],
+      "legacy_id": "oceanographic"
     },
     {
-      "id": "coastal",
+      "id": "domain.geological_hydrological_and_climatological_domains.coastal",
       "name": "coastal",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3178,10 +3388,11 @@
         "cliffs",
         "estuaries",
         "coastal hazards"
-      ]
+      ],
+      "legacy_id": "coastal"
     },
     {
-      "id": "fluvial",
+      "id": "domain.geological_hydrological_and_climatological_domains.fluvial",
       "name": "fluvial",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3192,10 +3403,11 @@
         "crossings",
         "river trade",
         "flooding"
-      ]
+      ],
+      "legacy_id": "fluvial"
     },
     {
-      "id": "limnological",
+      "id": "domain.geological_hydrological_and_climatological_domains.limnological",
       "name": "limnological",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3205,10 +3417,11 @@
         "lake ecosystems",
         "lake transport",
         "water chemistry"
-      ]
+      ],
+      "legacy_id": "limnological"
     },
     {
-      "id": "climatological",
+      "id": "domain.geological_hydrological_and_climatological_domains.climatological",
       "name": "climatological",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3219,10 +3432,11 @@
         "temperatures",
         "seasonality",
         "climate zones"
-      ]
+      ],
+      "legacy_id": "climatological"
     },
     {
-      "id": "meteorological",
+      "id": "domain.geological_hydrological_and_climatological_domains.meteorological",
       "name": "meteorological",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3234,10 +3448,11 @@
         "fog",
         "precipitation",
         "extreme events"
-      ]
+      ],
+      "legacy_id": "meteorological"
     },
     {
-      "id": "seasonal",
+      "id": "domain.geological_hydrological_and_climatological_domains.seasonal",
       "name": "seasonal",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3248,10 +3463,11 @@
         "harvests",
         "weather cycles",
         "seasonal commerce"
-      ]
+      ],
+      "legacy_id": "seasonal"
     },
     {
-      "id": "disaster",
+      "id": "domain.geological_hydrological_and_climatological_domains.disaster",
       "name": "disaster",
       "category": "16. Geological, hydrological and climatological domains",
       "category_id": "geological_hydrological_and_climatological_domains",
@@ -3263,10 +3479,11 @@
         "fires",
         "magical disasters",
         "recovery"
-      ]
+      ],
+      "legacy_id": "disaster"
     },
     {
-      "id": "ecological",
+      "id": "domain.biological_and_ecological_domains.ecological",
       "name": "ecological",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3276,10 +3493,11 @@
         "species interactions",
         "habitats",
         "environmental pressures"
-      ]
+      ],
+      "legacy_id": "ecological"
     },
     {
-      "id": "biological",
+      "id": "domain.biological_and_ecological_domains.biological",
       "name": "biological",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3290,10 +3508,11 @@
         "physiology",
         "adaptation",
         "biological systems"
-      ]
+      ],
+      "legacy_id": "biological"
     },
     {
-      "id": "zoological",
+      "id": "domain.biological_and_ecological_domains.zoological",
       "name": "zoological",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3305,10 +3524,11 @@
         "diet",
         "reproduction",
         "range"
-      ]
+      ],
+      "legacy_id": "zoological"
     },
     {
-      "id": "botanical",
+      "id": "domain.biological_and_ecological_domains.botanical",
       "name": "botanical",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3320,10 +3540,11 @@
         "distribution",
         "uses",
         "seasonality"
-      ]
+      ],
+      "legacy_id": "botanical"
     },
     {
-      "id": "mycological",
+      "id": "domain.biological_and_ecological_domains.mycological",
       "name": "mycological",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3335,10 +3556,11 @@
         "culinary",
         "medicinal",
         "magical uses"
-      ]
+      ],
+      "legacy_id": "mycological"
     },
     {
-      "id": "entomological",
+      "id": "domain.biological_and_ecological_domains.entomological",
       "name": "entomological",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3349,10 +3571,11 @@
         "pollination",
         "disease vectors",
         "agricultural effects"
-      ]
+      ],
+      "legacy_id": "entomological"
     },
     {
-      "id": "marine_biological",
+      "id": "domain.biological_and_ecological_domains.marine_biological",
       "name": "marine-biological",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3362,10 +3585,11 @@
         "fisheries",
         "reefs",
         "marine ecosystems"
-      ]
+      ],
+      "legacy_id": "marine_biological"
     },
     {
-      "id": "forestry",
+      "id": "domain.biological_and_ecological_domains.forestry",
       "name": "forestry",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3376,10 +3600,11 @@
         "woodland ecology",
         "forest management",
         "logging"
-      ]
+      ],
+      "legacy_id": "forestry"
     },
     {
-      "id": "biodiversity",
+      "id": "domain.biological_and_ecological_domains.biodiversity",
       "name": "biodiversity",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3389,10 +3614,11 @@
         "rare species",
         "ecological hotspots",
         "extinctions"
-      ]
+      ],
+      "legacy_id": "biodiversity"
     },
     {
-      "id": "conservation",
+      "id": "domain.biological_and_ecological_domains.conservation",
       "name": "conservation",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3402,10 +3628,11 @@
         "sacred groves",
         "resource restrictions",
         "stewardship"
-      ]
+      ],
+      "legacy_id": "conservation"
     },
     {
-      "id": "invasive_species",
+      "id": "domain.biological_and_ecological_domains.invasive_species",
       "name": "invasive-species",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3415,10 +3642,11 @@
         "ecological disruption",
         "spread",
         "control"
-      ]
+      ],
+      "legacy_id": "invasive_species"
     },
     {
-      "id": "predation",
+      "id": "domain.biological_and_ecological_domains.predation",
       "name": "predation",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3428,10 +3656,11 @@
         "prey",
         "hunting patterns",
         "population effects"
-      ]
+      ],
+      "legacy_id": "predation"
     },
     {
-      "id": "food_web",
+      "id": "domain.biological_and_ecological_domains.food_web",
       "name": "food-web",
       "category": "17. Biological and ecological domains",
       "category_id": "biological_and_ecological_domains",
@@ -3442,10 +3671,11 @@
         "predators",
         "scavengers",
         "trophic relationships"
-      ]
+      ],
+      "legacy_id": "food_web"
     },
     {
-      "id": "wilderness",
+      "id": "domain.wilderness_and_survival_domains.wilderness",
       "name": "wilderness",
       "category": "18. Wilderness and survival domains",
       "category_id": "wilderness_and_survival_domains",
@@ -3457,10 +3687,11 @@
         "resources",
         "campsites",
         "predators"
-      ]
+      ],
+      "legacy_id": "wilderness"
     },
     {
-      "id": "survival",
+      "id": "domain.wilderness_and_survival_domains.survival",
       "name": "survival",
       "category": "18. Wilderness and survival domains",
       "category_id": "wilderness_and_survival_domains",
@@ -3473,10 +3704,11 @@
         "temperature",
         "disease",
         "exposure"
-      ]
+      ],
+      "legacy_id": "survival"
     },
     {
-      "id": "exploration",
+      "id": "domain.wilderness_and_survival_domains.exploration",
       "name": "exploration",
       "category": "18. Wilderness and survival domains",
       "category_id": "wilderness_and_survival_domains",
@@ -3487,10 +3719,11 @@
         "maps",
         "discoveries",
         "exploration risks"
-      ]
+      ],
+      "legacy_id": "exploration"
     },
     {
-      "id": "navigation",
+      "id": "domain.wilderness_and_survival_domains.navigation",
       "name": "navigation",
       "category": "18. Wilderness and survival domains",
       "category_id": "wilderness_and_survival_domains",
@@ -3501,10 +3734,11 @@
         "currents",
         "compasses",
         "magical navigation"
-      ]
+      ],
+      "legacy_id": "navigation"
     },
     {
-      "id": "frontier",
+      "id": "domain.wilderness_and_survival_domains.frontier",
       "name": "frontier",
       "category": "18. Wilderness and survival domains",
       "category_id": "wilderness_and_survival_domains",
@@ -3514,10 +3748,11 @@
         "wilderness pressure",
         "border conflicts",
         "resource claims"
-      ]
+      ],
+      "legacy_id": "frontier"
     },
     {
-      "id": "hunting",
+      "id": "domain.wilderness_and_survival_domains.hunting",
       "name": "hunting",
       "category": "18. Wilderness and survival domains",
       "category_id": "wilderness_and_survival_domains",
@@ -3527,10 +3762,11 @@
         "hunting methods",
         "seasons",
         "hunting rights"
-      ]
+      ],
+      "legacy_id": "hunting"
     },
     {
-      "id": "foraging",
+      "id": "domain.wilderness_and_survival_domains.foraging",
       "name": "foraging",
       "category": "18. Wilderness and survival domains",
       "category_id": "wilderness_and_survival_domains",
@@ -3540,10 +3776,11 @@
         "medicinal plants",
         "seasonality",
         "dangerous lookalikes"
-      ]
+      ],
+      "legacy_id": "foraging"
     },
     {
-      "id": "urban",
+      "id": "domain.urban_and_settlement_domains.urban",
       "name": "urban",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3556,10 +3793,11 @@
         "utilities",
         "policing",
         "urban social structure"
-      ]
+      ],
+      "legacy_id": "urban"
     },
     {
-      "id": "urbanistic",
+      "id": "domain.urban_and_settlement_domains.urbanistic",
       "name": "urbanistic",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3570,10 +3808,11 @@
         "density",
         "street networks",
         "expansion"
-      ]
+      ],
+      "legacy_id": "urbanistic"
     },
     {
-      "id": "settlement",
+      "id": "domain.urban_and_settlement_domains.settlement",
       "name": "settlement",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3585,10 +3824,11 @@
         "government",
         "defenses",
         "services"
-      ]
+      ],
+      "legacy_id": "settlement"
     },
     {
-      "id": "architectural",
+      "id": "domain.urban_and_settlement_domains.architectural",
       "name": "architectural",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3599,10 +3839,11 @@
         "materials",
         "construction methods",
         "functions"
-      ]
+      ],
+      "legacy_id": "architectural"
     },
     {
-      "id": "residential",
+      "id": "domain.urban_and_settlement_domains.residential",
       "name": "residential",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3613,10 +3854,11 @@
         "occupancy",
         "tenure",
         "class distribution"
-      ]
+      ],
+      "legacy_id": "residential"
     },
     {
-      "id": "civic",
+      "id": "domain.urban_and_settlement_domains.civic",
       "name": "civic",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3627,10 +3869,11 @@
         "monuments",
         "civic institutions",
         "municipal identity"
-      ]
+      ],
+      "legacy_id": "civic"
     },
     {
-      "id": "infrastructural",
+      "id": "domain.urban_and_settlement_domains.infrastructural",
       "name": "infrastructural",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3643,10 +3886,11 @@
         "water",
         "communications",
         "utilities"
-      ]
+      ],
+      "legacy_id": "infrastructural"
     },
     {
-      "id": "sanitation",
+      "id": "domain.urban_and_settlement_domains.sanitation",
       "name": "sanitation",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3658,10 +3902,11 @@
         "latrines",
         "garbage",
         "disease prevention"
-      ]
+      ],
+      "legacy_id": "sanitation"
     },
     {
-      "id": "housing",
+      "id": "domain.urban_and_settlement_domains.housing",
       "name": "housing",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3672,10 +3917,11 @@
         "overcrowding",
         "ownership",
         "housing quality"
-      ]
+      ],
+      "legacy_id": "housing"
     },
     {
-      "id": "district",
+      "id": "domain.urban_and_settlement_domains.district",
       "name": "district",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3687,10 +3933,11 @@
         "landmarks",
         "governance",
         "reputation"
-      ]
+      ],
+      "legacy_id": "district"
     },
     {
-      "id": "neighborhood",
+      "id": "domain.urban_and_settlement_domains.neighborhood",
       "name": "neighborhood",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3701,10 +3948,11 @@
         "gangs",
         "social networks",
         "everyday life"
-      ]
+      ],
+      "legacy_id": "neighborhood"
     },
     {
-      "id": "street_level",
+      "id": "domain.urban_and_settlement_domains.street_level",
       "name": "street-level",
       "category": "19. Urban and settlement domains",
       "category_id": "urban_and_settlement_domains",
@@ -3717,10 +3965,11 @@
         "street vendors",
         "patrols",
         "crowds"
-      ]
+      ],
+      "legacy_id": "street_level"
     },
     {
-      "id": "maritime",
+      "id": "domain.maritime_domains.maritime",
       "name": "maritime",
       "category": "20. Maritime domains",
       "category_id": "maritime_domains",
@@ -3733,10 +3982,11 @@
         "routes",
         "cargo",
         "maritime culture"
-      ]
+      ],
+      "legacy_id": "maritime"
     },
     {
-      "id": "nautical",
+      "id": "domain.maritime_domains.nautical",
       "name": "nautical",
       "category": "20. Maritime domains",
       "category_id": "maritime_domains",
@@ -3748,10 +3998,11 @@
         "ship handling",
         "weather",
         "tides"
-      ]
+      ],
+      "legacy_id": "nautical"
     },
     {
-      "id": "shipping",
+      "id": "domain.maritime_domains.shipping",
       "name": "shipping",
       "category": "20. Maritime domains",
       "category_id": "maritime_domains",
@@ -3763,10 +4014,11 @@
         "freight rates",
         "routes",
         "risks"
-      ]
+      ],
+      "legacy_id": "shipping"
     },
     {
-      "id": "port",
+      "id": "domain.maritime_domains.port",
       "name": "port",
       "category": "20. Maritime domains",
       "category_id": "maritime_domains",
@@ -3778,10 +4030,11 @@
         "customs",
         "shipyards",
         "labor"
-      ]
+      ],
+      "legacy_id": "port"
     },
     {
-      "id": "shipbuilding",
+      "id": "domain.maritime_domains.shipbuilding",
       "name": "shipbuilding",
       "category": "20. Maritime domains",
       "category_id": "maritime_domains",
@@ -3793,10 +4046,11 @@
         "ship types",
         "construction",
         "repair"
-      ]
+      ],
+      "legacy_id": "shipbuilding"
     },
     {
-      "id": "seafaring",
+      "id": "domain.maritime_domains.seafaring",
       "name": "seafaring",
       "category": "20. Maritime domains",
       "category_id": "maritime_domains",
@@ -3807,10 +4061,11 @@
         "customs",
         "discipline",
         "recruitment"
-      ]
+      ],
+      "legacy_id": "seafaring"
     },
     {
-      "id": "piratical",
+      "id": "domain.maritime_domains.piratical",
       "name": "piratical",
       "category": "20. Maritime domains",
       "category_id": "maritime_domains",
@@ -3821,10 +4076,11 @@
         "pirate bases",
         "fences",
         "naval responses"
-      ]
+      ],
+      "legacy_id": "piratical"
     },
     {
-      "id": "fishing",
+      "id": "domain.maritime_domains.fishing",
       "name": "fishing",
       "category": "20. Maritime domains",
       "category_id": "maritime_domains",
@@ -3836,10 +4092,11 @@
         "seasons",
         "processing",
         "markets"
-      ]
+      ],
+      "legacy_id": "fishing"
     },
     {
-      "id": "naval_logistical",
+      "id": "domain.maritime_domains.naval_logistical",
       "name": "naval-logistical",
       "category": "20. Maritime domains",
       "category_id": "maritime_domains",
@@ -3850,10 +4107,11 @@
         "repair",
         "crew replacement",
         "supply routes"
-      ]
+      ],
+      "legacy_id": "naval_logistical"
     },
     {
-      "id": "technological",
+      "id": "domain.technological_and_scientific_domains.technological",
       "name": "technological",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -3865,10 +4123,11 @@
         "processes",
         "innovations",
         "limitations"
-      ]
+      ],
+      "legacy_id": "technological"
     },
     {
-      "id": "mechanical",
+      "id": "domain.technological_and_scientific_domains.mechanical",
       "name": "mechanical",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -3879,10 +4138,11 @@
         "engines",
         "mechanisms",
         "maintenance"
-      ]
+      ],
+      "legacy_id": "mechanical"
     },
     {
-      "id": "engineering",
+      "id": "domain.technological_and_scientific_domains.engineering",
       "name": "engineering",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -3893,10 +4153,11 @@
         "materials",
         "infrastructure",
         "technical constraints"
-      ]
+      ],
+      "legacy_id": "engineering"
     },
     {
-      "id": "civil_engineering",
+      "id": "domain.technological_and_scientific_domains.civil_engineering",
       "name": "civil-engineering",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -3909,10 +4170,11 @@
         "walls",
         "drainage",
         "public works"
-      ]
+      ],
+      "legacy_id": "civil_engineering"
     },
     {
-      "id": "military_engineering",
+      "id": "domain.technological_and_scientific_domains.military_engineering",
       "name": "military-engineering",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -3923,10 +4185,11 @@
         "bridges",
         "demolition",
         "field works"
-      ]
+      ],
+      "legacy_id": "military_engineering"
     },
     {
-      "id": "hydraulic_engineering",
+      "id": "domain.technological_and_scientific_domains.hydraulic_engineering",
       "name": "hydraulic-engineering",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -3937,10 +4200,11 @@
         "pumps",
         "mills",
         "drainage"
-      ]
+      ],
+      "legacy_id": "hydraulic_engineering"
     },
     {
-      "id": "metallurgical",
+      "id": "domain.technological_and_scientific_domains.metallurgical",
       "name": "metallurgical",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -3951,10 +4215,11 @@
         "forging",
         "alloys",
         "material properties"
-      ]
+      ],
+      "legacy_id": "metallurgical"
     },
     {
-      "id": "material_science",
+      "id": "domain.technological_and_scientific_domains.material_science",
       "name": "material-science",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -3966,10 +4231,11 @@
         "glass",
         "ceramics",
         "magical materials"
-      ]
+      ],
+      "legacy_id": "material_science"
     },
     {
-      "id": "scientific",
+      "id": "domain.technological_and_scientific_domains.scientific",
       "name": "scientific",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -3980,10 +4246,11 @@
         "theories",
         "discoveries",
         "instruments"
-      ]
+      ],
+      "legacy_id": "scientific"
     },
     {
-      "id": "astronomical",
+      "id": "domain.technological_and_scientific_domains.astronomical",
       "name": "astronomical",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -3994,10 +4261,11 @@
         "calendars",
         "navigation",
         "celestial events"
-      ]
+      ],
+      "legacy_id": "astronomical"
     },
     {
-      "id": "mathematical",
+      "id": "domain.technological_and_scientific_domains.mathematical",
       "name": "mathematical",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -4008,10 +4276,11 @@
         "geometry",
         "statistics",
         "calculation systems"
-      ]
+      ],
+      "legacy_id": "mathematical"
     },
     {
-      "id": "medical",
+      "id": "domain.technological_and_scientific_domains.medical",
       "name": "medical",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -4023,10 +4292,11 @@
         "surgery",
         "treatments",
         "hospitals"
-      ]
+      ],
+      "legacy_id": "medical"
     },
     {
-      "id": "pharmaceutical",
+      "id": "domain.technological_and_scientific_domains.pharmaceutical",
       "name": "pharmaceutical",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -4038,10 +4308,11 @@
         "dosage",
         "manufacture",
         "trade"
-      ]
+      ],
+      "legacy_id": "pharmaceutical"
     },
     {
-      "id": "epidemiological",
+      "id": "domain.technological_and_scientific_domains.epidemiological",
       "name": "epidemiological",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -4052,10 +4323,11 @@
         "mortality",
         "vectors",
         "containment"
-      ]
+      ],
+      "legacy_id": "epidemiological"
     },
     {
-      "id": "anatomical",
+      "id": "domain.technological_and_scientific_domains.anatomical",
       "name": "anatomical",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -4065,10 +4337,11 @@
         "species anatomy",
         "injury",
         "physiology"
-      ]
+      ],
+      "legacy_id": "anatomical"
     },
     {
-      "id": "technical_knowledge",
+      "id": "domain.technological_and_scientific_domains.technical_knowledge",
       "name": "technical-knowledge",
       "category": "21. Technological and scientific domains",
       "category_id": "technological_and_scientific_domains",
@@ -4079,10 +4352,11 @@
         "training",
         "trade secrets",
         "skill transmission"
-      ]
+      ],
+      "legacy_id": "technical_knowledge"
     },
     {
-      "id": "information",
+      "id": "domain.information_knowledge_and_communication_domains.information",
       "name": "information",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4094,10 +4368,11 @@
         "news",
         "intelligence",
         "information flows"
-      ]
+      ],
+      "legacy_id": "information"
     },
     {
-      "id": "communication",
+      "id": "domain.information_knowledge_and_communication_domains.communication",
       "name": "communication",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4109,10 +4384,11 @@
         "magical communication",
         "speed",
         "reach"
-      ]
+      ],
+      "legacy_id": "communication"
     },
     {
-      "id": "postal",
+      "id": "domain.information_knowledge_and_communication_domains.postal",
       "name": "postal",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4123,10 +4399,11 @@
         "post stations",
         "costs",
         "reliability"
-      ]
+      ],
+      "legacy_id": "postal"
     },
     {
-      "id": "scribal",
+      "id": "domain.information_knowledge_and_communication_domains.scribal",
       "name": "scribal",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4137,10 +4414,11 @@
         "records",
         "administrative texts",
         "literacy"
-      ]
+      ],
+      "legacy_id": "scribal"
     },
     {
-      "id": "archival",
+      "id": "domain.information_knowledge_and_communication_domains.archival",
       "name": "archival",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4152,10 +4430,11 @@
         "access",
         "classification",
         "lost records"
-      ]
+      ],
+      "legacy_id": "archival"
     },
     {
-      "id": "library",
+      "id": "domain.information_knowledge_and_communication_domains.library",
       "name": "library",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4166,10 +4445,11 @@
         "librarians",
         "access",
         "rare texts"
-      ]
+      ],
+      "legacy_id": "library"
     },
     {
-      "id": "educational",
+      "id": "domain.information_knowledge_and_communication_domains.educational",
       "name": "educational",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4181,10 +4461,11 @@
         "curricula",
         "teachers",
         "access"
-      ]
+      ],
+      "legacy_id": "educational"
     },
     {
-      "id": "academic",
+      "id": "domain.information_knowledge_and_communication_domains.academic",
       "name": "academic",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4195,10 +4476,11 @@
         "disciplines",
         "research",
         "patronage"
-      ]
+      ],
+      "legacy_id": "academic"
     },
     {
-      "id": "epistemological",
+      "id": "domain.information_knowledge_and_communication_domains.epistemological",
       "name": "epistemological",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4208,10 +4490,11 @@
         "what counts as evidence",
         "authority",
         "uncertainty"
-      ]
+      ],
+      "legacy_id": "epistemological"
     },
     {
-      "id": "knowledge",
+      "id": "domain.information_knowledge_and_communication_domains.knowledge",
       "name": "knowledge",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4222,10 +4505,11 @@
         "expertise",
         "restricted knowledge",
         "knowledge distribution"
-      ]
+      ],
+      "legacy_id": "knowledge"
     },
     {
-      "id": "literacy",
+      "id": "domain.information_knowledge_and_communication_domains.literacy",
       "name": "literacy",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4236,10 +4520,11 @@
         "numeracy",
         "class differences",
         "institutional literacy"
-      ]
+      ],
+      "legacy_id": "literacy"
     },
     {
-      "id": "propaganda",
+      "id": "domain.information_knowledge_and_communication_domains.propaganda",
       "name": "propaganda",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4250,10 +4535,11 @@
         "censorship",
         "messaging",
         "mythmaking"
-      ]
+      ],
+      "legacy_id": "propaganda"
     },
     {
-      "id": "rumor",
+      "id": "domain.information_knowledge_and_communication_domains.rumor",
       "name": "rumor",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4264,10 +4550,11 @@
         "spread",
         "credibility",
         "social effects"
-      ]
+      ],
+      "legacy_id": "rumor"
     },
     {
-      "id": "censorship",
+      "id": "domain.information_knowledge_and_communication_domains.censorship",
       "name": "censorship",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4277,10 +4564,11 @@
         "restricted speech",
         "information control",
         "enforcement"
-      ]
+      ],
+      "legacy_id": "censorship"
     },
     {
-      "id": "recordkeeping",
+      "id": "domain.information_knowledge_and_communication_domains.recordkeeping",
       "name": "recordkeeping",
       "category": "22. Information, knowledge and communication domains",
       "category_id": "information_knowledge_and_communication_domains",
@@ -4291,10 +4579,11 @@
         "legal records",
         "church records",
         "commercial ledgers"
-      ]
+      ],
+      "legacy_id": "recordkeeping"
     },
     {
-      "id": "historical",
+      "id": "domain.historical_domains.historical",
       "name": "historical",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4305,10 +4594,11 @@
         "causes",
         "participants",
         "consequences"
-      ]
+      ],
+      "legacy_id": "historical"
     },
     {
-      "id": "chronological",
+      "id": "domain.historical_domains.chronological",
       "name": "chronological",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4318,10 +4608,11 @@
         "eras",
         "sequences",
         "before-after relationships"
-      ]
+      ],
+      "legacy_id": "chronological"
     },
     {
-      "id": "genealogical",
+      "id": "domain.historical_domains.genealogical",
       "name": "genealogical",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4332,10 +4623,11 @@
         "descent",
         "succession",
         "marriages"
-      ]
+      ],
+      "legacy_id": "genealogical"
     },
     {
-      "id": "dynastic",
+      "id": "domain.historical_domains.dynastic",
       "name": "dynastic",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4346,10 +4638,11 @@
         "successions",
         "marriages",
         "claims"
-      ]
+      ],
+      "legacy_id": "dynastic"
     },
     {
-      "id": "military_historical",
+      "id": "domain.historical_domains.military_historical",
       "name": "military-historical",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4360,10 +4653,11 @@
         "campaigns",
         "military reforms",
         "long-term effects"
-      ]
+      ],
+      "legacy_id": "military_historical"
     },
     {
-      "id": "economic_historical",
+      "id": "domain.historical_domains.economic_historical",
       "name": "economic-historical",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4374,10 +4668,11 @@
         "growth",
         "decline",
         "industrial shifts"
-      ]
+      ],
+      "legacy_id": "economic_historical"
     },
     {
-      "id": "institutional_historical",
+      "id": "domain.historical_domains.institutional_historical",
       "name": "institutional-historical",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4388,10 +4683,11 @@
         "mergers",
         "decline",
         "institutional continuity"
-      ]
+      ],
+      "legacy_id": "institutional_historical"
     },
     {
-      "id": "archaeological",
+      "id": "domain.historical_domains.archaeological",
       "name": "archaeological",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4402,10 +4698,11 @@
         "layers",
         "material evidence",
         "ancient settlements"
-      ]
+      ],
+      "legacy_id": "archaeological"
     },
     {
-      "id": "historiographical",
+      "id": "domain.historical_domains.historiographical",
       "name": "historiographical",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4415,10 +4712,11 @@
         "historians",
         "bias",
         "disputed interpretation"
-      ]
+      ],
+      "legacy_id": "historiographical"
     },
     {
-      "id": "memory",
+      "id": "domain.historical_domains.memory",
       "name": "memory",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4429,10 +4727,11 @@
         "trauma",
         "commemorations",
         "myths"
-      ]
+      ],
+      "legacy_id": "memory"
     },
     {
-      "id": "legacy",
+      "id": "domain.historical_domains.legacy",
       "name": "legacy",
       "category": "23. Historical domains",
       "category_id": "historical_domains",
@@ -4442,10 +4741,11 @@
         "surviving institutions",
         "cultural residue",
         "unresolved claims"
-      ]
+      ],
+      "legacy_id": "legacy"
     },
     {
-      "id": "mundane",
+      "id": "domain.mundane_everyday_life_domains.mundane",
       "name": "mundane",
       "category": "24. Mundane everyday-life domains",
       "category_id": "mundane_everyday_life_domains",
@@ -4457,10 +4757,11 @@
         "work",
         "chores",
         "leisure"
-      ]
+      ],
+      "legacy_id": "mundane"
     },
     {
-      "id": "domestic",
+      "id": "domain.mundane_everyday_life_domains.domestic",
       "name": "domestic",
       "category": "24. Mundane everyday-life domains",
       "category_id": "mundane_everyday_life_domains",
@@ -4472,10 +4773,11 @@
         "childcare",
         "furniture",
         "domestic labor"
-      ]
+      ],
+      "legacy_id": "domestic"
     },
     {
-      "id": "occupational",
+      "id": "domain.mundane_everyday_life_domains.occupational",
       "name": "occupational",
       "category": "24. Mundane everyday-life domains",
       "category_id": "mundane_everyday_life_domains",
@@ -4487,10 +4789,11 @@
         "schedules",
         "status",
         "pay"
-      ]
+      ],
+      "legacy_id": "occupational"
     },
     {
-      "id": "professional",
+      "id": "domain.mundane_everyday_life_domains.professional",
       "name": "professional",
       "category": "24. Mundane everyday-life domains",
       "category_id": "mundane_everyday_life_domains",
@@ -4501,10 +4804,11 @@
         "training",
         "institutions",
         "norms"
-      ]
+      ],
+      "legacy_id": "professional"
     },
     {
-      "id": "service",
+      "id": "domain.mundane_everyday_life_domains.service",
       "name": "service",
       "category": "24. Mundane everyday-life domains",
       "category_id": "mundane_everyday_life_domains",
@@ -4516,10 +4820,11 @@
         "healers",
         "entertainment",
         "repairs"
-      ]
+      ],
+      "legacy_id": "service"
     },
     {
-      "id": "leisure",
+      "id": "domain.mundane_everyday_life_domains.leisure",
       "name": "leisure",
       "category": "24. Mundane everyday-life domains",
       "category_id": "mundane_everyday_life_domains",
@@ -4530,10 +4835,11 @@
         "taverns",
         "festivals",
         "hobbies"
-      ]
+      ],
+      "legacy_id": "leisure"
     },
     {
-      "id": "recreational",
+      "id": "domain.mundane_everyday_life_domains.recreational",
       "name": "recreational",
       "category": "24. Mundane everyday-life domains",
       "category_id": "mundane_everyday_life_domains",
@@ -4544,10 +4850,11 @@
         "hunting",
         "social clubs",
         "entertainment"
-      ]
+      ],
+      "legacy_id": "recreational"
     },
     {
-      "id": "hospitality",
+      "id": "domain.mundane_everyday_life_domains.hospitality",
       "name": "hospitality",
       "category": "24. Mundane everyday-life domains",
       "category_id": "mundane_everyday_life_domains",
@@ -4559,10 +4866,11 @@
         "lodging",
         "meals",
         "pricing"
-      ]
+      ],
+      "legacy_id": "hospitality"
     },
     {
-      "id": "retail",
+      "id": "domain.mundane_everyday_life_domains.retail",
       "name": "retail",
       "category": "24. Mundane everyday-life domains",
       "category_id": "mundane_everyday_life_domains",
@@ -4574,10 +4882,11 @@
         "goods",
         "opening patterns",
         "customers"
-      ]
+      ],
+      "legacy_id": "retail"
     },
     {
-      "id": "household_economy",
+      "id": "domain.mundane_everyday_life_domains.household_economy",
       "name": "household-economy",
       "category": "24. Mundane everyday-life domains",
       "category_id": "mundane_everyday_life_domains",
@@ -4588,10 +4897,11 @@
         "home production",
         "servants",
         "dependents"
-      ]
+      ],
+      "legacy_id": "household_economy"
     },
     {
-      "id": "adventure",
+      "id": "domain.adventure_and_gameable_content_domains.adventure",
       "name": "adventure",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4604,10 +4914,11 @@
         "rewards",
         "locations",
         "NPC motivations"
-      ]
+      ],
+      "legacy_id": "adventure"
     },
     {
-      "id": "hook",
+      "id": "domain.adventure_and_gameable_content_domains.hook",
       "name": "hook",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4618,10 +4929,11 @@
         "opportunities",
         "requests",
         "discoveries"
-      ]
+      ],
+      "legacy_id": "hook"
     },
     {
-      "id": "mystery",
+      "id": "domain.adventure_and_gameable_content_domains.mystery",
       "name": "mystery",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4633,10 +4945,11 @@
         "secrets",
         "false leads",
         "revelations"
-      ]
+      ],
+      "legacy_id": "mystery"
     },
     {
-      "id": "threat",
+      "id": "domain.adventure_and_gameable_content_domains.threat",
       "name": "threat",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4647,10 +4960,11 @@
         "severity",
         "timelines",
         "vulnerabilities"
-      ]
+      ],
+      "legacy_id": "threat"
     },
     {
-      "id": "quest",
+      "id": "domain.adventure_and_gameable_content_domains.quest",
       "name": "quest",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4662,10 +4976,11 @@
         "reward",
         "complications",
         "consequences"
-      ]
+      ],
+      "legacy_id": "quest"
     },
     {
-      "id": "dungeon",
+      "id": "domain.adventure_and_gameable_content_domains.dungeon",
       "name": "dungeon",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4677,10 +4992,11 @@
         "treasure",
         "routes",
         "secrets"
-      ]
+      ],
+      "legacy_id": "dungeon"
     },
     {
-      "id": "encounter",
+      "id": "domain.adventure_and_gameable_content_domains.encounter",
       "name": "encounter",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4691,10 +5007,11 @@
         "terrain",
         "hazards",
         "complications"
-      ]
+      ],
+      "legacy_id": "encounter"
     },
     {
-      "id": "npc_motivation",
+      "id": "domain.adventure_and_gameable_content_domains.npc_motivation",
       "name": "NPC-motivation",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4706,10 +5023,11 @@
         "relationships",
         "leverage",
         "secrets"
-      ]
+      ],
+      "legacy_id": "npc_motivation"
     },
     {
-      "id": "reward",
+      "id": "domain.adventure_and_gameable_content_domains.reward",
       "name": "reward",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4721,10 +5039,11 @@
         "access",
         "favors",
         "magical items"
-      ]
+      ],
+      "legacy_id": "reward"
     },
     {
-      "id": "clue",
+      "id": "domain.adventure_and_gameable_content_domains.clue",
       "name": "clue",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4735,10 +5054,11 @@
         "meaning",
         "reliability",
         "connections"
-      ]
+      ],
+      "legacy_id": "clue"
     },
     {
-      "id": "secret",
+      "id": "domain.adventure_and_gameable_content_domains.secret",
       "name": "secret",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4748,10 +5068,11 @@
         "who knows",
         "who wants it hidden",
         "consequences"
-      ]
+      ],
+      "legacy_id": "secret"
     },
     {
-      "id": "rumor_hook",
+      "id": "domain.adventure_and_gameable_content_domains.rumor_hook",
       "name": "rumor-hook",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4761,10 +5082,11 @@
         "truth level",
         "source",
         "adventure implications"
-      ]
+      ],
+      "legacy_id": "rumor_hook"
     },
     {
-      "id": "conflict",
+      "id": "domain.adventure_and_gameable_content_domains.conflict",
       "name": "conflict",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4776,10 +5098,11 @@
         "pressures",
         "escalation",
         "possible resolutions"
-      ]
+      ],
+      "legacy_id": "conflict"
     },
     {
-      "id": "dilemma",
+      "id": "domain.adventure_and_gameable_content_domains.dilemma",
       "name": "dilemma",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4790,10 +5113,11 @@
         "beneficiaries",
         "victims",
         "consequences"
-      ]
+      ],
+      "legacy_id": "dilemma"
     },
     {
-      "id": "timer",
+      "id": "domain.adventure_and_gameable_content_domains.timer",
       "name": "timer",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4803,10 +5127,11 @@
         "escalation clocks",
         "seasonal windows",
         "countdowns"
-      ]
+      ],
+      "legacy_id": "timer"
     },
     {
-      "id": "failure_state",
+      "id": "domain.adventure_and_gameable_content_domains.failure_state",
       "name": "failure-state",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4815,10 +5140,11 @@
         "what happens if players do nothing",
         "partial failure",
         "cascading consequences"
-      ]
+      ],
+      "legacy_id": "failure_state"
     },
     {
-      "id": "opportunity",
+      "id": "domain.adventure_and_gameable_content_domains.opportunity",
       "name": "opportunity",
       "category": "25. Adventure and gameable-content domains",
       "category_id": "adventure_and_gameable_content_domains",
@@ -4830,10 +5156,11 @@
         "treasure",
         "alliances",
         "exploitation"
-      ]
+      ],
+      "legacy_id": "opportunity"
     },
     {
-      "id": "causal",
+      "id": "system.causal_relationship_layers.causal",
       "name": "causal",
       "category": "28. Causal relationship layers",
       "category_id": "causal_relationship_layers",
@@ -4850,10 +5177,11 @@
         "feedback",
         "consequence",
         "unintended consequence"
-      ]
+      ],
+      "legacy_id": "causal"
     },
     {
-      "id": "dependency",
+      "id": "system.dependency_layer.dependency",
       "name": "dependency",
       "category": "29. Dependency layer",
       "category_id": "dependency_layer",
@@ -4865,10 +5193,11 @@
         "non-substitutable dependencies",
         "single points of failure",
         "external dependencies"
-      ]
+      ],
+      "legacy_id": "dependency"
     },
     {
-      "id": "flow",
+      "id": "system.flow_layers.flow",
       "name": "flow",
       "category": "30. Flow layers",
       "category_id": "flow_layers",
@@ -4882,20 +5211,22 @@
         "at what rate",
         "at what cost",
         "with what bottlenecks"
-      ]
+      ],
+      "legacy_id": "flow"
     },
     {
-      "id": "pressure",
+      "id": "system.pressure_layer.pressure",
       "name": "pressure",
       "category": "31. Pressure layer",
       "category_id": "pressure_layer",
       "layer": "system",
       "focus": [
         "economic pressure political pressure demographic pressure military pressure environmental pressure social pressure religious pressure technological pressure resource pressure"
-      ]
+      ],
+      "legacy_id": "pressure"
     },
     {
-      "id": "incentive",
+      "id": "system.incentive_layer.incentive",
       "name": "incentive",
       "category": "32. Incentive layer",
       "category_id": "incentive_layer",
@@ -4909,20 +5240,22 @@
         "risk",
         "alternative",
         "likely behavior"
-      ]
+      ],
+      "legacy_id": "incentive"
     },
     {
-      "id": "power",
+      "id": "system.power_layer.power",
       "name": "power",
       "category": "33. Power layer",
       "category_id": "power_layer",
       "layer": "system",
       "focus": [
         "formal authority informal influence economic power military power religious power magical power informational power social prestige institutional power coercive power"
-      ]
+      ],
+      "legacy_id": "power"
     },
     {
-      "id": "capability",
+      "id": "system.capability_layer.capability",
       "name": "capability",
       "category": "34. Capability layer",
       "category_id": "capability_layer",
@@ -4934,10 +5267,11 @@
         "capacity",
         "reach",
         "constraints"
-      ]
+      ],
+      "legacy_id": "capability"
     },
     {
-      "id": "capacity",
+      "id": "system.capacity_layer.capacity",
       "name": "capacity",
       "category": "35. Capacity layer",
       "category_id": "capacity_layer",
@@ -4948,20 +5282,22 @@
         "spare capacity",
         "overloaded capacity",
         "growth capacity"
-      ]
+      ],
+      "legacy_id": "capacity"
     },
     {
-      "id": "constraint",
+      "id": "system.constraint_layer.constraint",
       "name": "constraint",
       "category": "36. Constraint layer",
       "category_id": "constraint_layer",
       "layer": "system",
       "focus": [
         "geographic constraints resource constraints legal constraints political constraints social constraints technological constraints magical constraints financial constraints labor constraints logistical constraints seasonal constraints"
-      ]
+      ],
+      "legacy_id": "constraint"
     },
     {
-      "id": "vulnerability",
+      "id": "system.vulnerability_layer.vulnerability",
       "name": "vulnerability",
       "category": "37. Vulnerability layer",
       "category_id": "vulnerability_layer",
@@ -4973,10 +5309,11 @@
         "political weaknesses",
         "economic weaknesses",
         "magical weaknesses"
-      ]
+      ],
+      "legacy_id": "vulnerability"
     },
     {
-      "id": "resilience",
+      "id": "system.resilience_layer.resilience",
       "name": "resilience",
       "category": "38. Resilience layer",
       "category_id": "resilience_layer",
@@ -4988,50 +5325,55 @@
         "alliances",
         "emergency capacity",
         "institutional flexibility"
-      ]
+      ],
+      "legacy_id": "resilience"
     },
     {
-      "id": "bottleneck",
+      "id": "system.bottleneck_and_chokepoint_layer.bottleneck",
       "name": "bottleneck",
       "category": "39. Bottleneck and chokepoint layer",
       "category_id": "bottleneck_and_chokepoint_layer",
       "layer": "system",
       "focus": [
         "capacity bottlenecks transport bottlenecks bureaucratic bottlenecks resource bottlenecks knowledge bottlenecks political bottlenecks"
-      ]
+      ],
+      "legacy_id": "bottleneck"
     },
     {
-      "id": "chokepoint",
+      "id": "system.bottleneck_and_chokepoint_layer.chokepoint",
       "name": "chokepoint",
       "category": "39. Bottleneck and chokepoint layer",
       "category_id": "bottleneck_and_chokepoint_layer",
       "layer": "system",
       "focus": [
         "mountain passes bridges ports straits roads city gates canals trade hubs magical portals"
-      ]
+      ],
+      "legacy_id": "chokepoint"
     },
     {
-      "id": "substitution",
+      "id": "system.substitution_layer.substitution",
       "name": "substitution",
       "category": "40. Substitution layer",
       "category_id": "substitution_layer",
       "layer": "system",
       "focus": [
         "resource substitutes trade-route substitutes labor substitutes technological substitutes magical substitutes political substitutes"
-      ]
+      ],
+      "legacy_id": "substitution"
     },
     {
-      "id": "competition",
+      "id": "system.competition_layer.competition",
       "name": "competition",
       "category": "41. Competition layer",
       "category_id": "competition_layer",
       "layer": "system",
       "focus": [
         "actors competing for resources markets territory labor prestige political influence trade routes divine followers magical resources"
-      ]
+      ],
+      "legacy_id": "competition"
     },
     {
-      "id": "conflict",
+      "id": "system.conflict_layer.conflict",
       "name": "conflict",
       "category": "42. Conflict layer",
       "category_id": "conflict_layer",
@@ -5045,10 +5387,11 @@
         "constraints",
         "possible resolution",
         "current state"
-      ]
+      ],
+      "legacy_id": "conflict"
     },
     {
-      "id": "cooperation",
+      "id": "system.cooperation_layer.cooperation",
       "name": "cooperation",
       "category": "43. Cooperation layer",
       "category_id": "cooperation_layer",
@@ -5059,60 +5402,66 @@
         "alliances",
         "interdependence",
         "collective action"
-      ]
+      ],
+      "legacy_id": "cooperation"
     },
     {
-      "id": "feedback",
+      "id": "system.feedback_loop_layer.feedback",
       "name": "feedback",
       "category": "44. Feedback-loop layer",
       "category_id": "feedback_loop_layer",
       "layer": "system",
       "focus": [
         "positive feedback loops negative feedback loops stabilizing loops destabilizing loops"
-      ]
+      ],
+      "legacy_id": "feedback"
     },
     {
-      "id": "threshold",
+      "id": "system.threshold_layer.threshold",
       "name": "threshold",
       "category": "45. Threshold layer",
       "category_id": "threshold_layer",
       "layer": "system",
       "focus": [
         "points where gradual pressure causes sudden change"
-      ]
+      ],
+      "legacy_id": "threshold"
     },
     {
-      "id": "cascade",
+      "id": "system.cascade_layer.cascade",
       "name": "cascade",
       "category": "46. Cascade layer",
       "category_id": "cascade_layer",
       "layer": "system",
       "focus": [
         "first-order effect second-order effect third-order effect systemic consequences"
-      ]
+      ],
+      "legacy_id": "cascade"
     },
     {
-      "id": "counterfactual",
+      "id": "system.counterfactual_layer.counterfactual",
       "name": "counterfactual",
       "category": "47. Counterfactual layer",
       "category_id": "counterfactual_layer",
       "layer": "system",
       "focus": [
         "if X changed, what would probably follow?"
-      ]
+      ],
+      "legacy_id": "counterfactual"
     },
     {
-      "id": "opportunity",
+      "id": "system.opportunity_layer.opportunity",
       "name": "opportunity",
       "category": "48. Opportunity layer",
       "category_id": "opportunity_layer",
       "layer": "system",
       "focus": [
         "economic opportunities political opportunities military opportunities criminal opportunities adventure opportunities technological opportunities magical opportunities"
-      ]
+      ],
+      "legacy_id": "opportunity"
     },
     {
-      "id": "risk",
+      "id": "system.risk_layer.risk",
       "name": "risk",
       "category": "49. Risk layer",
       "category_id": "risk_layer",
@@ -5124,50 +5473,55 @@
         "impact",
         "mitigation",
         "warning indicators"
-      ]
+      ],
+      "legacy_id": "risk"
     },
     {
-      "id": "provenance",
+      "id": "system.provenance_layer.provenance",
       "name": "provenance",
       "category": "50. Provenance layer",
       "category_id": "provenance_layer",
       "layer": "system",
       "focus": [
         "source book page section edition author quote context certainty"
-      ]
+      ],
+      "legacy_id": "provenance"
     },
     {
-      "id": "epistemic",
+      "id": "system.epistemic_layer.epistemic",
       "name": "epistemic",
       "category": "51. Epistemic layer",
       "category_id": "epistemic_layer",
       "layer": "system",
       "focus": [
         "explicit fact strong implication weak implication inference speculation contradiction unknown"
-      ]
+      ],
+      "legacy_id": "epistemic"
     },
     {
-      "id": "contradiction",
+      "id": "system.contradiction_layer.contradiction",
       "name": "contradiction",
       "category": "52. Contradiction layer",
       "category_id": "contradiction_layer",
       "layer": "system",
       "focus": [
         "fact conflicts date conflicts map conflicts population conflicts identity conflicts edition conflicts source conflicts"
-      ]
+      ],
+      "legacy_id": "contradiction"
     },
     {
-      "id": "change",
+      "id": "system.change_layer.change",
       "name": "change",
       "category": "54. Change layer",
       "category_id": "change_layer",
       "layer": "system",
       "focus": [
         "growth decline centralization fragmentation urbanization migration industrialization militarization commercialization secularization magical expansion environmental degradation"
-      ]
+      ],
+      "legacy_id": "change"
     },
     {
-      "id": "trend",
+      "id": "system.trend_layer.trend",
       "name": "trend",
       "category": "55. Trend layer",
       "category_id": "trend_layer",
@@ -5179,50 +5533,55 @@
         "cyclical",
         "volatile",
         "uncertain"
-      ]
+      ],
+      "legacy_id": "trend"
     },
     {
-      "id": "missing",
+      "id": "inference.missing_information_layer.missing",
       "name": "missing",
       "category": "65. Missing-information layer",
       "category_id": "missing_information_layer",
       "layer": "inference",
       "focus": [
         "important information that should exist but is absent"
-      ]
+      ],
+      "legacy_id": "missing"
     },
     {
-      "id": "plausibility",
+      "id": "inference.plausibility_layer.plausibility",
       "name": "plausibility",
       "category": "66. Plausibility layer",
       "category_id": "plausibility_layer",
       "layer": "inference",
       "focus": [
         "economic plausibility geographic plausibility demographic plausibility military plausibility technological plausibility ecological plausibility institutional plausibility"
-      ]
+      ],
+      "legacy_id": "plausibility"
     },
     {
-      "id": "identity",
+      "id": "inference.identity_resolution_layer.identity",
       "name": "identity",
       "category": "68. Identity-resolution layer",
       "category_id": "identity_resolution_layer",
       "layer": "inference",
       "focus": [
         "same entity? different entities? alias? title? incarnation? historical version?"
-      ]
+      ],
+      "legacy_id": "identity"
     },
     {
-      "id": "perspective",
+      "id": "inference.perspective_layer.perspective",
       "name": "perspective",
       "category": "72. Perspective layer",
       "category_id": "perspective_layer",
       "layer": "inference",
       "focus": [
         "author perspective faction perspective regional perspective religious perspective political bias cultural bias unreliable narration"
-      ]
+      ],
+      "legacy_id": "perspective"
     },
     {
-      "id": "temporal_state_layer",
+      "id": "system.temporal_state_layer.temporal_state",
       "name": "temporal state",
       "category": "53. Temporal-state layer",
       "category_id": "temporal_state_layer",
@@ -5234,10 +5593,11 @@
         "era",
         "historical state"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "temporal_state_layer"
     },
     {
-      "id": "network_layer",
+      "id": "system.network_layer.network",
       "name": "network",
       "category": "56. Network layer",
       "category_id": "network_layer",
@@ -5255,10 +5615,11 @@
         "portal network",
         "financial network"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "network_layer"
     },
     {
-      "id": "spatial_inference_layer",
+      "id": "inference.spatial_inference_layer.spatial_inference",
       "name": "spatial inference",
       "category": "57. Spatial-inference layer",
       "category_id": "spatial_inference_layer",
@@ -5271,10 +5632,11 @@
         "natural frontiers",
         "military routes"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "spatial_inference_layer"
     },
     {
-      "id": "economic_inference_layer",
+      "id": "inference.economic_inference_layer.economic_inference",
       "name": "economic inference",
       "category": "58. Economic-inference layer",
       "category_id": "economic_inference_layer",
@@ -5291,10 +5653,11 @@
         "shortages",
         "trade partners"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "economic_inference_layer"
     },
     {
-      "id": "demographic_inference_layer",
+      "id": "inference.demographic_inference_layer.demographic_inference",
       "name": "demographic inference",
       "category": "59. Demographic-inference layer",
       "category_id": "demographic_inference_layer",
@@ -5311,10 +5674,11 @@
         "settlement expansion",
         "military manpower"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "demographic_inference_layer"
     },
     {
-      "id": "political_inference_layer",
+      "id": "inference.political_inference_layer.political_inference",
       "name": "political inference",
       "category": "60. Political-inference layer",
       "category_id": "political_inference_layer",
@@ -5331,10 +5695,11 @@
         "succession",
         "policy"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "political_inference_layer"
     },
     {
-      "id": "military_inference_layer",
+      "id": "inference.military_inference_layer.military_inference",
       "name": "military inference",
       "category": "61. Military-inference layer",
       "category_id": "military_inference_layer",
@@ -5351,10 +5716,11 @@
         "campaign reach",
         "naval capacity"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "military_inference_layer"
     },
     {
-      "id": "ecological_inference_layer",
+      "id": "inference.ecological_inference_layer.ecological_inference",
       "name": "ecological inference",
       "category": "62. Ecological-inference layer",
       "category_id": "ecological_inference_layer",
@@ -5370,10 +5736,11 @@
         "agriculture",
         "degradation"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "ecological_inference_layer"
     },
     {
-      "id": "urban_inference_layer",
+      "id": "inference.urban_inference_layer.urban_inference",
       "name": "urban inference",
       "category": "63. Urban-inference layer",
       "category_id": "urban_inference_layer",
@@ -5391,10 +5758,11 @@
         "crime",
         "traffic"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "urban_inference_layer"
     },
     {
-      "id": "adventure_inference_layer",
+      "id": "inference.adventure_inference_layer.adventure_inference",
       "name": "adventure inference",
       "category": "64. Adventure-inference layer",
       "category_id": "adventure_inference_layer",
@@ -5408,10 +5776,11 @@
         "ecological hazards",
         "adventure opportunities"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "adventure_inference_layer"
     },
     {
-      "id": "normalization_layer",
+      "id": "inference.normalization_layer.normalization",
       "name": "normalization",
       "category": "67. Normalization layer",
       "category_id": "normalization_layer",
@@ -5424,10 +5793,11 @@
         "historical names",
         "translations"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "normalization_layer"
     },
     {
-      "id": "granularity_layer",
+      "id": "inference.granularity_layer.granularity",
       "name": "granularity",
       "category": "69. Granularity layer",
       "category_id": "granularity_layer",
@@ -5438,10 +5808,11 @@
         "settlement hierarchy",
         "economic hierarchy"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "granularity_layer"
     },
     {
-      "id": "scale_layer",
+      "id": "inference.scale_layer.scale",
       "name": "scale",
       "category": "70. Scale layer",
       "category_id": "scale_layer",
@@ -5458,10 +5829,11 @@
         "planar",
         "cosmic"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "scale_layer"
     },
     {
-      "id": "certainty_layer",
+      "id": "inference.certainty_layer.certainty",
       "name": "certainty",
       "category": "71. Certainty layer",
       "category_id": "certainty_layer",
@@ -5475,10 +5847,11 @@
         "source quality",
         "evidence count"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "certainty_layer"
     },
     {
-      "id": "contradictory_perspective_layer",
+      "id": "inference.contradictory_perspective_layer.contradictory_perspective",
       "name": "contradictory perspective",
       "category": "73. Contradictory-perspective layer",
       "category_id": "contradictory_perspective_layer",
@@ -5489,10 +5862,11 @@
         "regional perspective",
         "competing narratives"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "contradictory_perspective_layer"
     },
     {
-      "id": "salience_layer",
+      "id": "inference.salience_layer.salience",
       "name": "salience",
       "category": "74. Salience layer",
       "category_id": "salience_layer",
@@ -5505,10 +5879,11 @@
         "defining",
         "world-changing"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "salience_layer"
     },
     {
-      "id": "simulation_readiness_layer",
+      "id": "inference.simulation_readiness_layer.simulation_readiness",
       "name": "simulation readiness",
       "category": "75. Simulation-readiness layer",
       "category_id": "simulation_readiness_layer",
@@ -5521,10 +5896,11 @@
         "causal",
         "simulatable"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "simulation_readiness_layer"
     },
     {
-      "id": "geoeconomic",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.geoeconomic",
       "name": "geoeconomic",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5538,10 +5914,11 @@
         "chokepoints",
         "regional production",
         "capital flows"
-      ]
+      ],
+      "legacy_id": "geoeconomic"
     },
     {
-      "id": "geostrategic",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.geostrategic",
       "name": "geostrategic",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5554,10 +5931,11 @@
         "resource security",
         "routes",
         "frontiers"
-      ]
+      ],
+      "legacy_id": "geostrategic"
     },
     {
-      "id": "geocultural",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.geocultural",
       "name": "geocultural",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5569,10 +5947,11 @@
         "diffusion",
         "border cultures",
         "cultural landscapes"
-      ]
+      ],
+      "legacy_id": "geocultural"
     },
     {
-      "id": "geolinguistic",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.geolinguistic",
       "name": "geolinguistic",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5583,10 +5962,11 @@
         "linguistic borders",
         "trade languages",
         "language diffusion"
-      ]
+      ],
+      "legacy_id": "geolinguistic"
     },
     {
-      "id": "georeligious",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.georeligious",
       "name": "georeligious",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5597,10 +5977,11 @@
         "holy regions",
         "religious frontiers",
         "missionary diffusion"
-      ]
+      ],
+      "legacy_id": "georeligious"
     },
     {
-      "id": "geodemographic",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.geodemographic",
       "name": "geodemographic",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5611,10 +5992,11 @@
         "migration corridors",
         "settlement distribution",
         "demographic frontiers"
-      ]
+      ],
+      "legacy_id": "geodemographic"
     },
     {
-      "id": "ethnolinguistic",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.ethnolinguistic",
       "name": "ethnolinguistic",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5625,10 +6007,11 @@
         "multilingual regions",
         "language shift",
         "diaspora speech"
-      ]
+      ],
+      "legacy_id": "ethnolinguistic"
     },
     {
-      "id": "biogeographical",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.biogeographical",
       "name": "biogeographical",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5639,10 +6022,11 @@
         "migration ranges",
         "biological barriers",
         "habitat geography"
-      ]
+      ],
+      "legacy_id": "biogeographical"
     },
     {
-      "id": "geophysical",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.geophysical",
       "name": "geophysical",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5654,10 +6038,11 @@
         "gravity",
         "seismicity",
         "geophysical hazards"
-      ]
+      ],
+      "legacy_id": "geophysical"
     },
     {
-      "id": "geochemical",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.geochemical",
       "name": "geochemical",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5668,10 +6053,11 @@
         "water chemistry",
         "resource signatures",
         "contamination"
-      ]
+      ],
+      "legacy_id": "geochemical"
     },
     {
-      "id": "geotechnical",
+      "id": "domain.cross_domain_geographic_and_synthetic_domains.geotechnical",
       "name": "geotechnical",
       "category": "76. Cross-domain geographic and synthetic domains",
       "category_id": "cross_domain_geographic_and_synthetic_domains",
@@ -5683,10 +6069,11 @@
         "excavation",
         "tunneling",
         "construction constraints"
-      ]
+      ],
+      "legacy_id": "geotechnical"
     },
     {
-      "id": "nature",
+      "id": "domain.material_environment_and_mobility_domains.nature",
       "name": "nature",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5699,10 +6086,11 @@
         "seasons",
         "natural cycles",
         "human-nature interaction"
-      ]
+      ],
+      "legacy_id": "nature"
     },
     {
-      "id": "environmental",
+      "id": "domain.material_environment_and_mobility_domains.environmental",
       "name": "environmental",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5716,10 +6104,11 @@
         "habitat loss",
         "resource depletion",
         "environmental change"
-      ]
+      ],
+      "legacy_id": "environmental"
     },
     {
-      "id": "resource",
+      "id": "domain.material_environment_and_mobility_domains.resource",
       "name": "resource",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5734,10 +6123,11 @@
         "magical resources",
         "ownership",
         "scarcity"
-      ]
+      ],
+      "legacy_id": "resource"
     },
     {
-      "id": "transport",
+      "id": "domain.material_environment_and_mobility_domains.transport",
       "name": "transport",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5753,10 +6143,11 @@
         "cost",
         "speed",
         "capacity"
-      ]
+      ],
+      "legacy_id": "transport"
     },
     {
-      "id": "travel",
+      "id": "domain.material_environment_and_mobility_domains.travel",
       "name": "travel",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5770,10 +6161,11 @@
         "transport methods",
         "seasonality",
         "navigation"
-      ]
+      ],
+      "legacy_id": "travel"
     },
     {
-      "id": "energy",
+      "id": "domain.material_environment_and_mobility_domains.energy",
       "name": "energy",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5788,10 +6180,11 @@
         "energy production",
         "distribution",
         "scarcity"
-      ]
+      ],
+      "legacy_id": "energy"
     },
     {
-      "id": "land-use",
+      "id": "domain.material_environment_and_mobility_domains.land_use",
       "name": "land-use",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5807,10 +6200,11 @@
         "sacred land",
         "military land",
         "land disputes"
-      ]
+      ],
+      "legacy_id": "land-use"
     },
     {
-      "id": "food-system",
+      "id": "domain.material_environment_and_mobility_domains.food_system",
       "name": "food-system",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5825,10 +6219,11 @@
         "scarcity",
         "storage",
         "food supply chains"
-      ]
+      ],
+      "legacy_id": "food-system"
     },
     {
-      "id": "health",
+      "id": "domain.material_environment_and_mobility_domains.health",
       "name": "health",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5843,10 +6238,11 @@
         "injury",
         "mortality",
         "public health"
-      ]
+      ],
+      "legacy_id": "health"
     },
     {
-      "id": "hazard",
+      "id": "domain.material_environment_and_mobility_domains.hazard",
       "name": "hazard",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5861,10 +6257,11 @@
         "severity",
         "warning signs",
         "mitigation"
-      ]
+      ],
+      "legacy_id": "hazard"
     },
     {
-      "id": "material-culture",
+      "id": "domain.material_environment_and_mobility_domains.material_culture",
       "name": "material-culture",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5879,10 +6276,11 @@
         "materials",
         "status markers",
         "regional styles"
-      ]
+      ],
+      "legacy_id": "material-culture"
     },
     {
-      "id": "monster-ecology",
+      "id": "domain.material_environment_and_mobility_domains.monster_ecology",
       "name": "monster-ecology",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5898,10 +6296,11 @@
         "prey",
         "settlement effects",
         "economic effects"
-      ]
+      ],
+      "legacy_id": "monster-ecology"
     },
     {
-      "id": "infrastructure-systems",
+      "id": "domain.material_environment_and_mobility_domains.infrastructure_systems",
       "name": "infrastructure-systems",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5917,10 +6316,11 @@
         "communications",
         "capacity",
         "maintenance"
-      ]
+      ],
+      "legacy_id": "infrastructure-systems"
     },
     {
-      "id": "water-systems",
+      "id": "domain.material_environment_and_mobility_domains.water_systems",
       "name": "water-systems",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5934,10 +6334,11 @@
         "drainage",
         "distribution",
         "water security"
-      ]
+      ],
+      "legacy_id": "water-systems"
     },
     {
-      "id": "waste-systems",
+      "id": "domain.material_environment_and_mobility_domains.waste_systems",
       "name": "waste-systems",
       "category": "77. Material, environmental and mobility domains",
       "category_id": "material_environment_and_mobility_domains",
@@ -5951,10 +6352,11 @@
         "disposal",
         "reuse",
         "pollution"
-      ]
+      ],
+      "legacy_id": "waste-systems"
     },
     {
-      "id": "cognitive",
+      "id": "domain.cognitive_philosophical_and_symbolic_domains.cognitive",
       "name": "cognitive",
       "category": "78. Cognitive, philosophical and symbolic domains",
       "category_id": "cognitive_philosophical_and_symbolic_domains",
@@ -5967,10 +6369,11 @@
         "decision-making",
         "belief formation",
         "cognitive bias"
-      ]
+      ],
+      "legacy_id": "cognitive"
     },
     {
-      "id": "philosophical",
+      "id": "domain.cognitive_philosophical_and_symbolic_domains.philosophical",
       "name": "philosophical",
       "category": "78. Cognitive, philosophical and symbolic domains",
       "category_id": "cognitive_philosophical_and_symbolic_domains",
@@ -5983,10 +6386,11 @@
         "epistemology",
         "political philosophy",
         "natural philosophy"
-      ]
+      ],
+      "legacy_id": "philosophical"
     },
     {
-      "id": "symbolic",
+      "id": "domain.cognitive_philosophical_and_symbolic_domains.symbolic",
       "name": "symbolic",
       "category": "78. Cognitive, philosophical and symbolic domains",
       "category_id": "cognitive_philosophical_and_symbolic_domains",
@@ -5999,10 +6403,11 @@
         "metaphors",
         "status signs",
         "coded meanings"
-      ]
+      ],
+      "legacy_id": "symbolic"
     },
     {
-      "id": "sociolinguistic",
+      "id": "domain.cognitive_philosophical_and_symbolic_domains.sociolinguistic",
       "name": "sociolinguistic",
       "category": "78. Cognitive, philosophical and symbolic domains",
       "category_id": "cognitive_philosophical_and_symbolic_domains",
@@ -6014,10 +6419,11 @@
         "prestige dialects",
         "occupational language",
         "social language variation"
-      ]
+      ],
+      "legacy_id": "sociolinguistic"
     },
     {
-      "id": "folkloric",
+      "id": "domain.cognitive_philosophical_and_symbolic_domains.folkloric",
       "name": "folkloric",
       "category": "78. Cognitive, philosophical and symbolic domains",
       "category_id": "cognitive_philosophical_and_symbolic_domains",
@@ -6029,10 +6435,11 @@
         "oral tradition",
         "superstitions",
         "local tales"
-      ]
+      ],
+      "legacy_id": "folkloric"
     },
     {
-      "id": "mythological",
+      "id": "domain.cognitive_philosophical_and_symbolic_domains.mythological",
       "name": "mythological",
       "category": "78. Cognitive, philosophical and symbolic domains",
       "category_id": "cognitive_philosophical_and_symbolic_domains",
@@ -6044,10 +6451,11 @@
         "founding stories",
         "divine narratives",
         "mythic archetypes"
-      ]
+      ],
+      "legacy_id": "mythological"
     },
     {
-      "id": "iconographic",
+      "id": "domain.cognitive_philosophical_and_symbolic_domains.iconographic",
       "name": "iconographic",
       "category": "78. Cognitive, philosophical and symbolic domains",
       "category_id": "cognitive_philosophical_and_symbolic_domains",
@@ -6059,10 +6467,11 @@
         "emblems",
         "motifs",
         "representation"
-      ]
+      ],
+      "legacy_id": "iconographic"
     },
     {
-      "id": "rhetorical",
+      "id": "domain.cognitive_philosophical_and_symbolic_domains.rhetorical",
       "name": "rhetorical",
       "category": "78. Cognitive, philosophical and symbolic domains",
       "category_id": "cognitive_philosophical_and_symbolic_domains",
@@ -6074,10 +6483,11 @@
         "political rhetoric",
         "religious rhetoric",
         "propaganda techniques"
-      ]
+      ],
+      "legacy_id": "rhetorical"
     },
     {
-      "id": "narrative",
+      "id": "domain.cognitive_philosophical_and_symbolic_domains.narrative",
       "name": "narrative",
       "category": "78. Cognitive, philosophical and symbolic domains",
       "category_id": "cognitive_philosophical_and_symbolic_domains",
@@ -6089,10 +6499,11 @@
         "collective narratives",
         "identity stories",
         "historical narratives"
-      ]
+      ],
+      "legacy_id": "narrative"
     },
     {
-      "id": "hermeneutical",
+      "id": "domain.cognitive_philosophical_and_symbolic_domains.hermeneutical",
       "name": "hermeneutical",
       "category": "78. Cognitive, philosophical and symbolic domains",
       "category_id": "cognitive_philosophical_and_symbolic_domains",
@@ -6104,10 +6515,11 @@
         "legal interpretation",
         "symbolic reading",
         "competing readings"
-      ]
+      ],
+      "legacy_id": "hermeneutical"
     },
     {
-      "id": "pathological",
+      "id": "domain.scientific_and_historical_specialty_domains.pathological",
       "name": "pathological",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6119,10 +6531,11 @@
         "pathology",
         "causes of illness",
         "mortality"
-      ]
+      ],
+      "legacy_id": "pathological"
     },
     {
-      "id": "pharmacological",
+      "id": "domain.scientific_and_historical_specialty_domains.pharmacological",
       "name": "pharmacological",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6134,10 +6547,11 @@
         "interactions",
         "medicinal compounds",
         "pharmacodynamics"
-      ]
+      ],
+      "legacy_id": "pharmacological"
     },
     {
-      "id": "toxicological",
+      "id": "domain.scientific_and_historical_specialty_domains.toxicological",
       "name": "toxicological",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6150,10 +6564,11 @@
         "symptoms",
         "antidotes",
         "contamination"
-      ]
+      ],
+      "legacy_id": "toxicological"
     },
     {
-      "id": "paleontological",
+      "id": "domain.scientific_and_historical_specialty_domains.paleontological",
       "name": "paleontological",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6164,10 +6579,11 @@
         "ancient ecosystems",
         "deep biological history",
         "fossil evidence"
-      ]
+      ],
+      "legacy_id": "paleontological"
     },
     {
-      "id": "paleoclimatological",
+      "id": "domain.scientific_and_historical_specialty_domains.paleoclimatological",
       "name": "paleoclimatological",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6178,10 +6594,11 @@
         "historical climate shifts",
         "ancient droughts",
         "glaciation"
-      ]
+      ],
+      "legacy_id": "paleoclimatological"
     },
     {
-      "id": "archaeozoological",
+      "id": "domain.scientific_and_historical_specialty_domains.archaeozoological",
       "name": "archaeozoological",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6193,10 +6610,11 @@
         "hunting",
         "past animal economies",
         "faunal evidence"
-      ]
+      ],
+      "legacy_id": "archaeozoological"
     },
     {
-      "id": "archaeobotanical",
+      "id": "domain.scientific_and_historical_specialty_domains.archaeobotanical",
       "name": "archaeobotanical",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6208,10 +6626,11 @@
         "agriculture",
         "wood use",
         "botanical evidence"
-      ]
+      ],
+      "legacy_id": "archaeobotanical"
     },
     {
-      "id": "numismatic",
+      "id": "domain.scientific_and_historical_specialty_domains.numismatic",
       "name": "numismatic",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6224,10 +6643,11 @@
         "debasement",
         "dating",
         "monetary evidence"
-      ]
+      ],
+      "legacy_id": "numismatic"
     },
     {
-      "id": "paleographic",
+      "id": "domain.scientific_and_historical_specialty_domains.paleographic",
       "name": "paleographic",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6238,10 +6658,11 @@
         "dating texts",
         "scribal traditions",
         "manuscript hands"
-      ]
+      ],
+      "legacy_id": "paleographic"
     },
     {
-      "id": "codicological",
+      "id": "domain.scientific_and_historical_specialty_domains.codicological",
       "name": "codicological",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6253,10 +6674,11 @@
         "materials",
         "book production",
         "provenance"
-      ]
+      ],
+      "legacy_id": "codicological"
     },
     {
-      "id": "sigillographic",
+      "id": "domain.scientific_and_historical_specialty_domains.sigillographic",
       "name": "sigillographic",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6267,10 +6689,11 @@
         "authority marks",
         "authentication",
         "institutional identity"
-      ]
+      ],
+      "legacy_id": "sigillographic"
     },
     {
-      "id": "epigraphic",
+      "id": "domain.scientific_and_historical_specialty_domains.epigraphic",
       "name": "epigraphic",
       "category": "79. Scientific and historical specialty domains",
       "category_id": "scientific_and_historical_specialty_domains",
@@ -6282,10 +6705,11 @@
         "public texts",
         "dedications",
         "lapidary writing"
-      ]
+      ],
+      "legacy_id": "epigraphic"
     },
     {
-      "id": "systemic",
+      "id": "domain.systems_and_comparative_analytical_domains.systemic",
       "name": "systemic",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6298,10 +6722,11 @@
         "emergent behavior",
         "boundaries",
         "dependencies"
-      ]
+      ],
+      "legacy_id": "systemic"
     },
     {
-      "id": "structural",
+      "id": "domain.systems_and_comparative_analytical_domains.structural",
       "name": "structural",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6313,10 +6738,11 @@
         "network position",
         "constraints",
         "roles"
-      ]
+      ],
+      "legacy_id": "structural"
     },
     {
-      "id": "functional",
+      "id": "domain.systems_and_comparative_analytical_domains.functional",
       "name": "functional",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6328,10 +6754,11 @@
         "system contribution",
         "failure modes",
         "substitution"
-      ]
+      ],
+      "legacy_id": "functional"
     },
     {
-      "id": "comparative",
+      "id": "domain.systems_and_comparative_analytical_domains.comparative",
       "name": "comparative",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6343,10 +6770,11 @@
         "peer regions",
         "institutional comparison",
         "cross-era comparison"
-      ]
+      ],
+      "legacy_id": "comparative"
     },
     {
-      "id": "network-analytic",
+      "id": "domain.systems_and_comparative_analytical_domains.network_analytic",
       "name": "network-analytic",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6359,10 +6787,11 @@
         "isolation",
         "redundancy",
         "connectivity"
-      ]
+      ],
+      "legacy_id": "network-analytic"
     },
     {
-      "id": "causal-comparative",
+      "id": "domain.systems_and_comparative_analytical_domains.causal_comparative",
       "name": "causal-comparative",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6373,10 +6802,11 @@
         "shared causes",
         "necessary conditions",
         "sufficient conditions"
-      ]
+      ],
+      "legacy_id": "causal-comparative"
     },
     {
-      "id": "institutional-comparative",
+      "id": "domain.systems_and_comparative_analytical_domains.institutional_comparative",
       "name": "institutional-comparative",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6387,10 +6817,11 @@
         "capacity comparison",
         "institutional performance",
         "institutional variation"
-      ]
+      ],
+      "legacy_id": "institutional-comparative"
     },
     {
-      "id": "spatial-analytic",
+      "id": "domain.systems_and_comparative_analytical_domains.spatial_analytic",
       "name": "spatial-analytic",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6402,10 +6833,11 @@
         "corridors",
         "hinterlands",
         "spatial dependency"
-      ]
+      ],
+      "legacy_id": "spatial-analytic"
     },
     {
-      "id": "temporal-analytic",
+      "id": "domain.systems_and_comparative_analytical_domains.temporal_analytic",
       "name": "temporal-analytic",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6417,10 +6849,11 @@
         "path dependency",
         "turning points",
         "temporal comparison"
-      ]
+      ],
+      "legacy_id": "temporal-analytic"
     },
     {
-      "id": "distributional",
+      "id": "domain.systems_and_comparative_analytical_domains.distributional",
       "name": "distributional",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6432,10 +6865,11 @@
         "distribution of benefits",
         "inequality effects",
         "incidence"
-      ]
+      ],
+      "legacy_id": "distributional"
     },
     {
-      "id": "complexity",
+      "id": "domain.systems_and_comparative_analytical_domains.complexity",
       "name": "complexity",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6447,10 +6881,11 @@
         "interdependence",
         "tipping points",
         "uncertainty"
-      ]
+      ],
+      "legacy_id": "complexity"
     },
     {
-      "id": "diffusion",
+      "id": "domain.systems_and_comparative_analytical_domains.diffusion",
       "name": "diffusion",
       "category": "80. Systems and comparative analytical domains",
       "category_id": "systems_and_comparative_analytical_domains",
@@ -6463,10 +6898,11 @@
         "disease",
         "institutions",
         "routes of diffusion"
-      ]
+      ],
+      "legacy_id": "diffusion"
     },
     {
-      "id": "cross_domain_coupling_layer",
+      "id": "system.cross_domain_coupling_layer.cross_domain_coupling",
       "name": "cross-domain coupling",
       "category": "81. Cross-domain coupling layer",
       "category_id": "cross_domain_coupling_layer",
@@ -6485,10 +6921,11 @@
         "disease-trade",
         "climate-agriculture"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "cross_domain_coupling_layer"
     },
     {
-      "id": "shock_propagation_layer",
+      "id": "system.shock_propagation_layer.shock_propagation",
       "name": "shock propagation",
       "category": "82. Shock-propagation layer",
       "category_id": "shock_propagation_layer",
@@ -6502,10 +6939,11 @@
         "damping",
         "affected systems"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "shock_propagation_layer"
     },
     {
-      "id": "lag_delay_layer",
+      "id": "system.lag_delay_layer.lag_and_delay",
       "name": "lag and delay",
       "category": "83. Lag and delay layer",
       "category_id": "lag_delay_layer",
@@ -6519,10 +6957,11 @@
         "response delay",
         "delayed consequence"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "lag_delay_layer"
     },
     {
-      "id": "adaptation_layer",
+      "id": "system.adaptation_layer.adaptation",
       "name": "adaptation",
       "category": "84. Adaptation layer",
       "category_id": "adaptation_layer",
@@ -6535,10 +6974,11 @@
         "technological adaptation",
         "behavioral response"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "adaptation_layer"
     },
     {
-      "id": "path_dependency_layer",
+      "id": "system.path_dependency_layer.path_dependency",
       "name": "path dependency",
       "category": "85. Path-dependency layer",
       "category_id": "path_dependency_layer",
@@ -6551,10 +6991,11 @@
         "irreversibility",
         "switching cost"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "path_dependency_layer"
     },
     {
-      "id": "externality_layer",
+      "id": "system.externality_layer.externality",
       "name": "externality",
       "category": "86. Externality layer",
       "category_id": "externality_layer",
@@ -6567,10 +7008,11 @@
         "unpriced benefit",
         "third-party effect"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "externality_layer"
     },
     {
-      "id": "tradeoff_layer",
+      "id": "system.tradeoff_layer.trade_off",
       "name": "trade-off",
       "category": "87. Trade-off layer",
       "category_id": "tradeoff_layer",
@@ -6583,10 +7025,11 @@
         "constraint",
         "distributional consequence"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "tradeoff_layer"
     },
     {
-      "id": "distributional_effect_layer",
+      "id": "system.distributional_effect_layer.distributional_effect",
       "name": "distributional effect",
       "category": "88. Distributional-effect layer",
       "category_id": "distributional_effect_layer",
@@ -6600,10 +7043,11 @@
         "faction effect",
         "inequality"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "distributional_effect_layer"
     },
     {
-      "id": "institutional_friction_layer",
+      "id": "system.institutional_friction_layer.institutional_friction",
       "name": "institutional friction",
       "category": "89. Institutional-friction layer",
       "category_id": "institutional_friction_layer",
@@ -6616,10 +7060,11 @@
         "organizational inertia",
         "implementation gap"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "institutional_friction_layer"
     },
     {
-      "id": "equilibrium_layer",
+      "id": "system.equilibrium_layer.equilibrium_and_disequilibrium",
       "name": "equilibrium and disequilibrium",
       "category": "90. Equilibrium and disequilibrium layer",
       "category_id": "equilibrium_layer",
@@ -6632,10 +7077,11 @@
         "adjustment process",
         "disequilibrium"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "equilibrium_layer"
     },
     {
-      "id": "volatility_layer",
+      "id": "system.volatility_layer.volatility",
       "name": "volatility",
       "category": "91. Volatility layer",
       "category_id": "volatility_layer",
@@ -6648,10 +7094,11 @@
         "supply volatility",
         "shock sensitivity"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "volatility_layer"
     },
     {
-      "id": "leverage_point_layer",
+      "id": "system.leverage_point_layer.leverage_point",
       "name": "leverage point",
       "category": "92. Leverage-point layer",
       "category_id": "leverage_point_layer",
@@ -6664,10 +7111,11 @@
         "critical actor",
         "small-change large-effect"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "leverage_point_layer"
     },
     {
-      "id": "geoeconomic_inference_layer",
+      "id": "inference.geoeconomic_inference_layer.geoeconomic_inference",
       "name": "geoeconomic inference",
       "category": "100. Geoeconomic-inference layer",
       "category_id": "geoeconomic_inference_layer",
@@ -6680,10 +7128,11 @@
         "strategic dependencies",
         "commercial corridors"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "geoeconomic_inference_layer"
     },
     {
-      "id": "trade_network_inference_layer",
+      "id": "inference.trade_network_inference_layer.trade_network_inference",
       "name": "trade network inference",
       "category": "101. Trade-network-inference layer",
       "category_id": "trade_network_inference_layer",
@@ -6698,10 +7147,11 @@
         "competing routes",
         "hub importance"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "trade_network_inference_layer"
     },
     {
-      "id": "supply_chain_inference_layer",
+      "id": "inference.supply_chain_inference_layer.supply_chain_inference",
       "name": "supply chain inference",
       "category": "102. Supply-chain-inference layer",
       "category_id": "supply_chain_inference_layer",
@@ -6715,10 +7165,11 @@
         "single points of failure",
         "substitutes"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "supply_chain_inference_layer"
     },
     {
-      "id": "fiscal_inference_layer",
+      "id": "inference.fiscal_inference_layer.fiscal_inference",
       "name": "fiscal inference",
       "category": "103. Fiscal-inference layer",
       "category_id": "fiscal_inference_layer",
@@ -6731,10 +7182,11 @@
         "fiscal stress",
         "tax incidence"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "fiscal_inference_layer"
     },
     {
-      "id": "institutional_inference_layer",
+      "id": "inference.institutional_inference_layer.institutional_inference",
       "name": "institutional inference",
       "category": "104. Institutional-inference layer",
       "category_id": "institutional_inference_layer",
@@ -6748,10 +7200,11 @@
         "inertia",
         "institutional failure"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "institutional_inference_layer"
     },
     {
-      "id": "legal_inference_layer",
+      "id": "inference.legal_inference_layer.legal_inference",
       "name": "legal inference",
       "category": "105. Legal-inference layer",
       "category_id": "legal_inference_layer",
@@ -6764,10 +7217,11 @@
         "compliance incentives",
         "regulatory effects"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "legal_inference_layer"
     },
     {
-      "id": "diplomatic_inference_layer",
+      "id": "inference.diplomatic_inference_layer.diplomatic_inference",
       "name": "diplomatic inference",
       "category": "106. Diplomatic-inference layer",
       "category_id": "diplomatic_inference_layer",
@@ -6780,10 +7234,11 @@
         "treaty incentives",
         "escalation"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "diplomatic_inference_layer"
     },
     {
-      "id": "logistics_inference_layer",
+      "id": "inference.logistics_inference_layer.logistics_inference",
       "name": "logistics inference",
       "category": "107. Logistics-inference layer",
       "category_id": "logistics_inference_layer",
@@ -6797,10 +7252,11 @@
         "bottlenecks",
         "alternate routes"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "logistics_inference_layer"
     },
     {
-      "id": "infrastructure_inference_layer",
+      "id": "inference.infrastructure_inference_layer.infrastructure_inference",
       "name": "infrastructure inference",
       "category": "108. Infrastructure-inference layer",
       "category_id": "infrastructure_inference_layer",
@@ -6814,10 +7270,11 @@
         "network effects",
         "investment need"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "infrastructure_inference_layer"
     },
     {
-      "id": "technological_diffusion_inference_layer",
+      "id": "inference.technological_diffusion_inference_layer.technological_diffusion_inference",
       "name": "technological diffusion inference",
       "category": "109. Technological-diffusion-inference layer",
       "category_id": "technological_diffusion_inference_layer",
@@ -6831,10 +7288,11 @@
         "substitution",
         "lock-in"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "technological_diffusion_inference_layer"
     },
     {
-      "id": "knowledge_diffusion_inference_layer",
+      "id": "inference.knowledge_diffusion_inference_layer.knowledge_diffusion_inference",
       "name": "knowledge diffusion inference",
       "category": "110. Knowledge-diffusion-inference layer",
       "category_id": "knowledge_diffusion_inference_layer",
@@ -6848,10 +7306,11 @@
         "censorship",
         "knowledge gaps"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "knowledge_diffusion_inference_layer"
     },
     {
-      "id": "magical_economy_inference_layer",
+      "id": "inference.magical_economy_inference_layer.magical_economy_inference",
       "name": "magical economy inference",
       "category": "111. Magical-economy-inference layer",
       "category_id": "magical_economy_inference_layer",
@@ -6864,10 +7323,11 @@
         "magical infrastructure",
         "substitution with mundane technology"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "magical_economy_inference_layer"
     },
     {
-      "id": "religious_influence_inference_layer",
+      "id": "inference.religious_influence_inference_layer.religious_influence_inference",
       "name": "religious influence inference",
       "category": "112. Religious-influence-inference layer",
       "category_id": "religious_influence_inference_layer",
@@ -6881,10 +7341,11 @@
         "charity",
         "religious conflict"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "religious_influence_inference_layer"
     },
     {
-      "id": "cultural_diffusion_inference_layer",
+      "id": "inference.cultural_diffusion_inference_layer.cultural_diffusion_inference",
       "name": "cultural diffusion inference",
       "category": "113. Cultural-diffusion-inference layer",
       "category_id": "cultural_diffusion_inference_layer",
@@ -6897,10 +7358,11 @@
         "ritual diffusion",
         "trade-mediated culture"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "cultural_diffusion_inference_layer"
     },
     {
-      "id": "migration_inference_layer",
+      "id": "inference.migration_inference_layer.migration_inference",
       "name": "migration inference",
       "category": "114. Migration-inference layer",
       "category_id": "migration_inference_layer",
@@ -6914,10 +7376,11 @@
         "settlement effects",
         "political effects"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "migration_inference_layer"
     },
     {
-      "id": "disease_inference_layer",
+      "id": "inference.disease_inference_layer.disease_inference",
       "name": "disease inference",
       "category": "115. Disease-inference layer",
       "category_id": "disease_inference_layer",
@@ -6931,10 +7394,11 @@
         "containment",
         "second-order economic effects"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "disease_inference_layer"
     },
     {
-      "id": "environmental_inference_layer",
+      "id": "inference.environmental_inference_layer.environmental_inference",
       "name": "environmental inference",
       "category": "116. Environmental-inference layer",
       "category_id": "environmental_inference_layer",
@@ -6947,10 +7411,11 @@
         "drought",
         "feedback with economy and settlement"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "environmental_inference_layer"
     },
     {
-      "id": "resource_depletion_inference_layer",
+      "id": "inference.resource_depletion_inference_layer.resource_depletion_inference",
       "name": "resource depletion inference",
       "category": "117. Resource-depletion-inference layer",
       "category_id": "resource_depletion_inference_layer",
@@ -6964,10 +7429,11 @@
         "substitution",
         "conflict"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "resource_depletion_inference_layer"
     },
     {
-      "id": "maritime_inference_layer",
+      "id": "inference.maritime_inference_layer.maritime_inference",
       "name": "maritime inference",
       "category": "118. Maritime-inference layer",
       "category_id": "maritime_inference_layer",
@@ -6981,10 +7447,11 @@
         "piracy risk",
         "maritime chokepoints"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "maritime_inference_layer"
     },
     {
-      "id": "security_inference_layer",
+      "id": "inference.security_inference_layer.security_inference",
       "name": "security inference",
       "category": "119. Security-inference layer",
       "category_id": "security_inference_layer",
@@ -6997,10 +7464,11 @@
         "internal security",
         "critical vulnerabilities"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "security_inference_layer"
     },
     {
-      "id": "criminal_network_inference_layer",
+      "id": "inference.criminal_network_inference_layer.criminal_network_inference",
       "name": "criminal network inference",
       "category": "120. Criminal-network-inference layer",
       "category_id": "criminal_network_inference_layer",
@@ -7014,10 +7482,11 @@
         "corrupt protection",
         "network resilience"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "criminal_network_inference_layer"
     },
     {
-      "id": "succession_inference_layer",
+      "id": "inference.succession_inference_layer.succession_inference",
       "name": "succession inference",
       "category": "121. Succession-inference layer",
       "category_id": "succession_inference_layer",
@@ -7031,10 +7500,11 @@
         "foreign intervention",
         "civil conflict risk"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "succession_inference_layer"
     },
     {
-      "id": "cross_domain_consequence_inference_layer",
+      "id": "inference.cross_domain_consequence_inference_layer.cross_domain_consequence_inference",
       "name": "cross-domain consequence inference",
       "category": "122. Cross-domain-consequence-inference layer",
       "category_id": "cross_domain_consequence_inference_layer",
@@ -7047,7 +7517,8 @@
         "feedback",
         "uncertainty"
       ],
-      "virtual": true
+      "virtual": true,
+      "legacy_id": "cross_domain_consequence_inference_layer"
     }
   ],
   "relationship_families": {
@@ -7597,5 +8068,6 @@
       "name": "derived_game_world",
       "purpose": "adventure hooks and downstream economic, political, trade, demographic and war simulation"
     }
-  ]
+  ],
+  "id_scheme": "layer.category_id.name"
 }
