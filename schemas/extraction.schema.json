@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Toril extraction",
+  "type": "object",
+  "required": ["entities", "claims", "relationships", "events"],
+  "properties": {
+    "entities": {"type": "array"},
+    "claims": {"type": "array"},
+    "relationships": {"type": "array"},
+    "events": {"type": "array"}
+  }
+}
