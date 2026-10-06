@@ -73,3 +73,21 @@ Forgotten Realms sourcebook handling rules.
 Use `deep` as the normal high-quality corpus mode. Use `exhaustive` only on selected
 high-value sections; running every possible lens over every mechanics table is expensive
 and usually worse than routing.
+
+
+## Routing quality
+
+Domain routing is benchmarked separately from extraction. The router uses specificity-weighted
+terms, curated high-signal phrases, and signal gates for ambiguous domains. Synthetic/comparative
+packs do not compete with concrete source domains; cross-domain analysis is activated later by
+system and inference routing.
+
+Run the benchmark with:
+
+```bash
+toril benchmark-routing tests/fixtures/routing_benchmarks.json
+```
+
+The public benchmark corpus is paraphrased from representative Forgotten Realms source patterns.
+Do not add large numbers of ontology categories without re-running this benchmark and adding
+regression cases for the new routing behavior.

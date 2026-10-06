@@ -15,6 +15,7 @@ class Extractor:
     category_id: str
     layer: str
     focus: tuple[str, ...]
+    legacy_id: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -40,6 +41,7 @@ def extractors(registry: dict | None = None) -> list[Extractor]:
             category_id=item["category_id"],
             layer=item["layer"],
             focus=tuple(item.get("focus", [])),
+            legacy_id=item.get("legacy_id"),
         )
         for item in registry["extractors"]
     ]

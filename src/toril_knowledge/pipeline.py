@@ -12,6 +12,8 @@ from typing import Any
 
 from openai import OpenAI
 
+from .benchmark import evaluate_benchmarks, load_benchmarks
+
 
 HEADING_RE = re.compile(r"^(#{1,6})[ ]+(.+?)[ ]*$")
 PAGE_RE = re.compile(r"<!--[ ]*(?:page|pdf_page)[ ]*[:#]?[ ]*([0-9]+)[ ]*-->", re.I)
@@ -544,6 +546,14 @@ def main() -> None:
     world_parser.add_argument("--mode", choices=["lean", "standard", "deep", "exhaustive"], default="deep")
     world_parser.add_argument("--limit", type=int)
 
+    benchmark_parser = sub.add_parser("benchmark-routing")
+    benchmark_parser.add_argument(
+        "fixture",
+        nargs="?",
+        default="tests/fixtures/routing_benchmarks.json",
+        help="JSON benchmark corpus; defaults to the repository Forgotten Realms routing fixture.",
+    )
+
     args = parser.parse_args()
     conn = connect(args.db)
 
@@ -639,6 +649,11 @@ def main() -> None:
             limit=args.limit,
         )
         print(json.dumps(result, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "benchmark-routing":
+        report = evaluate_benchmarks(load_benchmarks(args.fixture))
+        print(json.dumps(report, indent=2, ensure_ascii=False))
         return
 
 

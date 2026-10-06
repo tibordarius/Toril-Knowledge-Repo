@@ -86,11 +86,25 @@ Relationship predicates are constrained by family during extraction to reduce sy
 
 Routing happens in three stages:
 
-1. **Domain routing** uses heading and body vocabulary.
-2. **System routing** is derived mainly from the selected domains. Economic material activates flows/capacity/bottlenecks; political material activates power/pressure/incentives; military material activates capability/logistics/vulnerability; urban material activates capacity/pressure/resilience.
-3. **Inference routing** combines lexical evidence with domain-derived lenses.
+1. **Concrete domain routing** uses specificity-weighted vocabulary, curated discriminators and phrase cues. Generic vocabulary is heavily downweighted, and ambiguous packs can be signal-gated.
+2. **System routing** is derived mainly from the selected concrete domains. Economic material activates flows/capacity/bottlenecks; political material activates power/pressure/incentives; military material activates capability/logistics/vulnerability; urban material activates capacity/pressure/resilience. Cross-domain coupling activates when multiple concrete domains are present.
+3. **Inference routing** combines lexical evidence with the established domains and system context.
+
+Synthetic and comparative analytical packs are deliberately excluded from first-pass domain competition. Their functions belong downstream, where they cannot crowd concrete economic, political, urban, maritime, religious, magical or other source domains out of the limited routing budget.
 
 This is cheaper and usually more accurate than asking one universal prompt to remember hundreds of concerns.
+
+### Benchmark before ontology growth
+
+The repository includes a paraphrased Forgotten Realms routing benchmark based on representative 1e, 3e and 4e source patterns. It tracks precision@k, recall@k and forbidden-route regressions.
+
+Run:
+
+```bash
+toril benchmark-routing tests/fixtures/routing_benchmarks.json
+```
+
+New categories should be justified by missed source phenomena and accompanied by routing benchmark cases. More ontology entries are not automatically better if they reduce route precision.
 
 ## Recommended Forgotten Realms workflow
 

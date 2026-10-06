@@ -16,9 +16,24 @@ The pipeline separates deterministic parsing, source-grounded extraction, system
 
 ## Routing rule
 
-The registry is global but activation is local. A chunk does not run 471 operational extractors. Heading and body vocabulary first select domain packs; those domains activate system layers and specialist inference layers. Multiple active domains also activate cross-domain coupling and consequence checks.
+The registry is global but activation is local. A chunk does not run 471 operational extractors.
+
+Routing now uses four controls:
+
+1. **Specificity weighting** — vocabulary shared by many ontology packs receives less weight than rare, domain-specific terms.
+2. **Signal cues** — discriminating terms and phrases such as `autocracy`, `imports`, `sewer system`, `the Weave`, `inconsistent justice`, or `by cart` can move a domain decisively.
+3. **Signal gates** — ambiguous domains cannot enter the top routes merely by accumulating generic overlaps such as `food`, `magic`, `population`, `trade`, or `repair`.
+4. **Concrete-before-analytical routing** — synthetic/comparative packs do not consume Pass-2 domain slots. Cross-domain coupling, comparative analysis, systems reasoning and consequence inference activate downstream after concrete domains have been established.
+
+The concrete domain choices then activate system layers and specialist inference layers. Multiple active domains can activate cross-domain coupling and consequence checks.
 
 This avoids two bad extremes: a tiny universal prompt that misses domain detail, and an exhaustive prompt that runs hundreds of irrelevant lenses over every paragraph.
+
+### Routing benchmark
+
+Routing quality is tested independently from LLM extraction using a paraphrased Forgotten Realms benchmark corpus. The benchmark reports precision@k, recall@k and explicit forbidden-pack intrusions.
+
+Any substantial ontology expansion should add or update benchmark cases before being accepted. Category count is not treated as a quality metric by itself.
 
 ## Record contract
 
