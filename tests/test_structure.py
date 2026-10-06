@@ -70,3 +70,13 @@ def test_lore_keeps_full_budget():
     assert limits["system_top_k"] == 8
     assert limits["inference_top_k"] == 6
     assert limits["skip_entity"] is False
+
+
+def test_embedded_stat_block_does_not_suppress_gazetteer_lore():
+    classification = classify_chunk(
+        "Geography > Calimshan",
+        "The realm imports food and exports silk. A notable champion has AC 24, hp 88, "
+        "CR 12, Initiative +3, Str 18 Dex 14 Con 16 Int 12 Wis 11 Cha 15, "
+        "Fort +10 Ref +7 Will +5.",
+    )
+    assert classification.kind == "lore"
