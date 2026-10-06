@@ -91,3 +91,17 @@ toril benchmark-routing tests/fixtures/routing_benchmarks.json
 The public benchmark corpus is paraphrased from representative Forgotten Realms source patterns.
 Do not add large numbers of ontology categories without re-running this benchmark and adding
 regression cases for the new routing behavior.
+
+
+### Full-book routing audit
+
+Before a paid deep extraction, run a deterministic corpus audit:
+
+```bash
+toril audit-routing --book-id frcs-3e --out data/frcs-3e-routing-audit.json
+```
+
+The audit reports chunk classifications, domain-route density, pack frequency, saturated
+routing budgets and an estimated model-call count. Front matter and index chunks are skipped;
+rules/stat-block chunks keep entity/domain extraction but do not receive systems or inference
+passes; embedded errata is handled as correction evidence.
