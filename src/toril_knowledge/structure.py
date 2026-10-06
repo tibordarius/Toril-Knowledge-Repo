@@ -21,7 +21,14 @@ FRONT_HEADING_RE = re.compile(
 )
 RULE_HEADING_RE = re.compile(
     r"\b(?:characters?|character options?|classes?|prestige classes?|feats?|skills?|"
-    r"spell descriptions?|domain spells?|equipment|weapons?|armor|monster levels?)\b",
+    r"spell descriptions?|domain spells?|equipment|weapons?|armor|monster levels?|"
+    r"what you need to play|converting core d d)\b",
+    re.I,
+)
+
+LORE_CONTAINER_RE = re.compile(
+    r"\b(?:life in faerun|life in faerûn|geography|deities|organizations?|"
+    r"running the realms)\b",
     re.I,
 )
 
@@ -93,9 +100,11 @@ def classify_chunk(heading: str, text: str) -> ChunkClassification:
         return ChunkClassification("front_matter", min(0.99, 0.72 + front_hits * 0.05), tuple(reasons))
 
     stat_hits = sum(bool(pattern.search(text[:12000])) for pattern in STAT_BLOCK_PATTERNS)
-    if stat_hits >= 3:
+    if stat_hits >= 3 and not LORE_CONTAINER_RE.search(heading_norm):
         reasons.append(f"{stat_hits} stat-block patterns")
         return ChunkClassification("stat_block", min(0.98, 0.72 + stat_hits * 0.05), tuple(reasons))
+    if stat_hits >= 3:
+        reasons.append("embedded stat block inside lore container")
 
     rule_hits = sum(bool(pattern.search(text[:12000])) for pattern in RULE_TEXT_PATTERNS)
     if RULE_HEADING_RE.search(heading_norm):
