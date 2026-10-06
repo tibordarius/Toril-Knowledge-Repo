@@ -26,8 +26,8 @@ Markdown source
   -> dossiers / Obsidian / simulator inputs / adventure derivation
 ```
 
-The extensive ontology currently contains **359 named specialist extractors**, operational
-meta/inference layers, and 13 typed relationship families. The full registry is available
+The extensive ontology currently contains **419 named specialist extractors**, operational
+meta/inference layers, and 28 typed relationship families. The full registry is available
 to every book, but only relevant packs are activated per chunk.
 
 The first implementation is intentionally conservative: no vector database, no graph database, and no large-context summarization loop. SQLite is enough to validate the extraction contract and provenance model before adding more infrastructure.
@@ -61,7 +61,7 @@ See `docs/ARCHITECTURE.md` and `docs/DRIVE_LAYOUT.md`.
 
 The pipeline preserves book, chunk, heading, and page provenance for extracted facts. Economic details are explicitly requested because generic lore summarization tends to discard production, trade, prices, routes, seasonality, labor, taxation, guilds, infrastructure, shipping, credit, currencies, and dependencies.
 
-Next additions should be conflict review, cross-book entity resolution, hybrid lexical/vector retrieval, run manifests and cost accounting, and specialist extractors for economics, politics, history, geography, and adventure material.
+Next additions should focus on conflict review, cross-book entity resolution, hybrid lexical/vector retrieval, run manifests, cost accounting, and calibration of the new cross-domain coupling and specialist inference layers against real sourcebooks.
 
 
 ## Extensive extraction
