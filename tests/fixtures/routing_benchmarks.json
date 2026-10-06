@@ -1,0 +1,132 @@
+{
+  "version": "2026-10-06.1",
+  "note": "Paraphrased routing benchmarks modeled on the supplied 1e/3e/4e Forgotten Realms Markdown sources; no sourcebook prose is reproduced.",
+  "cases": [
+    {
+      "id": "frcs3e_calimshan_stat_block",
+      "source_profile": "Forgotten Realms Campaign Setting 3e regional stat block",
+      "heading": "Calimshan",
+      "text": "A populous realm under autocratic rule imports food and enslaved labor while exporting armor, gems, ships, silk, spices, weapons and wine. Mercantilism is a major livelihood and wealth strongly shapes social status.",
+      "relevant": [
+        "economic_and_commercial_domains",
+        "governmental_and_political_domains",
+        "sociological_and_anthropological_domains",
+        "maritime_domains"
+      ],
+      "forbidden": [
+        "systems_and_comparative_analytical_domains"
+      ],
+      "k": 6
+    },
+    {
+      "id": "frpg4e_waterdeep_wards",
+      "source_profile": "Forgotten Realms Player's Guide 4e Waterdeep regional features",
+      "heading": "Waterdeep Regional Features",
+      "text": "The city is divided into wards and neighborhoods. It has an extensive sewer system maintained by a guild, a busy dock district, wealthy merchant quarters, caravan activity, trade hubs, walls and streets.",
+      "relevant": [
+        "urban_and_settlement_domains",
+        "economic_and_commercial_domains",
+        "material_environment_and_mobility_domains",
+        "maritime_domains"
+      ],
+      "forbidden": [
+        "systems_and_comparative_analytical_domains"
+      ],
+      "k": 6
+    },
+    {
+      "id": "ncs4e_thayan_faction",
+      "source_profile": "Neverwinter Campaign Setting 4e Thayan faction section",
+      "heading": "Thayans Goals",
+      "text": "A necromantic magocracy operates through agents in the region. Its lich commander seeks magical power, repairs a ritual fortress, searches for arcane energy and builds undead labor and fighting forces while concealing the scale of the operation.",
+      "relevant": [
+        "arcane_magical_and_occult_domains",
+        "security_and_intelligence_domains",
+        "martial_and_military_domains",
+        "governmental_and_political_domains"
+      ],
+      "forbidden": [
+        "mundane_everyday_life_domains"
+      ],
+      "k": 6
+    },
+    {
+      "id": "ncs4e_neverember_governance",
+      "source_profile": "Neverwinter Campaign Setting 4e New Neverwinter governance material",
+      "heading": "Lord Protector Policies",
+      "text": "The ruler relies on mercenary soldiers, imposes high taxes, faces opposition to his policies, shifts blame to officials, manipulates public opinion and uses administrators and enforcers to maintain political control.",
+      "relevant": [
+        "governmental_and_political_domains",
+        "martial_and_military_domains",
+        "legal_and_juridical_domains",
+        "sociological_and_anthropological_domains"
+      ],
+      "forbidden": [
+        "maritime_domains"
+      ],
+      "k": 6
+    },
+    {
+      "id": "frcs3e_everyday_economy",
+      "source_profile": "Forgotten Realms Campaign Setting 3e life and commerce",
+      "heading": "Home and Hearth",
+      "text": "Farmers raise livestock and grain, a mill processes food, households buy goods at a weekly market, pay rent, repair tools, cook meals and move produce by cart to a nearby town.",
+      "relevant": [
+        "mundane_everyday_life_domains",
+        "economic_and_commercial_domains",
+        "material_environment_and_mobility_domains"
+      ],
+      "forbidden": [
+        "maritime_domains",
+        "systems_and_comparative_analytical_domains"
+      ],
+      "k": 5
+    },
+    {
+      "id": "frcs3e_magic_society",
+      "source_profile": "Forgotten Realms Campaign Setting 3e magic and commerce",
+      "heading": "Magic in Society",
+      "text": "Wizards study spells through the Weave, portals connect distant places, wards protect towers and specialist merchants trade rare magical reagents and enchanted goods.",
+      "relevant": [
+        "arcane_magical_and_occult_domains",
+        "economic_and_commercial_domains",
+        "information_knowledge_and_communication_domains"
+      ],
+      "forbidden": [
+        "biological_and_ecological_domains"
+      ],
+      "k": 5
+    },
+    {
+      "id": "frcg4e_pantheon",
+      "source_profile": "Forgotten Realms Campaign Guide 4e pantheon",
+      "heading": "Pantheon and Churches",
+      "text": "Greater gods maintain divine realms, priests lead churches and sects, worshipers observe religious practices, and clerics receive divine magic to pursue the missions of their faiths.",
+      "relevant": [
+        "religious_theological_and_divine_domains",
+        "cosmological_and_metaphysical_domains",
+        "sociological_and_anthropological_domains"
+      ],
+      "forbidden": [
+        "economic_and_commercial_domains"
+      ],
+      "k": 5
+    },
+    {
+      "id": "frcs1e_trade_society",
+      "source_profile": "Forgotten Realms Campaign Setting Box Set 1e introductory society",
+      "heading": "Introduction to the Realms",
+      "text": "City-states are expanding, farming and craft industries are common, merchants are becoming wealthier as markets and resources open, literacy is increasing and political consolidation is spreading into formerly wild lands.",
+      "relevant": [
+        "economic_and_commercial_domains",
+        "governmental_and_political_domains",
+        "historical_domains",
+        "sociological_and_anthropological_domains"
+      ],
+      "forbidden": [
+        "maritime_domains"
+      ],
+      "k": 6
+    }
+  ]
+}
