@@ -29,7 +29,12 @@ MODE_CONFIG = {
 RECORD_TYPES = {
     "entity", "attribute", "claim", "relation", "event", "quantity", "state",
     "flow", "dependency", "constraint", "capacity", "pressure", "incentive",
-    "power", "vulnerability", "resilience", "risk", "opportunity", "trend",
+    "power", "capability", "vulnerability", "resilience", "risk", "opportunity",
+    "trend", "change", "network", "feedback", "threshold", "cascade",
+    "counterfactual", "bottleneck", "chokepoint", "substitution", "competition",
+    "cooperation", "provenance", "epistemic", "contradiction", "coupling",
+    "shock", "adaptation", "externality", "lag", "tradeoff",
+    "distributional_effect", "friction", "equilibrium", "volatility",
     "inference", "gap", "perspective", "conflict", "correction",
 }
 
@@ -380,7 +385,10 @@ def run_world_model(
                         "PASS 4: SYSTEM EXTRACTION\n\n"
                         "Extract flows, dependencies, pressures, incentives, power, capabilities, capacities, "
                         "constraints, vulnerabilities, resilience, bottlenecks, substitutions, competition, "
-                        "cooperation, thresholds, risks and opportunities only where supported.\n\n" + block
+                        "cooperation, feedback, thresholds, cascades, cross-domain couplings, shocks, lags, "
+                        "adaptation, path dependency, externalities, trade-offs, distributional effects, "
+                        "institutional friction, equilibrium/disequilibrium, volatility, leverage points, "
+                        "risks and opportunities only where supported.\n\n" + block
                     )
                     pack_id = "+".join(pack.id for pack in group)
                     totals["records"] += _call_and_store(
