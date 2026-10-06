@@ -406,21 +406,14 @@ def route_text(
         scored.sort(key=lambda item: (-item[0].score, item[0].pack_id))
         return [route for route, _ in scored[:top_k]]
 
-    concrete = [(route, signal) for route, signal in scored if route.pack_id not in ANALYTICAL_DOMAIN_IDS]
-    analytical = [(route, signal) for route, signal in scored if route.pack_id in ANALYTICAL_DOMAIN_IDS]
-    concrete.sort(key=lambda item: (-item[0].score, item[0].pack_id))
-
-    # Analytical/synthetic packs only enter after the text clearly activates multiple
-    # concrete domains. Their score is discounted so they enrich rather than crowd out.
-    strong_concrete = [item for item in concrete if item[0].score >= 4.0 or item[1] >= 1]
-    if len(strong_concrete) >= 2:
-        discounted: list[tuple[Route, int]] = []
-        for route, signal in analytical:
-            adjusted = Route(route.pack_id, route.title, route.score * 0.45, route.matches)
-            if adjusted.score >= minimum_score:
-                discounted.append((adjusted, signal))
-        concrete.extend(discounted)
-
+    # Synthetic/comparative packs are downstream analytical lenses, not source domains.
+    # Cross-domain system and inference routing activates their mechanisms after concrete
+    # domains have been established, so they never consume a Pass-2 domain slot.
+    concrete = [
+        (route, signal)
+        for route, signal in scored
+        if route.pack_id not in ANALYTICAL_DOMAIN_IDS
+    ]
     concrete.sort(key=lambda item: (-item[0].score, item[0].pack_id))
     return [route for route, _ in concrete[:top_k]]
 
