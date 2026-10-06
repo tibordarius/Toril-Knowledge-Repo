@@ -18,6 +18,7 @@ from .router import (
     route_text,
 )
 from .structure import classify_chunk, routing_limits
+from .source_profiles import source_instructions, source_profile_limits
 
 
 MODE_CONFIG = {
@@ -109,6 +110,11 @@ def install_schema(conn: sqlite3.Connection) -> None:
           canon_tier TEXT,
           source_path TEXT,
           sha256 TEXT,
+          source_key TEXT,
+          pdf_path TEXT,
+          pdf_sha256 TEXT,
+          duplicate_status TEXT,
+          duplicate_of TEXT,
           notes TEXT,
           created_at TEXT DEFAULT CURRENT_TIMESTAMP
         );
@@ -213,6 +219,17 @@ def install_schema(conn: sqlite3.Connection) -> None:
         );
         """
     )
+    source_columns = {row[1] for row in conn.execute("PRAGMA table_info(source_catalog)")}
+    migrations = {
+        "source_key": "TEXT",
+        "pdf_path": "TEXT",
+        "pdf_sha256": "TEXT",
+        "duplicate_status": "TEXT",
+        "duplicate_of": "TEXT",
+    }
+    for column, sql_type in migrations.items():
+        if column not in source_columns:
+            conn.execute(f"ALTER TABLE source_catalog ADD COLUMN {column} {sql_type}")
     conn.commit()
 
 
@@ -228,14 +245,20 @@ def register_source(
     canon_tier: str = "official",
     source_path: str | None = None,
     sha256: str | None = None,
+    source_key: str | None = None,
+    pdf_path: str | None = None,
+    pdf_sha256: str | None = None,
+    duplicate_status: str | None = None,
+    duplicate_of: str | None = None,
     notes: str | None = None,
 ) -> None:
     install_schema(conn)
     conn.execute(
         """INSERT INTO source_catalog
            (book_id, title, edition, publication_year, setting_date, source_type,
-            canon_tier, source_path, sha256, notes)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            canon_tier, source_path, sha256, source_key, pdf_path, pdf_sha256,
+            duplicate_status, duplicate_of, notes)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
            ON CONFLICT(book_id) DO UPDATE SET
              title=COALESCE(excluded.title, title),
              edition=COALESCE(excluded.edition, edition),
@@ -245,10 +268,16 @@ def register_source(
              canon_tier=COALESCE(excluded.canon_tier, canon_tier),
              source_path=COALESCE(excluded.source_path, source_path),
              sha256=COALESCE(excluded.sha256, sha256),
+             source_key=COALESCE(excluded.source_key, source_key),
+             pdf_path=COALESCE(excluded.pdf_path, pdf_path),
+             pdf_sha256=COALESCE(excluded.pdf_sha256, pdf_sha256),
+             duplicate_status=COALESCE(excluded.duplicate_status, duplicate_status),
+             duplicate_of=COALESCE(excluded.duplicate_of, duplicate_of),
              notes=COALESCE(excluded.notes, notes)""",
         (
             book_id, title, edition, publication_year, setting_date, source_type,
-            canon_tier, source_path, sha256, notes,
+            canon_tier, source_path, sha256, source_key, pdf_path, pdf_sha256,
+            duplicate_status, duplicate_of, notes,
         ),
     )
     conn.commit()
@@ -264,12 +293,24 @@ def plan_chunk_routes(
 ) -> dict[str, list[Route]]:
     install_schema(conn)
 
-    classification = classify_chunk(chunk["heading"], chunk["content"])
-    limits = routing_limits(
-        classification,
+    source_row = conn.execute(
+        "SELECT source_type FROM source_catalog WHERE book_id=?",
+        (chunk["book_id"],),
+    ).fetchone()
+    source_type = source_row["source_type"] if source_row else "sourcebook"
+    profile = source_profile_limits(
+        source_type,
         domain_top_k=domain_top_k,
         system_top_k=system_top_k,
         inference_top_k=inference_top_k,
+    )
+
+    classification = classify_chunk(chunk["heading"], chunk["content"])
+    limits = routing_limits(
+        classification,
+        domain_top_k=profile["domain_top_k"],
+        system_top_k=profile["system_top_k"],
+        inference_top_k=profile["inference_top_k"],
     )
     domain_limit = int(limits["domain_top_k"])
     system_limit = int(limits["system_top_k"])
@@ -355,11 +396,25 @@ def run_world_model(
     if not model:
         raise RuntimeError("Set TORIL_LLM_MODEL or pass --model.")
 
-    config = MODE_CONFIG[mode]
+    config = dict(MODE_CONFIG[mode])
+    source_row = conn.execute(
+        "SELECT source_type FROM source_catalog WHERE book_id=?",
+        (book_id,),
+    ).fetchone()
+    source_type = source_row["source_type"] if source_row else "sourcebook"
+    config.update(
+        source_profile_limits(
+            source_type,
+            domain_top_k=config["domain_top_k"],
+            system_top_k=config["system_top_k"],
+            inference_top_k=config["inference_top_k"],
+        )
+    )
     run_id = uuid.uuid4().hex
+    run_config = {**config, "source_type": source_type}
     conn.execute(
         "INSERT INTO world_runs(run_id, book_id, mode, model, status, config_json) VALUES (?, ?, ?, ?, 'running', ?)",
-        (run_id, book_id, mode, model, json.dumps(config, sort_keys=True)),
+        (run_id, book_id, mode, model, json.dumps(run_config, sort_keys=True)),
     )
     conn.commit()
 
@@ -510,15 +565,8 @@ def _call_and_store(
         "SELECT * FROM source_catalog WHERE book_id=?", (chunk["book_id"],)
     ).fetchone()
     meta = dict(source_meta) if source_meta else {"book_id": chunk["book_id"]}
-    source_instructions = ""
     classification = classify_chunk(chunk["heading"], chunk["content"])
-    if meta.get("source_type") == "errata" or classification.kind == "errata":
-        source_instructions = (
-            "\n\nERRATA MODE\n"
-            "Treat this text as a correction overlay. Use record_type=correction where appropriate. "
-            "Capture the target page/section, corrected field or wording, previous value when stated, "
-            "and replacement value in attributes. Do not promote corrected mechanics into unrelated lore."
-        )
+    source_instructions_text = source_instructions(meta, classification.kind)
 
     prior_context = ""
     if inference:
@@ -538,7 +586,7 @@ def _call_and_store(
 
     user_prompt = (
         task_prompt
-        + source_instructions
+        + source_instructions_text
         + prior_context
         + "\n\nSOURCE METADATA\n"
         + json.dumps(meta, ensure_ascii=False, default=str)
