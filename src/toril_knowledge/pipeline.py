@@ -13,8 +13,8 @@ from typing import Any
 from openai import OpenAI
 
 
-HEADING_RE = re.compile(r"^(#{1,6})\\s+(.+?)\\s*$")
-PAGE_RE = re.compile(r"<!--\\s*(?:page|pdf_page)\\s*[:#]?\\s*(\\d+)\\s*-->", re.I)
+HEADING_RE = re.compile(r"^(#{1,6})[ ]+(.+?)[ ]*$")
+PAGE_RE = re.compile(r"<!--[ ]*(?:page|pdf_page)[ ]*[:#]?[ ]*([0-9]+)[ ]*-->", re.I)
 
 SYSTEM_PROMPT = """You extract auditable facts from sourcebook text.
 Return JSON only with top-level keys entities, claims, relationships, and events.
