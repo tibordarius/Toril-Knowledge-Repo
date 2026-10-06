@@ -208,6 +208,7 @@ def connect(path: str | Path) -> sqlite3.Connection:
         """
     )
     conn.commit()
+    install_world_model_schema(conn)
     return conn
 
 
@@ -440,6 +441,12 @@ def main() -> None:
     ingest_parser.add_argument("--max-chars", type=int, default=14000)
     ingest_parser.add_argument("--min-chars", type=int, default=2500)
     ingest_parser.add_argument("--overlap", type=int, default=700)
+    ingest_parser.add_argument("--title")
+    ingest_parser.add_argument("--edition")
+    ingest_parser.add_argument("--publication-year", type=int)
+    ingest_parser.add_argument("--setting-date")
+    ingest_parser.add_argument("--source-type", default="sourcebook")
+    ingest_parser.add_argument("--canon-tier", default="official")
 
     extract_parser = sub.add_parser("extract")
     extract_parser.add_argument("--book-id")
@@ -453,6 +460,19 @@ def main() -> None:
     dossier_parser = sub.add_parser("dossier")
     dossier_parser.add_argument("entity")
     dossier_parser.add_argument("--out")
+
+    route_parser = sub.add_parser("route")
+    route_parser.add_argument("--book-id", required=True)
+    route_parser.add_argument("--limit", type=int)
+    route_parser.add_argument("--domain-top-k", type=int, default=8)
+    route_parser.add_argument("--system-top-k", type=int, default=6)
+    route_parser.add_argument("--inference-top-k", type=int, default=6)
+
+    world_parser = sub.add_parser("extract-world")
+    world_parser.add_argument("--book-id", required=True)
+    world_parser.add_argument("--model")
+    world_parser.add_argument("--mode", choices=["lean", "standard", "deep", "exhaustive"], default="deep")
+    world_parser.add_argument("--limit", type=int)
 
     args = parser.parse_args()
     conn = connect(args.db)
@@ -469,7 +489,31 @@ def main() -> None:
             min_chars=args.min_chars,
             overlap=args.overlap,
         )
-        print(json.dumps({"book_id": book_id, "sections": len(sections), "chunks": ingest(conn, chunks)}, indent=2))
+        chunk_count = ingest(conn, chunks)
+        register_source(
+            conn,
+            book_id=book_id,
+            title=args.title or path.stem,
+            edition=args.edition,
+            publication_year=args.publication_year,
+            setting_date=args.setting_date,
+            source_type=args.source_type,
+            canon_tier=args.canon_tier,
+            source_path=str(path),
+            sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+        )
+        print(
+            json.dumps(
+                {
+                    "book_id": book_id,
+                    "sections": len(sections),
+                    "chunks": chunk_count,
+                    "edition": args.edition,
+                    "setting_date": args.setting_date,
+                },
+                indent=2,
+            )
+        )
         return
 
     if args.command == "extract":
@@ -486,6 +530,46 @@ def main() -> None:
             print(write_dossier(data, args.out))
         else:
             print(json.dumps(data, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "route":
+        sql = "SELECT * FROM chunks WHERE book_id=? ORDER BY rowid"
+        params: list[Any] = [args.book_id]
+        if args.limit:
+            sql += " LIMIT ?"
+            params.append(args.limit)
+        rows = conn.execute(sql, params).fetchall()
+        planned = []
+        for row in rows:
+            routes = plan_chunk_routes(
+                conn,
+                row,
+                domain_top_k=args.domain_top_k,
+                system_top_k=args.system_top_k,
+                inference_top_k=args.inference_top_k,
+            )
+            planned.append(
+                {
+                    "chunk_id": row["chunk_id"],
+                    "heading": row["heading"],
+                    "domain": [route.pack_id for route in routes["domain"]],
+                    "system": [route.pack_id for route in routes["system"]],
+                    "inference": [route.pack_id for route in routes["inference"]],
+                }
+            )
+        print(json.dumps(planned, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "extract-world":
+        result = run_world_model(
+            conn,
+            book_id=args.book_id,
+            model=args.model,
+            mode=args.mode,
+            limit=args.limit,
+        )
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+        return
 
 
 if __name__ == "__main__":
