@@ -4,7 +4,7 @@ This repository treats sourcebooks as evidence for a computable world model, not
 
 ## Core design
 
-The ontology contains 359 named specialist extractors from the working taxonomy, plus operational layers for temporal state, networks, spatial/economic/demographic/political/military/ecological/urban/adventure inference, normalization, scale, certainty, perspective, salience and simulation readiness.
+The ontology contains 419 named specialist extractors from the working taxonomy, plus operational layers for temporal state, networks, spatial/economic/demographic/political/military/ecological/urban/adventure inference, normalization, scale, certainty, perspective, salience and simulation readiness.
 
 The important efficiency rule is that the registry is **available globally but activated locally**. A chunk does not run every specialist. Deterministic lexical routing first selects relevant domain packs; those domain choices then activate appropriate system and inference layers.
 
@@ -14,8 +14,8 @@ The important efficiency rule is that the registry is **available globally but a
 1. **Entities** — people, places, organizations, factions, institutions, objects, creatures, events, concepts, titles and aliases.
 2. **Domains** — routed specialist extraction across economics, government, law, diplomacy, military affairs, crime, society, culture, religion, magic, geography, ecology, wilderness, urbanism, maritime affairs, technology, information, history, mundane life and adventure material.
 3. **Relationships** — typed structural, political, diplomatic, economic, resource, military, criminal, social, religious, magical, spatial, temporal and information relationships.
-4. **Systems** — flows, dependencies, pressures, incentives, power, capabilities, capacities, constraints, vulnerability, resilience, bottlenecks, substitution, competition, conflict, cooperation, feedback, thresholds, cascades, opportunities and risks.
-5. **Inference** — explicitly labeled deductions such as likely industries, trade dependencies, demographic pressures, political instability, military reach, ecological consequences, urban patterns, lore gaps and adventure opportunities.
+4. **Systems** — flows, dependencies, pressures, incentives, power, capabilities, capacities, constraints, vulnerability, resilience, bottlenecks, substitution, competition, conflict, cooperation, feedback, thresholds, cascades, cross-domain coupling, shocks, lags, adaptation, path dependency, externalities, trade-offs, distributional effects, institutional friction, equilibrium/disequilibrium, volatility, leverage points, opportunities and risks.
+5. **Inference** — explicitly labeled deductions such as likely industries, trade dependencies, trade networks, supply-chain weak points, fiscal pressure, institutional capacity, diplomatic leverage, logistical reach, infrastructure gaps, technology and knowledge diffusion, magical economy effects, religious influence, migration, disease spread, environmental pressure, resource depletion, maritime structure, criminal networks, succession risk, cross-domain consequences, lore gaps and adventure opportunities.
 6. **Temporal model** — valid-from/valid-until states, eras, change and trends.
 7. **Epistemic validation** — explicit versus inferred claims, source perspective, uncertainty, contradictions, edition conflicts and missing information.
 8. **World model** — normalized entities, aliases, relationships, flows, systems, pressures and states.
@@ -72,23 +72,15 @@ Errata should be registered with source_type=errata and treated as correction ev
 
 ## Relationship families
 
-The registry currently includes 13 relationship families:
+The registry currently includes 28 relationship families:
 
-- structural
-- political
-- diplomatic
-- economic
-- resource
-- military
-- criminal
-- social
-- religious
-- magical
-- spatial
-- temporal
-- information
+- structural, political, diplomatic, economic, resource, military and criminal
+- social, religious, magical, spatial, temporal and information
+- causal, dependency, legal, power, capability and flow
+- logistical, infrastructure, ecological and technological
+- epistemic, provenance, cultural, biological and cross-domain interaction
 
-Relationship predicates are constrained by family during extraction to reduce synonym drift.
+Relationship predicates are constrained by family during extraction to reduce synonym drift. The additional families are deliberately more explicit than generic `related_to` edges: they distinguish authority from influence, dependence from trade, capacity from actual action, evidence from belief, and physical flow from ownership.
 
 ## Routing
 
@@ -132,3 +124,41 @@ Raw LLM output should move through:
 ```
 
 Only reviewed or sufficiently validated records should be treated as canonical world-model inputs.
+
+
+## Expanded specialist domains
+
+The 2026-10-06.2 registry adds five additional specialist packs rather than duplicating existing broad domains:
+
+1. **Cross-domain geographic and synthetic domains** — geoeconomic, geostrategic, geocultural, geolinguistic, georeligious, geodemographic, ethnolinguistic, biogeographical, geophysical, geochemical and geotechnical.
+2. **Material, environmental and mobility domains** — nature, environmental systems, resources, transport, travel, energy, land use, food systems, health, hazards, material culture, monster ecology, infrastructure systems, water systems and waste systems.
+3. **Cognitive, philosophical and symbolic domains** — cognitive, philosophical, symbolic, sociolinguistic, folkloric, mythological, iconographic, rhetorical, narrative and hermeneutical.
+4. **Scientific and historical specialty domains** — pathological, pharmacological, toxicological, paleontological, paleoclimatological, archaeozoological, archaeobotanical, numismatic, paleographic, codicological, sigillographic and epigraphic.
+5. **Systems and comparative analytical domains** — systemic, structural, functional, comparative, network-analytic, causal-comparative, institutional-comparative, spatial-analytic, temporal-analytic, distributional, complexity and diffusion.
+
+These remain specialist lenses. A source chunk only activates them when routing evidence supports them.
+
+## Cross-domain coupling
+
+The world model now has explicit operational layers for phenomena that sit between ordinary domain extractors:
+
+- cross-domain coupling
+- shock propagation
+- lag and delay
+- adaptation
+- path dependency
+- externalities
+- trade-offs
+- distributional effects
+- institutional friction
+- equilibrium and disequilibrium
+- volatility
+- leverage points
+
+This matters because many useful consequences are not contained inside a single domain. A drought can become an agricultural shock, then a trade shock, then a fiscal problem, then an urban political problem. Those transitions are modeled as separate records instead of being compressed into one vague inference.
+
+## Specialist inference expansion
+
+The inference router now supports dedicated lenses for geoeconomics, trade networks, supply chains, fiscal systems, institutions, law, diplomacy, logistics, infrastructure, technological diffusion, knowledge diffusion, magical economy, religious influence, cultural diffusion, migration, disease, environment, resource depletion, maritime systems, security, criminal networks, succession and cross-domain consequences.
+
+Inference remains downstream of explicit extraction. It must not overwrite source-grounded records and must carry reasoning, assumptions and uncertainty.
