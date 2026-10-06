@@ -20,3 +20,7 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
+
+
+[tool.setuptools.package-data]
+"toril_knowledge.data" = ["*.json"]
