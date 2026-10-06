@@ -176,3 +176,20 @@ This matters because many useful consequences are not contained inside a single 
 The inference router now supports dedicated lenses for geoeconomics, trade networks, supply chains, fiscal systems, institutions, law, diplomacy, logistics, infrastructure, technological diffusion, knowledge diffusion, magical economy, religious influence, cultural diffusion, migration, disease, environment, resource depletion, maritime systems, security, criminal networks, succession and cross-domain consequences.
 
 Inference remains downstream of explicit extraction. It must not overwrite source-grounded records and must carry reasoning, assumptions and uncertainty.
+
+
+## Corpus-scale audit policy
+
+A small benchmark can pass while a full sourcebook still over-routes. Before deep extraction,
+run `toril audit-routing` on the complete ingested book and inspect:
+
+- average domain routes per chunk;
+- how many chunks consume the full domain budget;
+- distribution of domain packs;
+- structural classification counts;
+- estimated model calls.
+
+The first 3e *Forgotten Realms Campaign Setting* audit exposed this exact failure mode:
+generic ontology overlap caused most chunks to consume all twelve deep-mode slots. Concrete
+domains therefore now require at least one positive discriminator, and non-lore structures
+receive a reduced or zero downstream budget.
