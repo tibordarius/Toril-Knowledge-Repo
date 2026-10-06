@@ -278,6 +278,18 @@ def _route_score(pack, heading: str, text: str, layer: str) -> tuple[float, list
         score += weight
         matches.append(token)
 
+    # Curated discriminators can repair gaps in the generated ontology vocabulary.
+    keyword_matches = keywords.intersection(heading_tokens | text_tokens)
+    for token in sorted(strong.difference(keyword_matches)):
+        if token in heading_tokens:
+            score += 5.5
+            high_signal += 1
+            matches.append("h:!" + token)
+        elif token in text_tokens:
+            score += 3.5
+            high_signal += 1
+            matches.append("!" + token)
+
     category_words = _tokens(pack.title).difference(LOW_SIGNAL_TERMS)
     for token in category_words.intersection(heading_tokens):
         score += _idf(token, layer) * 1.75
