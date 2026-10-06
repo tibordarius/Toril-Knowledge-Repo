@@ -238,8 +238,14 @@ def ingest(conn: sqlite3.Connection, chunks: list[Chunk]) -> int:
 
 
 def clean_json(text: str) -> dict[str, Any]:
-    text = re.sub(r"^\\s*[{]3}(?:json)?\\s*", "", text.strip(), flags=re.I)
-    text = re.sub(r"\\s*[{]3}\\s*$", "", text)
+    fence = chr(96) * 3
+    text = text.strip()
+    if text.startswith(fence + "json"):
+        text = text[len(fence + "json"):].lstrip()
+    elif text.startswith(fence):
+        text = text[len(fence):].lstrip()
+    if text.endswith(fence):
+        text = text[:-len(fence)].rstrip()
     data = json.loads(text)
     if not isinstance(data, dict):
         raise ValueError("LLM output must be a JSON object")
