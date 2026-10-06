@@ -2,19 +2,110 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Toril Source Record",
   "type": "object",
-  "required": ["book_id", "title", "source_type"],
+  "required": [
+    "book_id",
+    "title",
+    "source_type"
+  ],
   "properties": {
-    "book_id": {"type": "string"},
-    "title": {"type": "string"},
-    "edition": {"type": ["string", "null"]},
-    "publication_year": {"type": ["integer", "null"]},
-    "setting_date": {"type": ["string", "null"]},
-    "source_type": {
-      "enum": ["sourcebook", "campaign_setting", "player_guide", "adventure", "errata", "magazine", "novel", "web", "homebrew", "other"]
+    "book_id": {
+      "type": "string"
     },
-    "canon_tier": {"type": ["string", "null"]},
-    "source_path": {"type": ["string", "null"]},
-    "sha256": {"type": ["string", "null"]},
-    "notes": {"type": ["string", "null"]}
+    "title": {
+      "type": "string"
+    },
+    "edition": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "publication_year": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "setting_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_type": {
+      "enum": [
+        "sourcebook",
+        "campaign_setting",
+        "player_guide",
+        "adventure",
+        "errata",
+        "magazine",
+        "novel",
+        "web",
+        "homebrew",
+        "other"
+      ]
+    },
+    "canon_tier": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_key": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pdf_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pdf_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "duplicate_status": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        null,
+        "unique",
+        "canonical",
+        "exact_duplicate",
+        "title_collision_review"
+      ]
+    },
+    "duplicate_of": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
   }
 }
