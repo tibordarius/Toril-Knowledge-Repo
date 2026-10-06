@@ -17,6 +17,7 @@ from .router import (
     route_system_from_domains,
     route_text,
 )
+from .structure import classify_chunk, routing_limits
 
 
 MODE_CONFIG = {
@@ -131,6 +132,14 @@ def install_schema(conn: sqlite3.Connection) -> None:
           matches_json TEXT NOT NULL,
           active INTEGER NOT NULL DEFAULT 1,
           PRIMARY KEY (chunk_id, layer, pack_id)
+        );
+
+        CREATE TABLE IF NOT EXISTS chunk_classifications (
+          chunk_id TEXT PRIMARY KEY,
+          kind TEXT NOT NULL,
+          confidence REAL NOT NULL,
+          reasons_json TEXT NOT NULL,
+          updated_at TEXT DEFAULT CURRENT_TIMESTAMP
         );
 
         CREATE TABLE IF NOT EXISTS knowledge_records (
@@ -255,30 +264,59 @@ def plan_chunk_routes(
 ) -> dict[str, list[Route]]:
     install_schema(conn)
 
-    domain_routes = route_text(
-        chunk["heading"], chunk["content"], layer="domain", top_k=domain_top_k
+    classification = classify_chunk(chunk["heading"], chunk["content"])
+    limits = routing_limits(
+        classification,
+        domain_top_k=domain_top_k,
+        system_top_k=system_top_k,
+        inference_top_k=inference_top_k,
+    )
+    domain_limit = int(limits["domain_top_k"])
+    system_limit = int(limits["system_top_k"])
+    inference_limit = int(limits["inference_top_k"])
+
+    conn.execute(
+        """INSERT INTO chunk_classifications(chunk_id, kind, confidence, reasons_json, updated_at)
+           VALUES (?, ?, ?, ?, datetime('now'))
+           ON CONFLICT(chunk_id) DO UPDATE SET
+             kind=excluded.kind,
+             confidence=excluded.confidence,
+             reasons_json=excluded.reasons_json,
+             updated_at=datetime('now')""",
+        (
+            chunk["chunk_id"],
+            classification.kind,
+            classification.confidence,
+            json.dumps(classification.reasons),
+        ),
+    )
+
+    domain_routes = (
+        route_text(chunk["heading"], chunk["content"], layer="domain", top_k=domain_limit)
+        if domain_limit
+        else []
     )
     domain_ids = [route.pack_id for route in domain_routes]
 
-    system_ids = route_system_from_domains(domain_ids, top_k=system_top_k) if system_top_k else []
+    system_ids = route_system_from_domains(domain_ids, top_k=system_limit) if system_limit else []
     system_pack_map = {pack.id: pack for pack in packs("system")}
     system_routes = [
-        Route(pack_id, system_pack_map[pack_id].title, float(system_top_k - index), ("domain-derived",))
+        Route(pack_id, system_pack_map[pack_id].title, float(system_limit - index), ("domain-derived",))
         for index, pack_id in enumerate(system_ids)
         if pack_id in system_pack_map
     ]
 
     lexical_inference = (
-        route_text(chunk["heading"], chunk["content"], layer="inference", top_k=inference_top_k)
-        if inference_top_k else []
+        route_text(chunk["heading"], chunk["content"], layer="inference", top_k=inference_limit)
+        if inference_limit else []
     )
     inference_ids = (
-        route_inference_from_domains(domain_ids, lexical_inference, top_k=inference_top_k)
-        if inference_top_k else []
+        route_inference_from_domains(domain_ids, lexical_inference, top_k=inference_limit)
+        if inference_limit else []
     )
     inference_pack_map = {pack.id: pack for pack in packs("inference")}
     inference_routes = [
-        Route(pack_id, inference_pack_map[pack_id].title, float(inference_top_k - index), ("domain+lexical",))
+        Route(pack_id, inference_pack_map[pack_id].title, float(inference_limit - index), ("domain+lexical",))
         for index, pack_id in enumerate(inference_ids)
         if pack_id in inference_pack_map
     ]
@@ -289,6 +327,7 @@ def plan_chunk_routes(
         "inference": inference_routes,
     }
 
+    conn.execute("UPDATE chunk_routes SET active=0 WHERE chunk_id=?", (chunk["chunk_id"],))
     for layer, routes in planned.items():
         for route in routes:
             conn.execute(
@@ -300,7 +339,6 @@ def plan_chunk_routes(
             )
     conn.commit()
     return planned
-
 
 def run_world_model(
     conn: sqlite3.Connection,
@@ -332,10 +370,27 @@ def run_world_model(
         params.append(limit)
     rows = conn.execute(sql, params).fetchall()
     client = OpenAI()
-    totals = {"chunks": len(rows), "calls": 0, "records": 0}
+    totals: dict[str, Any] = {
+        "chunks": len(rows),
+        "calls": 0,
+        "records": 0,
+        "skipped_chunks": 0,
+        "classifications": {},
+    }
 
     try:
         for chunk in rows:
+            classification = classify_chunk(chunk["heading"], chunk["content"])
+            limits = routing_limits(
+                classification,
+                domain_top_k=config["domain_top_k"],
+                system_top_k=config["system_top_k"],
+                inference_top_k=config["inference_top_k"],
+            )
+            totals["classifications"][classification.kind] = (
+                totals["classifications"].get(classification.kind, 0) + 1
+            )
+
             routes = plan_chunk_routes(
                 conn,
                 chunk,
@@ -343,6 +398,10 @@ def run_world_model(
                 system_top_k=config["system_top_k"],
                 inference_top_k=config["inference_top_k"],
             )
+
+            if limits["skip_entity"]:
+                totals["skipped_chunks"] += 1
+                continue
 
             totals["records"] += _call_and_store(
                 client, conn, run_id, chunk, model, 1, "entity", "core_entities",
@@ -364,18 +423,19 @@ def run_world_model(
                 )
                 totals["calls"] += 1
 
-            family_names = route_relationship_families(
-                chunk["heading"], chunk["content"], [route.pack_id for route in routes["domain"]]
-            )
-            relations = relationship_families()
-            relation_block = "\n".join(
-                f"{name}: {', '.join(relations[name])}" for name in family_names if name in relations
-            )
-            totals["records"] += _call_and_store(
-                client, conn, run_id, chunk, model, 3, "relationship", "+".join(family_names),
-                RELATIONSHIP_PROMPT.format(relations=relation_block), inference=False,
-            )
-            totals["calls"] += 1
+            if not limits["skip_relationship"]:
+                family_names = route_relationship_families(
+                    chunk["heading"], chunk["content"], [route.pack_id for route in routes["domain"]]
+                )
+                relations = relationship_families()
+                relation_block = "\n".join(
+                    f"{name}: {', '.join(relations[name])}" for name in family_names if name in relations
+                )
+                totals["records"] += _call_and_store(
+                    client, conn, run_id, chunk, model, 3, "relationship", "+".join(family_names),
+                    RELATIONSHIP_PROMPT.format(relations=relation_block), inference=False,
+                )
+                totals["calls"] += 1
 
             if config["max_pass"] >= 4:
                 system_packs = _packs_by_id("system", [route.pack_id for route in routes["system"]])
@@ -410,7 +470,7 @@ def run_world_model(
                     )
                     totals["calls"] += 1
 
-            if config["max_pass"] >= 7:
+            if config["max_pass"] >= 7 and not limits["skip_epistemic"]:
                 totals["records"] += _call_and_store(
                     client, conn, run_id, chunk, model, 7, "epistemic", "temporal_epistemic",
                     TEMPORAL_EPISTEMIC_PROMPT, inference=False,
@@ -451,7 +511,8 @@ def _call_and_store(
     ).fetchone()
     meta = dict(source_meta) if source_meta else {"book_id": chunk["book_id"]}
     source_instructions = ""
-    if meta.get("source_type") == "errata":
+    classification = classify_chunk(chunk["heading"], chunk["content"])
+    if meta.get("source_type") == "errata" or classification.kind == "errata":
         source_instructions = (
             "\n\nERRATA MODE\n"
             "Treat this text as a correction overlay. Use record_type=correction where appropriate. "

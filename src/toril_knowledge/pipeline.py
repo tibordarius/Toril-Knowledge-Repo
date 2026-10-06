@@ -13,6 +13,13 @@ from typing import Any
 from openai import OpenAI
 
 from .benchmark import evaluate_benchmarks, load_benchmarks
+from .structure import classify_chunk, routing_limits
+from .world_model import (
+    install_schema as install_world_model_schema,
+    plan_chunk_routes,
+    register_source,
+    run_world_model,
+)
 
 
 HEADING_RE = re.compile(r"^(#{1,6})[ ]+(.+?)[ ]*$")
@@ -502,6 +509,96 @@ def write_dossier(data: dict[str, Any], output: str | Path) -> Path:
     return path
 
 
+def audit_routing(
+    conn: sqlite3.Connection,
+    book_id: str,
+    *,
+    domain_top_k: int = 12,
+    system_top_k: int = 8,
+    inference_top_k: int = 6,
+) -> dict[str, Any]:
+    rows = conn.execute(
+        "SELECT * FROM chunks WHERE book_id=? ORDER BY rowid",
+        (book_id,),
+    ).fetchall()
+
+    route_histogram: dict[str, int] = {}
+    classification_counts: dict[str, int] = {}
+    pack_counts: dict[str, int] = {}
+    top3_counts: dict[str, int] = {}
+    estimated_calls = 0
+    skipped_chunks = 0
+    full_domain_budget_chunks = 0
+
+    for row in rows:
+        classification = classify_chunk(row["heading"], row["content"])
+        classification_counts[classification.kind] = (
+            classification_counts.get(classification.kind, 0) + 1
+        )
+        limits = routing_limits(
+            classification,
+            domain_top_k=domain_top_k,
+            system_top_k=system_top_k,
+            inference_top_k=inference_top_k,
+        )
+        routes = plan_chunk_routes(
+            conn,
+            row,
+            domain_top_k=domain_top_k,
+            system_top_k=system_top_k,
+            inference_top_k=inference_top_k,
+        )
+
+        domain_routes = routes["domain"]
+        route_histogram[str(len(domain_routes))] = (
+            route_histogram.get(str(len(domain_routes)), 0) + 1
+        )
+        if len(domain_routes) == int(limits["domain_top_k"]) and domain_routes:
+            full_domain_budget_chunks += 1
+
+        for index, route in enumerate(domain_routes):
+            pack_counts[route.pack_id] = pack_counts.get(route.pack_id, 0) + 1
+            if index < 3:
+                top3_counts[route.pack_id] = top3_counts.get(route.pack_id, 0) + 1
+
+        if limits["skip_entity"]:
+            skipped_chunks += 1
+            continue
+
+        estimated_calls += 1  # entity pass
+        estimated_calls += (len(domain_routes) + 2) // 3
+        if not limits["skip_relationship"]:
+            estimated_calls += 1
+        estimated_calls += (len(routes["system"]) + 2) // 3
+        estimated_calls += (len(routes["inference"]) + 2) // 3
+        if not limits["skip_epistemic"]:
+            estimated_calls += 1
+
+    pack_stats = sorted(
+        (
+            {
+                "pack_id": pack_id,
+                "chunks": count,
+                "pct_chunks": round(100.0 * count / max(1, len(rows)), 1),
+                "top3_chunks": top3_counts.get(pack_id, 0),
+            }
+            for pack_id, count in pack_counts.items()
+        ),
+        key=lambda item: (-item["chunks"], item["pack_id"]),
+    )
+
+    return {
+        "book_id": book_id,
+        "chunks": len(rows),
+        "classifications": classification_counts,
+        "skipped_chunks": skipped_chunks,
+        "route_count_histogram": route_histogram,
+        "full_domain_budget_chunks": full_domain_budget_chunks,
+        "estimated_model_calls": estimated_calls,
+        "pack_stats": pack_stats,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="toril", description="Toril knowledge extraction pipeline")
     parser.add_argument("--db", default=os.getenv("TORIL_DB_PATH", "data/toril.db"))
@@ -545,6 +642,13 @@ def main() -> None:
     world_parser.add_argument("--model")
     world_parser.add_argument("--mode", choices=["lean", "standard", "deep", "exhaustive"], default="deep")
     world_parser.add_argument("--limit", type=int)
+
+    audit_parser = sub.add_parser("audit-routing")
+    audit_parser.add_argument("--book-id", required=True)
+    audit_parser.add_argument("--domain-top-k", type=int, default=12)
+    audit_parser.add_argument("--system-top-k", type=int, default=8)
+    audit_parser.add_argument("--inference-top-k", type=int, default=6)
+    audit_parser.add_argument("--out")
 
     benchmark_parser = sub.add_parser("benchmark-routing")
     benchmark_parser.add_argument(
@@ -632,12 +736,31 @@ def main() -> None:
                 {
                     "chunk_id": row["chunk_id"],
                     "heading": row["heading"],
+                    "classification": classify_chunk(row["heading"], row["content"]).kind,
                     "domain": [route.pack_id for route in routes["domain"]],
                     "system": [route.pack_id for route in routes["system"]],
                     "inference": [route.pack_id for route in routes["inference"]],
                 }
             )
         print(json.dumps(planned, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "audit-routing":
+        report = audit_routing(
+            conn,
+            args.book_id,
+            domain_top_k=args.domain_top_k,
+            system_top_k=args.system_top_k,
+            inference_top_k=args.inference_top_k,
+        )
+        payload = json.dumps(report, indent=2, ensure_ascii=False)
+        if args.out:
+            output = Path(args.out)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(payload + "\n", encoding="utf-8")
+            print(output)
+        else:
+            print(payload)
         return
 
     if args.command == "extract-world":
