@@ -54,7 +54,7 @@
       "id": "ncs4e_neverember_governance",
       "source_profile": "Neverwinter Campaign Setting 4e New Neverwinter governance material",
       "heading": "Lord Protector Policies",
-      "text": "The ruler relies on mercenary soldiers, imposes high taxes, faces opposition to his policies, shifts blame to officials, manipulates public opinion and uses administrators and enforcers to maintain political control.",
+      "text": "The ruler relies on mercenary soldiers, imposes high taxes and inconsistent justice, faces citizen opposition and demonstrations against his policies, shifts blame to officials, manipulates public opinion and uses administrators and enforcers to maintain political control.",
       "relevant": [
         "governmental_and_political_domains",
         "martial_and_military_domains",
@@ -116,12 +116,13 @@
       "id": "frcs1e_trade_society",
       "source_profile": "Forgotten Realms Campaign Setting Box Set 1e introductory society",
       "heading": "Introduction to the Realms",
-      "text": "City-states are expanding, farming and craft industries are common, merchants are becoming wealthier as markets and resources open, literacy is increasing and political consolidation is spreading into formerly wild lands.",
+      "text": "City-states are expanding and political consolidation is spreading into formerly wild lands. Farming and craft industries are common, the merchant class is becoming wealthier and more powerful as markets and resources open, and literacy is increasing.",
       "relevant": [
         "economic_and_commercial_domains",
         "governmental_and_political_domains",
         "historical_domains",
-        "sociological_and_anthropological_domains"
+        "sociological_and_anthropological_domains",
+        "information_knowledge_and_communication_domains"
       ],
       "forbidden": [
         "maritime_domains"
