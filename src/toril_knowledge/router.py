@@ -242,6 +242,48 @@ DOMAIN_RULES: dict[str, dict[str, object]] = {
             "wild lands", "survival check", "overland travel", "wilderness route",
         ),
     },
+    "diplomatic_and_geopolitical_domains": {
+        "strong": {
+            "diplomatic", "diplomacy", "treaty", "treaties", "alliance", "alliances",
+            "ambassador", "ambassadors", "envoy", "envoys", "emissary", "emissaries",
+            "negotiation", "negotiations", "recognition", "tribute", "tributary",
+            "vassal", "vassals", "vassalage", "suzerainty", "colony", "colonies",
+            "colonial", "hegemon", "hegemonic", "deterrence",
+        },
+        "phrases": (
+            "balance of power", "sphere of influence", "spheres of influence",
+            "buffer state", "buffer states", "border dispute", "contested territory",
+            "diplomatic immunity", "regional powers",
+        ),
+    },
+    "cultural_and_symbolic_domains": {
+        "strong": {
+            "culture", "cultural", "custom", "customs", "tradition", "traditions",
+            "language", "languages", "dialect", "dialects", "script", "scripts",
+            "heraldry", "heraldic", "festival", "festivals", "holiday", "holidays",
+            "cuisine", "culinary", "fashion", "ceremony", "ceremonies", "burial",
+            "funerary", "marriage", "taboo", "folklore",
+        },
+        "phrases": (
+            "regional identity", "cultural tradition", "cultural traditions",
+            "marriage customs", "dining customs", "coats of arms",
+            "oral tradition", "folk beliefs",
+        ),
+    },
+    "cognitive_philosophical_and_symbolic_domains": {
+        "strong": {
+            "philosophy", "philosophical", "ethics", "epistemology", "metaphysics",
+            "folklore", "legend", "legends", "myth", "myths", "mythology",
+            "mythological", "symbolism", "symbolic", "rhetoric", "rhetorical",
+            "propaganda", "narrative", "narratives", "superstition", "superstitions",
+            "hermeneutics", "hermeneutical",
+        },
+        "phrases": (
+            "school of thought", "schools of thought", "oral tradition",
+            "folk belief", "folk beliefs", "founding story", "founding stories",
+            "political rhetoric", "religious rhetoric", "coded meaning", "coded meanings",
+        ),
+    },
     "historical_domains": {
         "strong": {
             "history", "historical", "founded", "founding", "century", "centuries",
@@ -381,9 +423,10 @@ def _route_score(pack, heading: str, text: str, layer: str) -> tuple[float, list
             matches.append(""" + phrase + """)
 
     if layer == "domain" and pack.id in SIGNAL_GATED_DOMAIN_IDS and high_signal == 0:
-        # Ambiguous packs must see a genuine discriminator. Generic ontology overlap is
-        # retained as a weak fallback but cannot dominate the route table.
-        score *= 0.18
+        # Corpus-scale audits showed that a soft penalty still let generic ontology
+        # overlap fill most deep-mode slots. A concrete source domain now needs at
+        # least one discriminating cue or phrase before it can be routed.
+        score = 0.0
 
     return score, matches[:24], high_signal
 
