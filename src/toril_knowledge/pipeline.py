@@ -52,6 +52,8 @@ class Section:
     text: str
     page_start: int | None = None
     page_end: int | None = None
+    line_start: int | None = None
+    line_end: int | None = None
 
 
 @dataclass(slots=True)
@@ -63,6 +65,8 @@ class Chunk:
     text: str
     page_start: int | None = None
     page_end: int | None = None
+    line_start: int | None = None
+    line_end: int | None = None
 
 
 def parse_markdown(path: str | Path) -> list[Section]:
@@ -72,24 +76,42 @@ def parse_markdown(path: str | Path) -> list[Section]:
     sections: list[Section] = []
     page_start: int | None = None
     page_end: int | None = None
+    heading_line: int | None = None
+    body_start_line: int | None = None
+    last_line: int | None = None
 
     def flush() -> None:
-        nonlocal body, page_start, page_end
-        text = "\\n".join(body).strip()
+        nonlocal body, page_start, page_end, body_start_line, last_line
+        text = "\n".join(body).strip()
         if text:
             heading = " > ".join(stack) if stack else "(preamble)"
-            sections.append(Section(heading, text, page_start, page_end))
+            start_line = heading_line if stack and heading_line is not None else body_start_line
+            sections.append(
+                Section(
+                    heading,
+                    text,
+                    page_start,
+                    page_end,
+                    start_line,
+                    last_line,
+                )
+            )
         body = []
         page_start = None
         page_end = None
+        body_start_line = None
+        last_line = None
 
-    for line in lines:
+    for line_number, line in enumerate(lines, start=1):
         page_match = PAGE_RE.search(line)
         if page_match:
             page = int(page_match.group(1))
             if page_start is None:
                 page_start = page
             page_end = page
+            if body_start_line is None:
+                body_start_line = line_number
+            last_line = line_number
             body.append(line)
             continue
 
@@ -102,8 +124,13 @@ def parse_markdown(path: str | Path) -> list[Section]:
             while len(stack) < level - 1:
                 stack.append("(untitled)")
             stack.append(title)
+            heading_line = line_number
             continue
 
+        if body_start_line is None and line.strip():
+            body_start_line = line_number
+        if line.strip():
+            last_line = line_number
         body.append(line)
 
     flush()
@@ -122,9 +149,21 @@ def semantic_chunks(
     pending: list[Section] = []
     pending_size = 0
 
-    def make_chunk(heading: str, text: str, start: int | None, end: int | None) -> None:
+    def make_chunk(
+        heading: str,
+        text: str,
+        start: int | None,
+        end: int | None,
+        line_start: int | None,
+        line_end: int | None,
+    ) -> None:
         digest = hashlib.sha256((book_id + "\\x00" + heading + "\\x00" + text).encode("utf-8")).hexdigest()[:20]
-        chunks.append(Chunk(digest, book_id, source_path, heading, text, start, end))
+        chunks.append(
+            Chunk(
+                digest, book_id, source_path, heading, text,
+                start, end, line_start, line_end
+            )
+        )
 
     def emit(group: list[Section]) -> None:
         if not group:
@@ -133,7 +172,16 @@ def semantic_chunks(
         text = "\\n\\n".join("## " + s.heading + "\\n" + s.text for s in group)
         starts = [s.page_start for s in group if s.page_start is not None]
         ends = [s.page_end for s in group if s.page_end is not None]
-        make_chunk(heading, text, min(starts) if starts else None, max(ends) if ends else None)
+        line_starts = [s.line_start for s in group if s.line_start is not None]
+        line_ends = [s.line_end for s in group if s.line_end is not None]
+        make_chunk(
+            heading,
+            text,
+            min(starts) if starts else None,
+            max(ends) if ends else None,
+            min(line_starts) if line_starts else None,
+            max(line_ends) if line_ends else None,
+        )
 
     for section in sections:
         if len(section.text) > max_chars:
@@ -143,7 +191,14 @@ def semantic_chunks(
             step = max(1, max_chars - overlap)
             for index, start in enumerate(range(0, len(section.text), step), 1):
                 piece = section.text[start : start + max_chars]
-                make_chunk(section.heading + " [part " + str(index) + "]", piece, section.page_start, section.page_end)
+                make_chunk(
+                    section.heading + " [part " + str(index) + "]",
+                    piece,
+                    section.page_start,
+                    section.page_end,
+                    section.line_start,
+                    section.line_end,
+                )
             continue
 
         if pending and pending_size + len(section.text) > max_chars:
@@ -207,6 +262,11 @@ def connect(path: str | Path) -> sqlite3.Connection:
         );
         """
     )
+    chunk_columns = {row[1] for row in conn.execute("PRAGMA table_info(chunks)")}
+    if "line_start" not in chunk_columns:
+        conn.execute("ALTER TABLE chunks ADD COLUMN line_start INTEGER")
+    if "line_end" not in chunk_columns:
+        conn.execute("ALTER TABLE chunks ADD COLUMN line_end INTEGER")
     conn.commit()
     install_world_model_schema(conn)
     return conn
@@ -215,10 +275,17 @@ def connect(path: str | Path) -> sqlite3.Connection:
 def ingest(conn: sqlite3.Connection, chunks: list[Chunk]) -> int:
     for chunk in chunks:
         conn.execute(
-            """INSERT INTO chunks VALUES (?, ?, ?, ?, ?, ?, ?, NULL)
+            """INSERT INTO chunks
+               (chunk_id, book_id, source_path, heading, page_start, page_end,
+                content, extracted_at, line_start, line_end)
+               VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, ?)
                ON CONFLICT(chunk_id) DO UPDATE SET
-               heading=excluded.heading, page_start=excluded.page_start,
-               page_end=excluded.page_end, content=excluded.content""",
+               heading=excluded.heading,
+               page_start=excluded.page_start,
+               page_end=excluded.page_end,
+               line_start=excluded.line_start,
+               line_end=excluded.line_end,
+               content=excluded.content""",
             (
                 chunk.chunk_id,
                 chunk.book_id,
@@ -227,6 +294,8 @@ def ingest(conn: sqlite3.Connection, chunks: list[Chunk]) -> int:
                 chunk.page_start,
                 chunk.page_end,
                 chunk.text,
+                chunk.line_start,
+                chunk.line_end,
             ),
         )
         conn.execute("DELETE FROM chunks_fts WHERE chunk_id = ?", (chunk.chunk_id,))
@@ -375,6 +444,7 @@ def extract_pending(
 def search_chunks(conn: sqlite3.Connection, query: str, limit: int = 10) -> list[dict[str, Any]]:
     rows = conn.execute(
         """SELECT c.chunk_id, c.book_id, c.heading, c.page_start, c.page_end,
+                  c.line_start, c.line_end,
                   snippet(chunks_fts, 3, '[', ']', ' ... ', 18) AS snippet
            FROM chunks_fts JOIN chunks c USING(chunk_id)
            WHERE chunks_fts MATCH ?
