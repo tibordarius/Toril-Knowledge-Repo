@@ -61,3 +61,22 @@ SQLite gives one inspectable artifact with transactions and FTS5. It is enough f
 ## Public/private boundary
 
 The GitHub repository is public. Sourcebook Markdown and generated corpus data stay in the private Drive workspace. Do not commit source books, raw chunks, databases or generated dossiers.
+
+
+## Structural routing gate
+
+Domain relevance is not the only routing decision. The parser now classifies chunks before
+expensive passes:
+
+- `contents_index`: skip model extraction; preserve the source text only.
+- `front_matter`: skip model extraction when credits/publication metadata dominate.
+- `rules_mechanics`: retain entity extraction and at most four domain packs; no
+  relationship/system/inference/epistemic passes.
+- `stat_block`: same constrained policy as mechanics, except embedded stat blocks inside
+  explicit lore containers such as Geography, Deities, Organizations, Life in Faerûn and
+  Running the Realms do not suppress the surrounding lore.
+- `errata`: use correction mode, a small domain budget and no systems/inference pass.
+- `lore`: use the normal mode budget.
+
+OCR-damaged index fragments are detected with a conservative numeric-density test rather than
+book-specific line ranges. Classifications are stored in `chunk_classifications` for auditability.
