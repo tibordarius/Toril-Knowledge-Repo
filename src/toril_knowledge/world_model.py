@@ -30,7 +30,7 @@ RECORD_TYPES = {
     "entity", "attribute", "claim", "relation", "event", "quantity", "state",
     "flow", "dependency", "constraint", "capacity", "pressure", "incentive",
     "power", "vulnerability", "resilience", "risk", "opportunity", "trend",
-    "inference", "gap", "perspective", "conflict",
+    "inference", "gap", "perspective", "conflict", "correction",
 }
 
 BASE_SYSTEM = """You build an auditable world model from sourcebook text.
@@ -50,6 +50,8 @@ Rules:
 - Use null when a field is unknown.
 - Separate a fact from its interpretation.
 - Prefer several atomic records over one overloaded record.
+- If source_type is errata, emit correction records for the target material instead of
+  treating corrected game text as independent world-state lore.
 """
 
 ENTITY_PROMPT = """PASS 1: ENTITY AND ATTRIBUTE EXTRACTION
@@ -440,8 +442,35 @@ def _call_and_store(
         "SELECT * FROM source_catalog WHERE book_id=?", (chunk["book_id"],)
     ).fetchone()
     meta = dict(source_meta) if source_meta else {"book_id": chunk["book_id"]}
+    source_instructions = ""
+    if meta.get("source_type") == "errata":
+        source_instructions = (
+            "\n\nERRATA MODE\n"
+            "Treat this text as a correction overlay. Use record_type=correction where appropriate. "
+            "Capture the target page/section, corrected field or wording, previous value when stated, "
+            "and replacement value in attributes. Do not promote corrected mechanics into unrelated lore."
+        )
+
+    prior_context = ""
+    if inference:
+        prior = conn.execute(
+            """SELECT record_type, subject, predicate, object_json, attributes_json,
+                      confidence_type, scale, source_status
+               FROM knowledge_records
+               WHERE run_id=? AND chunk_id=? AND pass_no<=4
+               ORDER BY pass_no, rowid LIMIT 150""",
+            (run_id, chunk["chunk_id"]),
+        ).fetchall()
+        if prior:
+            prior_context = (
+                "\n\nPRIOR EXPLICIT/SYSTEM RECORDS\n"
+                + json.dumps([dict(row) for row in prior], ensure_ascii=False)
+            )
+
     user_prompt = (
         task_prompt
+        + source_instructions
+        + prior_context
         + "\n\nSOURCE METADATA\n"
         + json.dumps(meta, ensure_ascii=False, default=str)
         + "\n\nCHUNK METADATA\n"
