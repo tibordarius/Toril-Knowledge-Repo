@@ -15,6 +15,9 @@ SPACE_RE = re.compile(r"\s+")
 NONWORD_RE = re.compile(r"[^a-z0-9 ]+")
 
 CONTENTS_RE = re.compile(r"\b(?:table of contents|contents|index)\b", re.I)
+ERRATA_RE = re.compile(r"\b(?:errata|rules corrections?|official corrections?)\b", re.I)
+INDEX_NUMBER_RE = re.compile(r"\b\d{1,3}\b")
+INDEX_WORD_RE = re.compile(r"\b[A-Za-z]{3,}\b")
 FRONT_HEADING_RE = re.compile(
     r"\b(?:credits?|editors?|designers?|cartographers?|illustrators?|isbn|copyright|printing)\b",
     re.I,
@@ -88,6 +91,21 @@ def classify_chunk(heading: str, text: str) -> ChunkClassification:
         reasons.append("OCR index heading")
         return ChunkClassification("contents_index", 0.98, tuple(reasons))
 
+    page_number_count = len(INDEX_NUMBER_RE.findall(text[:12000]))
+    word_count = len(INDEX_WORD_RE.findall(text[:12000]))
+    index_density = page_number_count / max(1, page_number_count + word_count)
+    if page_number_count >= 100 and index_density >= 0.55:
+        reasons.append(
+            f"index-like numeric density ({page_number_count} page-number tokens, {index_density:.2f})"
+        )
+        return ChunkClassification("contents_index", 0.97, tuple(reasons))
+
+    if ERRATA_RE.search(heading_norm) or (
+        "errata" in text_norm[:800] and "correction" in text_norm[:1200]
+    ):
+        reasons.append("embedded errata/correction section")
+        return ChunkClassification("errata", 0.98, tuple(reasons))
+
     front_hits = sum(cue in text_norm for cue in FRONT_TEXT_CUES)
     if FRONT_HEADING_RE.search(heading_norm):
         front_hits += 2
@@ -142,6 +160,16 @@ def routing_limits(
             "skip_entity": False,
             "skip_relationship": True,
             "skip_epistemic": True,
+        }
+
+    if classification.kind == "errata":
+        return {
+            "domain_top_k": min(domain_top_k, 4),
+            "system_top_k": 0,
+            "inference_top_k": 0,
+            "skip_entity": False,
+            "skip_relationship": True,
+            "skip_epistemic": False,
         }
 
     return {
